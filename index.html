@@ -4389,6 +4389,102 @@ body.is-portrait .zukan-grid {
   border-radius: 5px;
 }
 
+/* ==========================================================================
+   9. Global No-Wrap Button & Spacious PC/Tablet Header Fix
+   Prevents vertical character wrapping on ALL devices (PC, Tablet, Phone)
+   ========================================================================== */
+
+.header-btn,
+.stage-action-btn,
+.modal-btn,
+.filter-chip,
+.target-pill,
+.cls-phase-pill,
+.mini-tut-btn,
+.tut-next-btn,
+.title-ghost-btn {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lab-header {
+  gap: 10px;
+  padding: 8px 14px;
+}
+
+.header-left {
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.stage-select {
+  max-width: 195px;
+  font-size: 12px;
+}
+
+.header-center {
+  flex: 1 1 auto;
+  min-width: 0;
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.header-center::-webkit-scrollbar {
+  display: none;
+}
+
+.mission-progress {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.target-pills {
+  flex-wrap: nowrap;
+}
+
+.header-right {
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.header-btn {
+  padding: 6px 9px;
+  font-size: 11.5px;
+  gap: 4px;
+}
+
+/* ==========================================================================
+   10. Single-Line Auto-Fit Chemical Equations (All Screen Sizes)
+   ========================================================================== */
+
+.bal-equation-wrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 10px 8px;
+}
+
+.bal-equation-row {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transform-origin: center center;
+  flex-shrink: 0;
+}
+
+.eq-term {
+  flex-shrink: 0;
+}
+
+.eq-formula {
+  white-space: nowrap;
+}
+
 </style>
 </head>
 <body>
@@ -8033,6 +8129,7 @@ class BalancerGame {
     this.streak = 0;
     this.solved = false;
     this.tutStep = 0;
+    window.addEventListener('resize', () => this.fitEquationSingleLine());
   }
 
   start(level = 'all') {
@@ -8084,7 +8181,7 @@ class BalancerGame {
       if (j > 0) html += `<span class="eq-op">＋</span>`;
       html += this._termHtml(sp.formula, idx);
     });
-    this.dom.equationWrap.innerHTML = html;
+    this.dom.equationWrap.innerHTML = `<div class="bal-equation-row">${html}</div>`;
 
     // Bind +/- buttons
     this.dom.equationWrap.querySelectorAll('.coeff-btn').forEach((btn) => {
@@ -8102,6 +8199,26 @@ class BalancerGame {
     });
 
     this.renderAtomBalance();
+    requestAnimationFrame(() => this.fitEquationSingleLine());
+  }
+
+  /**
+   * Auto-scale the chemical equation row so even 5-term equations always fit cleanly on ONE line.
+   */
+  fitEquationSingleLine() {
+    const wrap = this.dom.equationWrap;
+    if (!wrap) return;
+    const row = wrap.querySelector('.bal-equation-row');
+    if (!row) return;
+    row.style.transform = 'none';
+    wrap.style.height = 'auto';
+    const availW = wrap.clientWidth - 16;
+    const rowW = row.scrollWidth;
+    if (availW > 40 && rowW > availW) {
+      const scale = Math.max(0.38, availW / rowW);
+      row.style.transform = `scale(${scale})`;
+      wrap.style.height = `${Math.ceil(row.offsetHeight * scale) + 22}px`;
+    }
   }
 
   _termHtml(formula, idx) {
@@ -12282,11 +12399,12 @@ class IonSeparatorApp {
 
   openBalancerModal() {
     document.querySelectorAll('#bal-level-chips .filter-chip').forEach((c, i) => c.classList.toggle('active', i === 0));
-    this.balancer.start('all');
     document.getElementById('balancer-modal')?.classList.remove('hidden');
+    this.balancer.start('all');
     let seen = false;
     try { seen = Boolean(localStorage.getItem('ion_sep_bal_tut')); } catch (_) {}
     if (!seen) this.balancer.openTutorial();
+    requestAnimationFrame(() => this.balancer.fitEquationSingleLine());
   }
 
   openClassifierModal() {
@@ -12306,8 +12424,8 @@ class IonSeparatorApp {
    * - Landscape (PC・タブレット横・スマホ横: vw >= vh): Canonical 3-column lab layout auto-scaled cleanly
    */
   initViewportScaler() {
-    const BASE_W = 1240;
-    const BASE_H = 740;
+    const BASE_W = 1440;
+    const BASE_H = 760;
     const stage = this.dom.viewportStage;
     if (!stage) return;
 
