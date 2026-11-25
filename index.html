@@ -1951,6 +1951,161 @@ mark.hl-reagent {
   }
 }
 
+/* ==========================================================================
+   Interactive Hands-On Tutorial & Welcome Modal Styles
+   ========================================================================== */
+
+.header-btn.tut-btn {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(52, 211, 153, 0.55);
+  color: #6ee7b7;
+}
+
+.header-btn.tut-btn:hover {
+  background: rgba(16, 185, 129, 0.36);
+}
+
+.tutorial-card {
+  position: absolute;
+  top: 72px;
+  right: 16px;
+  width: min(330px, 90%);
+  background: rgba(11, 18, 34, 0.94);
+  backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(52, 211, 153, 0.72);
+  border-radius: 14px;
+  padding: 12px 14px;
+  z-index: 12;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), 0 0 22px rgba(16, 185, 129, 0.22);
+  animation: fadeUp 0.25s ease;
+}
+
+.tut-top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.tut-badge {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #022c22;
+  background: #34d399;
+  padding: 2px 7px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.tut-progress-track {
+  flex: 1;
+  height: 6px;
+  background: rgba(51, 65, 85, 0.85);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.tut-progress-fill {
+  height: 100%;
+  width: 16%;
+  background: linear-gradient(90deg, #34d399, #38bdf8);
+  transition: width 0.3s ease;
+}
+
+.tut-close-btn {
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 2px 5px;
+}
+
+.tut-close-btn:hover {
+  color: #ffffff;
+}
+
+.tut-title {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 5px;
+}
+
+.tut-text {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #cbd5e1;
+  margin-bottom: 10px;
+}
+
+.tut-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tut-next-btn {
+  background: linear-gradient(135deg, #059669, #0284c7);
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.tut-next-btn:hover {
+  filter: brightness(1.1);
+}
+
+/* Pulsing spotlight ring on the target button during tutorial */
+.tut-spotlight {
+  position: relative;
+  z-index: 15 !important;
+  border-color: #34d399 !important;
+  box-shadow: 0 0 0 3px rgba(52, 211, 153, 0.75), 0 0 22px rgba(52, 211, 153, 0.65) !important;
+  animation: tutPulse 1.3s infinite ease-in-out;
+}
+
+@keyframes tutPulse {
+  0%, 100% {
+    box-shadow: 0 0 0 2px rgba(52, 211, 153, 0.75), 0 0 16px rgba(52, 211, 153, 0.55);
+  }
+  50% {
+    box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.85), 0 0 28px rgba(56, 189, 248, 0.8);
+  }
+}
+
+/* First-Time Welcome Modal Highlights */
+.welcome-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 18px;
+  text-align: left;
+}
+
+.welcome-item {
+  background: rgba(30, 41, 59, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 9px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  color: #e2e8f0;
+}
+
+@media (max-width: 720px) {
+  .tutorial-card {
+    top: auto;
+    bottom: 24px;
+    right: 50%;
+    transform: translateX(50%);
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1982,6 +2137,9 @@ mark.hl-reagent {
       </div>
 
       <div class="header-right">
+        <button id="btn-open-tutorial" class="header-btn tut-btn" title="操作を実践しながら学べるチュートリアルを開始">
+          <span>🎓</span> チュートリアル
+        </button>
         <button id="btn-open-hint" class="header-btn hint-btn" title="行き詰まったときの段階的ヒント＆早見表を開く">
           <span>💡</span> ヒント
         </button>
@@ -2109,6 +2267,20 @@ mark.hl-reagent {
               <span>1滴</span>
               <span>少量</span>
               <span>過剰</span>
+            </div>
+          </div>
+
+          <!-- Interactive Hands-On Tutorial Guide Card -->
+          <div id="tutorial-card" class="tutorial-card hidden" role="region" aria-label="チュートリアルガイド">
+            <div class="tut-top-row">
+              <span class="tut-badge">🎓 TUTORIAL</span>
+              <div class="tut-progress-track"><div id="tut-progress-fill" class="tut-progress-fill"></div></div>
+              <button type="button" id="btn-tut-close" class="tut-close-btn" title="チュートリアルを終了">✕</button>
+            </div>
+            <h3 id="tut-title" class="tut-title"></h3>
+            <p id="tut-text" class="tut-text"></p>
+            <div class="tut-actions">
+              <button type="button" id="btn-tut-next" class="tut-next-btn">次へスキップ →</button>
             </div>
           </div>
 
@@ -2372,6 +2544,26 @@ mark.hl-reagent {
 
       <div class="modal-actions">
         <button id="btn-hint-close" class="modal-btn primary">実験に戻る</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 8: First-Time Welcome Modal -->
+  <div id="welcome-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
+    <div class="modal-card">
+      <div class="modal-ribbon">WELCOME TO ION SEPARATOR</div>
+      <h2 id="welcome-title">バーチャル無機化学実験室へようこそ！</h2>
+      <p class="modal-sub">
+        試薬の滴下・少量と過剰の2段階変化・ろ過・加熱・炎色反応を、目の前の実験台でリアルに体験しながら金属イオンの系統分離をマスターできます。
+      </p>
+      <div class="welcome-highlights">
+        <div class="welcome-item">🧪 <strong>タップで1滴 / 長押しで過剰</strong>のリアル滴下</div>
+        <div class="welcome-item">⏳ <strong>ろ過・加熱・炎色反応</strong>の物理アニメーション</div>
+        <div class="welcome-item">📓 <strong>系統ツリー＆反応式</strong>を実験ノートに自動記録</div>
+      </div>
+      <div class="modal-actions">
+        <button id="btn-welcome-skip" class="modal-btn secondary">そのまま始める</button>
+        <button id="btn-welcome-start-tut" class="modal-btn primary">🎓 チュートリアルを始める（約1分）</button>
       </div>
     </div>
   </div>
@@ -4266,6 +4458,180 @@ function buildContextHint(stage, tube, tubes, isBlind) {
 }
 
 
+// ===== tutorial.js =====
+/**
+ * Interactive Hands-On Tutorial Controller for ION SEPARATOR
+ * Guides first-time students through 6 real lab actions with live UI spotlighting:
+ *   1. Drop Dilute HCl (AgCl curdy precipitate)
+ *   2. Shake the test tube (drag or button)
+ *   3. Filter with funnel & filter paper (split residue & filtrate)
+ *   4. Small -> Excess NH3 (hold for Cu(OH)2 -> deep blue [Cu(NH3)4]2+)
+ *   5. Special operation: Flame Test (Cu2+ emerald blue-green flame)
+ *   6. Completion & Lab Notebook / Hint overview
+ */
+
+const TUTORIAL_STEPS = [
+  {
+    id: 'drop_hcl',
+    title: 'STEP 1 / 6：試薬を1滴落とそう',
+    text: '試験管には Ag⁺ と Cu²⁺ の混合液が入っています。左の試薬棚から【希 HCl】をタップして1滴落とし、AgCl の白い沈殿ができる様子を観察しよう！',
+    highlightSelector: '.reagent-btn[data-reagent-id="HCl"]',
+    requiredShelfTab: 'basic',
+  },
+  {
+    id: 'shake_tube',
+    title: 'STEP 2 / 6：試験管を振って攪拌しよう',
+    text: '白い沈殿（AgCl）が底に沈みました！ステージ上部の【〰️ 振る】ボタンを押すか、試験管を左右にドラッグして沈殿を舞い上げてみよう！',
+    highlightSelector: '#btn-shake',
+  },
+  {
+    id: 'filter_tube',
+    title: 'STEP 3 / 6：ろ過で沈殿とろ液を分けよう',
+    text: '沈殿（AgCl）と溶液（Cu²⁺）を物理的に分離します。ステージ右上の【⏳ ろ過】ボタンを押して、ろ紙と漏斗で2本に分けよう！',
+    highlightSelector: '#btn-filter',
+  },
+  {
+    id: 'excess_nh3',
+    title: 'STEP 4 / 6：「少量 → 過剰」の2段階変化を体験！',
+    text: 'ろ液（Cu²⁺）が選ばれました！左の試薬棚から【NH₃ 水】を長押し（または6回タップ）してみよう。青白沈殿 Cu(OH)₂ ができたあと、過剰で鮮やかな深青色 [Cu(NH₃)₄]²⁺ に溶けるよ！',
+    highlightSelector: '.reagent-btn[data-reagent-id="NH3"]',
+    requiredShelfTab: 'basic',
+  },
+  {
+    id: 'flame_test',
+    title: 'STEP 5 / 6：炎色反応を試してみよう',
+    text: '左の試薬棚の【特殊操作】タブから【炎色反応】を押してみよう！白金線とバーナーで Cu²⁺ 特有の青緑色の炎が燃え上がります！',
+    highlightSelector: '.reagent-btn[data-apparatus="flame"]',
+    requiredShelfTab: 'special',
+  },
+  {
+    id: 'complete',
+    title: 'STEP 6 / 6：チュートリアル完了！',
+    text: '基本操作マスターおめでとう！右の「実験ノート」に系統ツリーと反応式が自動記録されます。行き詰まったら右上の【💡 ヒント】をいつでも開いてね！',
+    highlightSelector: '#btn-open-hint',
+    isFinal: true,
+  },
+];
+
+class TutorialManager {
+  constructor(app) {
+    this.app = app;
+    this.active = false;
+    this.stepIndex = 0;
+    this.highlightedEl = null;
+
+    this.dom = {
+      card: document.getElementById('tutorial-card'),
+      progress: document.getElementById('tut-progress-fill'),
+      title: document.getElementById('tut-title'),
+      text: document.getElementById('tut-text'),
+      btnSkipStep: document.getElementById('btn-tut-next'),
+      btnClose: document.getElementById('btn-tut-close'),
+    };
+
+    this.dom.btnClose?.addEventListener('click', () => this.stop());
+    this.dom.btnSkipStep?.addEventListener('click', () => {
+      if (this.currentStep?.isFinal) {
+        this.finishAndStartStage1();
+      } else {
+        this.advance();
+      }
+    });
+  }
+
+  get currentStep() {
+    return this.active ? TUTORIAL_STEPS[this.stepIndex] : null;
+  }
+
+  start() {
+    this.active = true;
+    this.stepIndex = 0;
+
+    // Prepare a dedicated 2-ion tutorial bench (Ag+ + Cu2+)
+    this.app.startTutorialSandbox();
+    this.dom.card?.classList.remove('hidden');
+    this.renderStep();
+  }
+
+  stop() {
+    this.active = false;
+    this.clearHighlight();
+    this.dom.card?.classList.add('hidden');
+    try {
+      localStorage.setItem('ion_separator_tut_seen', '1');
+    } catch (_) {}
+  }
+
+  finishAndStartStage1() {
+    this.stop();
+    this.app.dom.stageSelect.value = '0';
+    this.app.loadStage(0);
+  }
+
+  /**
+   * Called by IonSeparatorApp whenever the student performs a lab action.
+   */
+  notifyAction(actionId) {
+    if (!this.active) return;
+    const step = this.currentStep;
+    if (!step || step.isFinal) return;
+    if (step.id === actionId) {
+      this.app.audio.playSuccess();
+      this.advance();
+    }
+  }
+
+  advance() {
+    if (!this.active) return;
+    if (this.stepIndex < TUTORIAL_STEPS.length - 1) {
+      this.stepIndex++;
+      this.renderStep();
+    } else {
+      this.finishAndStartStage1();
+    }
+  }
+
+  clearHighlight() {
+    if (this.highlightedEl) {
+      this.highlightedEl.classList.remove('tut-spotlight');
+      this.highlightedEl = null;
+    }
+  }
+
+  renderStep() {
+    const step = this.currentStep;
+    if (!step) return;
+
+    this.clearHighlight();
+
+    // Auto-switch reagent shelf tab if needed so the target button is immediately visible
+    if (step.requiredShelfTab) {
+      const tabBtn = document.querySelector(`.shelf-tab[data-shelf="${step.requiredShelfTab}"]`);
+      if (tabBtn && !tabBtn.classList.contains('active')) {
+        tabBtn.click();
+      }
+    }
+
+    const pct = ((this.stepIndex + 1) / TUTORIAL_STEPS.length) * 100;
+    if (this.dom.progress) this.dom.progress.style.width = `${pct}%`;
+    if (this.dom.title) this.dom.title.textContent = step.title;
+    if (this.dom.text) this.dom.text.textContent = step.text;
+    if (this.dom.btnSkipStep) {
+      this.dom.btnSkipStep.textContent = step.isFinal ? '課題①へ挑戦する →' : '次へスキップ →';
+    }
+
+    if (step.highlightSelector) {
+      const target = document.querySelector(step.highlightSelector);
+      if (target) {
+        this.highlightedEl = target;
+        target.classList.add('tut-spotlight');
+        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }
+    }
+  }
+}
+
+
 // ===== physics.js =====
 /**
  * High-FPS Canvas Physics & Photorealistic Lab Stage Renderer for ION SEPARATOR
@@ -4537,6 +4903,7 @@ class LabStageRenderer {
     if (energy > 0.08 && now - this.lastSloshSoundAt > 190) {
       this.lastSloshSoundAt = now;
       this.audio.playSlosh(Math.min(1, energy * 3));
+      if (this.callbacks.onShake) this.callbacks.onShake();
     }
   }
 
@@ -6453,11 +6820,19 @@ class IonSeparatorApp {
       btnRevealLv2: document.getElementById('btn-reveal-lv2'),
       btnRevealLv3: document.getElementById('btn-reveal-lv3'),
       btnHintClose: document.getElementById('btn-hint-close'),
+
+      btnOpenTutorial: document.getElementById('btn-open-tutorial'),
+      welcomeModal: document.getElementById('welcome-modal'),
+      btnWelcomeSkip: document.getElementById('btn-welcome-skip'),
+      btnWelcomeStartTut: document.getElementById('btn-welcome-start-tut'),
     };
 
     this.renderer = new LabStageRenderer(this.dom.canvas, this.audio, {
       onTemperatureChange: (tube) => this.handleTemperatureChange(tube),
+      onShake: () => this.tutorial?.notifyAction('shake_tube'),
     });
+
+    this.tutorial = new TutorialManager(this);
 
     this.initStageSelector();
     this.initReagentShelf();
@@ -6480,6 +6855,12 @@ class IonSeparatorApp {
       this.applyReagentVisibilityFilter();
     } else {
       this.loadStage(0);
+      // Show welcome modal on first visit
+      let seen = false;
+      try { seen = Boolean(localStorage.getItem('ion_separator_tut_seen')); } catch (_) {}
+      if (!seen) {
+        this.dom.welcomeModal.classList.remove('hidden');
+      }
     }
   }
 
@@ -6720,6 +7101,32 @@ class IonSeparatorApp {
         document.getElementById(`hint-pane-${tab.dataset.hintTab}`)?.classList.add('active');
       });
     });
+
+    // --- Modal 8: Tutorial & Welcome ---
+    this.dom.btnOpenTutorial.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.tutorial.start();
+    });
+    this.dom.btnWelcomeSkip.addEventListener('click', () => {
+      this.dom.welcomeModal.classList.add('hidden');
+      try { localStorage.setItem('ion_separator_tut_seen', '1'); } catch (_) {}
+    });
+    this.dom.btnWelcomeStartTut.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.dom.welcomeModal.classList.add('hidden');
+      this.tutorial.start();
+    });
+  }
+
+  startTutorialSandbox() {
+    const customIdx = STAGES.length - 1;
+    STAGES[customIdx].ions = ['Ag+', 'Cu2+'];
+    STAGES[customIdx].blind = false;
+    this.filterReagentsOnly = false;
+    this.dom.chkFilterReagents.checked = false;
+    this.applyReagentVisibilityFilter();
+    this.dom.stageSelect.value = String(customIdx);
+    this.loadStage(customIdx);
   }
 
   loadStage(index) {
@@ -6921,6 +7328,10 @@ class IonSeparatorApp {
 
       this.refreshAllUI();
       this.checkCompletion();
+
+      // Interactive tutorial hooks
+      if (reagent.id === 'HCl') this.tutorial.notifyAction('drop_hcl');
+      if (reagent.id === 'NH3' && res.drops >= 6) this.tutorial.notifyAction('excess_nh3');
     });
   }
 
@@ -6998,6 +7409,7 @@ class IonSeparatorApp {
       equation: '',
     });
     this.refreshAllUI();
+    this.tutorial.notifyAction('flame_test');
   }
 
   handlePhPaper() {
@@ -7113,6 +7525,7 @@ class IonSeparatorApp {
       });
       this.refreshAllUI();
       this.checkCompletion();
+      this.tutorial.notifyAction('filter_tube');
     });
   }
 
