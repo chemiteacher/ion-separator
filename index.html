@@ -2031,14 +2031,7 @@ mark.hl-reagent {
   color: #e2e8f0;
 }
 
-@media (max-width: 720px) {
-  .tutorial-card {
-    top: auto;
-    bottom: 24px;
-    right: 50%;
-    transform: translateX(50%);
-  }
-}
+/* Tutorial card positioning in portrait is handled by body.is-portrait .tutorial-card */
 
 /* ==========================================================================
    1. Auto-Fit Viewport Stage (Identical 3-Column Layout on ALL Devices)
@@ -2881,15 +2874,94 @@ body.is-portrait .notebook-panel.open {
   transform: translateX(0);
 }
 
-/* Tutorial Card in Portrait */
+/* Tutorial Card in Portrait: Docked cleanly in normal flow above canvas (ZERO overlap!) */
 body.is-portrait .tutorial-card {
+  position: relative;
   top: auto;
-  bottom: 10px;
-  left: 50%;
+  bottom: auto;
+  left: auto;
   right: auto;
-  transform: translateX(-50%);
-  width: min(94%, 380px);
-  padding: 10px 12px;
+  transform: none;
+  width: 100%;
+  flex-shrink: 0;
+  border-radius: 0;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  border-bottom: 1.5px solid rgba(52, 211, 153, 0.72);
+  padding: 7px 10px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  animation: none;
+}
+
+body.is-portrait .tut-top-row {
+  margin-bottom: 4px;
+}
+
+body.is-portrait .tut-body-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+body.is-portrait .tut-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+body.is-portrait .tut-title {
+  font-size: 12px;
+  margin-bottom: 2px;
+}
+
+body.is-portrait .tut-text {
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 0;
+}
+
+body.is-portrait .tut-next-btn {
+  white-space: nowrap;
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+/* Keep reaction-banner compact and clear of top HUD in portrait */
+body.is-portrait .reaction-banner {
+  bottom: 6px;
+  width: 94%;
+  padding: 7px 10px;
+}
+
+body.is-portrait .reaction-text {
+  font-size: 11.5px;
+}
+
+body.is-portrait .dose-meter {
+  left: 8px;
+  bottom: 6px;
+  width: 150px;
+  padding: 6px 8px;
+}
+
+/* Ensure tutorial-active hides non-essential bottom hint & keeps HUD crisp */
+body.is-portrait.tutorial-active .rack-section {
+  padding: 3px 8px 4px;
+}
+
+body.is-portrait.tutorial-active .tube-rack-frame {
+  min-height: 74px;
+}
+
+body.is-portrait.tutorial-active .mini-tube-svg {
+  width: 26px;
+  height: 52px;
+}
+
+/* Also ensure portrait shelf-header is compact */
+body.is-portrait .reagent-shelf-panel .shelf-header {
+  display: none;
 }
 
 /* Title Screen in Portrait */
@@ -3178,6 +3250,24 @@ body.is-portrait .quiz-question {
 
       <!-- Center: Main Lab Stage + Test Tube Rack -->
       <section class="main-stage-column" aria-label="メイン実験ステージ">
+        <!-- Interactive Hands-On Tutorial Guide Card -->
+        <div id="tutorial-card" class="tutorial-card hidden" role="region" aria-label="チュートリアルガイド">
+          <div class="tut-top-row">
+            <span class="tut-badge">🎓 TUTORIAL</span>
+            <div class="tut-progress-track"><div id="tut-progress-fill" class="tut-progress-fill"></div></div>
+            <button type="button" id="btn-tut-close" class="tut-close-btn" title="チュートリアルを終了">✕</button>
+          </div>
+          <div class="tut-body-row">
+            <div class="tut-copy">
+              <h3 id="tut-title" class="tut-title"></h3>
+              <p id="tut-text" class="tut-text"></p>
+            </div>
+            <div class="tut-actions">
+              <button type="button" id="btn-tut-next" class="tut-next-btn">次へ →</button>
+            </div>
+          </div>
+        </div>
+
         <div class="bench-stage-wrap" id="bench-stage-wrap">
           <div class="lab-wall-tiles" aria-hidden="true"></div>
 
@@ -3240,20 +3330,6 @@ body.is-portrait .quiz-question {
               <span>1滴</span>
               <span>少量</span>
               <span>過剰</span>
-            </div>
-          </div>
-
-          <!-- Interactive Hands-On Tutorial Guide Card -->
-          <div id="tutorial-card" class="tutorial-card hidden" role="region" aria-label="チュートリアルガイド">
-            <div class="tut-top-row">
-              <span class="tut-badge">🎓 TUTORIAL</span>
-              <div class="tut-progress-track"><div id="tut-progress-fill" class="tut-progress-fill"></div></div>
-              <button type="button" id="btn-tut-close" class="tut-close-btn" title="チュートリアルを終了">✕</button>
-            </div>
-            <h3 id="tut-title" class="tut-title"></h3>
-            <p id="tut-text" class="tut-text"></p>
-            <div class="tut-actions">
-              <button type="button" id="btn-tut-next" class="tut-next-btn">次へスキップ →</button>
             </div>
           </div>
 
@@ -5573,14 +5649,18 @@ class TutorialManager {
 
     // Prepare a dedicated 2-ion tutorial bench (Ag+ + Cu2+)
     this.app.startTutorialSandbox();
+    document.body.classList.add('tutorial-active');
     this.dom.card?.classList.remove('hidden');
     this.renderStep();
+    requestAnimationFrame(() => this.app.renderer?.resize());
   }
 
   stop() {
     this.active = false;
     this.clearHighlight();
+    document.body.classList.remove('tutorial-active');
     this.dom.card?.classList.add('hidden');
+    requestAnimationFrame(() => this.app.renderer?.resize());
     try {
       localStorage.setItem('ion_separator_tut_seen', '1');
     } catch (_) {}
@@ -5649,9 +5729,16 @@ class TutorialManager {
       if (target) {
         this.highlightedEl = target;
         target.classList.add('tut-spotlight');
-        target.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        // Safe horizontal-only centering inside scrollable strip (never scroll outer viewport!)
+        const scroller = target.closest('.shelf-scroll, .header-right');
+        if (scroller) {
+          const targetLeft = target.offsetLeft;
+          const desired = Math.max(0, targetLeft - scroller.clientWidth * 0.5 + target.clientWidth * 0.5);
+          scroller.scrollTo({ left: desired, behavior: 'smooth' });
+        }
       }
     }
+    requestAnimationFrame(() => this.app.renderer?.resize());
   }
 }
 
@@ -6418,13 +6505,16 @@ class LabStageRenderer {
   resize() {
     const parent = this.canvas.parentElement;
     if (!parent) return;
-    this.width = Math.max(300, Math.floor(parent.clientWidth || parent.getBoundingClientRect().width));
-    this.height = Math.max(300, Math.floor(parent.clientHeight || parent.getBoundingClientRect().height));
+    const pw = Math.floor(parent.clientWidth || parent.getBoundingClientRect().width);
+    const ph = Math.floor(parent.clientHeight || parent.getBoundingClientRect().height);
+    if (pw < 20 || ph < 20) return;
+    this.width = pw;
+    this.height = ph;
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.canvas.width = Math.floor(this.width * this.dpr);
     this.canvas.height = Math.floor(this.height * this.dpr);
-    this.canvas.style.width = `${this.width}px`;
-    this.canvas.style.height = `${this.height}px`;
+    this.canvas.style.width = '100%';
+    this.canvas.style.height = '100%';
   }
 
   start() {
@@ -6707,10 +6797,10 @@ class LabStageRenderer {
   }
 
   _getTubeGeometry() {
-    const w = Math.min(96, Math.max(74, this.width * 0.165));
-    const h = Math.min(278, Math.max(210, this.height * 0.62));
+    const h = Math.min(278, Math.max(96, this.height * 0.56));
+    const w = Math.min(96, Math.max(44, Math.min(this.width * 0.22, h * 0.35)));
     const cx = this.width * 0.5 + this.tubeOffsetX;
-    const bottomY = this.height * 0.77 + this.tubeLiftY;
+    const bottomY = this.height * 0.82 + this.tubeLiftY;
     const topY = bottomY - h;
     const radius = w * 0.5;
     return { cx, topY, bottomY, w, h, radius };
