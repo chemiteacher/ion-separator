@@ -4517,6 +4517,123 @@ body.is-portrait .zukan-grid {
   white-space: nowrap;
 }
 
+/* ==========================================================================
+   11. Progress Badges, Excess Quick-Tap Badge & Undo Button Polish
+   ========================================================================== */
+
+.title-prog-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(250, 204, 21, 0.22);
+  border: 1px solid rgba(250, 204, 21, 0.55);
+  color: #fde047;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  vertical-align: middle;
+}
+
+.title-prog-badge:empty {
+  display: none;
+}
+
+.excess-tag.excess-trigger {
+  cursor: pointer;
+  pointer-events: auto;
+  padding: 2px 5px;
+  background: rgba(245, 158, 11, 0.34);
+  border: 1px solid rgba(251, 191, 36, 0.72);
+  color: #fef08a;
+  font-weight: 800;
+  z-index: 3;
+  transition: transform 0.12s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.excess-tag.excess-trigger:hover {
+  background: rgba(245, 158, 11, 0.58);
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.55);
+  transform: scale(1.06);
+}
+
+.excess-tag.excess-trigger:active {
+  transform: scale(0.95);
+}
+
+.stage-action-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+body.is-portrait .stage-action-btn {
+  padding: 5px 6px;
+  font-size: 10.5px;
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   12. Professor Character Avatar in All 4 Game Tutorials
+   ========================================================================== */
+
+.prof-tut-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.prof-avatar-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  flex-shrink: 0;
+}
+
+.prof-svg {
+  width: 58px;
+  height: 58px;
+  filter: drop-shadow(0 4px 10px rgba(56, 189, 248, 0.35));
+  animation: profFloat 2.8s ease-in-out infinite;
+}
+
+.prof-name-pill {
+  font-size: 9.5px;
+  font-weight: 800;
+  color: #e0f2fe;
+  background: rgba(14, 116, 144, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  border-radius: 999px;
+  padding: 1px 7px;
+  white-space: nowrap;
+  letter-spacing: 0.04em;
+}
+
+.prof-speech-col {
+  flex: 1;
+  min-width: 0;
+}
+
+@keyframes profFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-3px); }
+}
+
+body.is-portrait .prof-tut-row {
+  gap: 8px;
+  align-items: flex-start;
+}
+
+body.is-portrait .prof-svg {
+  width: 44px;
+  height: 44px;
+}
+
+body.is-portrait .prof-name-pill {
+  font-size: 8.5px;
+  padding: 1px 5px;
+}
+
 </style>
 </head>
 <body>
@@ -4586,14 +4703,14 @@ body.is-portrait .zukan-grid {
           <button type="button" id="btn-title-start" class="title-btn primary">
             <span class="tbtn-ico">🔬</span>
             <span class="tbtn-text">
-              <strong>系統分析</strong>
+              <strong>系統分析 <span id="title-sep-badge" class="title-prog-badge"></span></strong>
               <small>リアル試験管ラボ・全10課題</small>
             </span>
           </button>
           <button type="button" id="btn-title-reference" class="title-btn violet">
             <span class="tbtn-ico">⚡</span>
             <span class="tbtn-text">
-              <strong>沈殿１問１答</strong>
+              <strong>沈殿１問１答 <span id="title-quiz-badge" class="title-prog-badge"></span></strong>
               <small>全25問ドリル＆沈殿色一覧表</small>
             </span>
           </button>
@@ -4723,14 +4840,31 @@ body.is-portrait .zukan-grid {
 
       <!-- Center: Main Lab Stage + Test Tube Rack -->
       <section class="main-stage-column" aria-label="メイン実験ステージ">
-        <!-- Interactive Hands-On Tutorial Guide Card -->
-        <div id="tutorial-card" class="tutorial-card hidden" role="region" aria-label="チュートリアルガイド">
+        <!-- Interactive Hands-On Tutorial Guide Card (Professor Guided) -->
+        <div id="tutorial-card" class="tutorial-card hidden" role="region" aria-label="博士のチュートリアルガイド">
           <div class="tut-top-row">
-            <span class="tut-badge">🎓 TUTORIAL</span>
+            <span class="tut-badge">👨‍🔬 博士のチュートリアル</span>
             <div class="tut-progress-track"><div id="tut-progress-fill" class="tut-progress-fill"></div></div>
             <button type="button" id="btn-tut-close" class="tut-close-btn" title="チュートリアルを終了">✕</button>
           </div>
           <div class="tut-body-row">
+            <div class="prof-avatar-wrap" aria-hidden="true">
+              <svg class="prof-svg" viewBox="0 0 80 80" fill="none">
+                <circle cx="40" cy="40" r="38" fill="#0f2942" stroke="#38bdf8" stroke-width="2.5"/>
+                <path d="M14 74C16 58 26 52 40 52C54 52 64 58 66 74" fill="#f8fafc"/>
+                <path d="M35 53L40 66L45 53Z" fill="#0284c7"/>
+                <circle cx="20" cy="30" r="8" fill="#e2e8f0"/><circle cx="60" cy="30" r="8" fill="#e2e8f0"/>
+                <ellipse cx="40" cy="33" rx="16" ry="17" fill="#fed7aa"/>
+                <circle cx="33" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+                <circle cx="47" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+                <line x1="38.5" y1="31" x2="41.5" y2="31" stroke="#1e293b" stroke-width="2"/>
+                <circle cx="33" cy="31" r="2" fill="#0f172a"/><circle cx="47" cy="31" r="2" fill="#0f172a"/>
+                <path d="M29 41Q34 37 40 40Q46 37 51 41Q45 46 40 43Q35 46 29 41Z" fill="#f1f5f9"/>
+                <path d="M36 45Q40 48 44 45" stroke="#9a3412" stroke-width="1.8" stroke-linecap="round"/>
+                <path d="M58 52L64 66H52L58 52Z" fill="#38bdf8" stroke="#e0f2fe" stroke-width="1.4"/>
+              </svg>
+              <span class="prof-name-pill">化学博士</span>
+            </div>
             <div class="tut-copy">
               <h3 id="tut-title" class="tut-title"></h3>
               <p id="tut-text" class="tut-text"></p>
@@ -4755,6 +4889,9 @@ body.is-portrait .zukan-grid {
             </div>
 
             <div class="stage-quick-actions">
+              <button id="btn-undo" class="stage-action-btn" title="直前の操作を1手戻す" disabled>
+                <span>↩</span> 1手戻す
+              </button>
               <button id="btn-answer-blind" class="stage-action-btn emerald hidden" title="実験結果から正体を回答する">
                 <span>🎯</span> 正体を回答
               </button>
@@ -5103,15 +5240,36 @@ body.is-portrait .zukan-grid {
         </div>
       </div>
 
-      <!-- Beginner Tutorial Banner for 沈殿１問１答 -->
+      <!-- Beginner Tutorial Banner for 沈殿１問１答 (Professor Guided) -->
       <div id="ref-tut-box" class="mode-tut-box hidden">
-        <div class="mode-tut-head">
-          <span class="tut-badge">🎓 はじめてガイド</span>
-          <strong id="ref-tut-title">STEP 1 / 3：沈殿１問１答の使い方</strong>
-        </div>
-        <p id="ref-tut-text" class="mode-tut-text"></p>
-        <div class="mode-tut-foot">
-          <button type="button" id="btn-ref-tut-next" class="tut-next-btn">次へ →</button>
+        <div class="prof-tut-row">
+          <div class="prof-avatar-wrap" aria-hidden="true">
+            <svg class="prof-svg" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="38" fill="#0f2942" stroke="#38bdf8" stroke-width="2.5"/>
+              <path d="M14 74C16 58 26 52 40 52C54 52 64 58 66 74" fill="#f8fafc"/>
+              <path d="M35 53L40 66L45 53Z" fill="#0284c7"/>
+              <circle cx="20" cy="30" r="8" fill="#e2e8f0"/><circle cx="60" cy="30" r="8" fill="#e2e8f0"/>
+              <ellipse cx="40" cy="33" rx="16" ry="17" fill="#fed7aa"/>
+              <circle cx="33" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="47" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <line x1="38.5" y1="31" x2="41.5" y2="31" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="33" cy="31" r="2" fill="#0f172a"/><circle cx="47" cy="31" r="2" fill="#0f172a"/>
+              <path d="M29 41Q34 37 40 40Q46 37 51 41Q45 46 40 43Q35 46 29 41Z" fill="#f1f5f9"/>
+              <path d="M36 45Q40 48 44 45" stroke="#9a3412" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M58 52L64 66H52L58 52Z" fill="#38bdf8" stroke="#e0f2fe" stroke-width="1.4"/>
+            </svg>
+            <span class="prof-name-pill">化学博士</span>
+          </div>
+          <div class="prof-speech-col">
+            <div class="mode-tut-head">
+              <span class="tut-badge">👨‍🔬 博士のガイド</span>
+              <strong id="ref-tut-title">STEP 1 / 3：沈殿１問１答の使い方</strong>
+            </div>
+            <p id="ref-tut-text" class="mode-tut-text"></p>
+            <div class="mode-tut-foot">
+              <button type="button" id="btn-ref-tut-next" class="tut-next-btn">次へ →</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -5137,6 +5295,7 @@ body.is-portrait .zukan-grid {
       <div class="ref-pane" id="ref-pane-quiz">
         <div class="ref-filter-chips" id="quiz-cat-chips">
           <button type="button" class="filter-chip active" data-qcat="all">全分野 (25問)</button>
+          <button type="button" class="filter-chip" data-qcat="wrong">📌 間違えた問題のみ (0)</button>
           <button type="button" class="filter-chip" data-qcat="color">沈殿の色・性質</button>
           <button type="button" class="filter-chip" data-qcat="excess">少量→過剰・錯イオン</button>
           <button type="button" class="filter-chip" data-qcat="confirm">炎色・確認試薬</button>
@@ -5190,15 +5349,36 @@ body.is-portrait .zukan-grid {
         </div>
       </div>
 
-      <!-- Beginner Tutorial Box -->
+      <!-- Beginner Tutorial Box (Professor Guided) -->
       <div id="bal-tut-box" class="mode-tut-box hidden">
-        <div class="mode-tut-head">
-          <span class="tut-badge">🎓 はじめてガイド</span>
-          <strong id="bal-tut-title"></strong>
-        </div>
-        <p id="bal-tut-text" class="mode-tut-text"></p>
-        <div class="mode-tut-foot">
-          <button type="button" id="btn-bal-tut-next" class="tut-next-btn">次へ →</button>
+        <div class="prof-tut-row">
+          <div class="prof-avatar-wrap" aria-hidden="true">
+            <svg class="prof-svg" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="38" fill="#0f2942" stroke="#f59e0b" stroke-width="2.5"/>
+              <path d="M14 74C16 58 26 52 40 52C54 52 64 58 66 74" fill="#f8fafc"/>
+              <path d="M35 53L40 66L45 53Z" fill="#0284c7"/>
+              <circle cx="20" cy="30" r="8" fill="#e2e8f0"/><circle cx="60" cy="30" r="8" fill="#e2e8f0"/>
+              <ellipse cx="40" cy="33" rx="16" ry="17" fill="#fed7aa"/>
+              <circle cx="33" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="47" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <line x1="38.5" y1="31" x2="41.5" y2="31" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="33" cy="31" r="2" fill="#0f172a"/><circle cx="47" cy="31" r="2" fill="#0f172a"/>
+              <path d="M29 41Q34 37 40 40Q46 37 51 41Q45 46 40 43Q35 46 29 41Z" fill="#f1f5f9"/>
+              <path d="M36 45Q40 48 44 45" stroke="#9a3412" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M58 52L64 66H52L58 52Z" fill="#fbbf24" stroke="#fef3c7" stroke-width="1.4"/>
+            </svg>
+            <span class="prof-name-pill">化学博士</span>
+          </div>
+          <div class="prof-speech-col">
+            <div class="mode-tut-head">
+              <span class="tut-badge">👨‍🔬 博士のガイド</span>
+              <strong id="bal-tut-title"></strong>
+            </div>
+            <p id="bal-tut-text" class="mode-tut-text"></p>
+            <div class="mode-tut-foot">
+              <button type="button" id="btn-bal-tut-next" class="tut-next-btn">次へ →</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -5244,15 +5424,36 @@ body.is-portrait .zukan-grid {
         </div>
       </div>
 
-      <!-- Beginner Tutorial Box -->
+      <!-- Beginner Tutorial Box (Professor Guided) -->
       <div id="cls-tut-box" class="mode-tut-box hidden">
-        <div class="mode-tut-head">
-          <span class="tut-badge">🎓 はじめてガイド</span>
-          <strong id="cls-tut-title"></strong>
-        </div>
-        <p id="cls-tut-text" class="mode-tut-text"></p>
-        <div class="mode-tut-foot">
-          <button type="button" id="btn-cls-tut-next" class="tut-next-btn">次へ →</button>
+        <div class="prof-tut-row">
+          <div class="prof-avatar-wrap" aria-hidden="true">
+            <svg class="prof-svg" viewBox="0 0 80 80" fill="none">
+              <circle cx="40" cy="40" r="38" fill="#0f2942" stroke="#10b981" stroke-width="2.5"/>
+              <path d="M14 74C16 58 26 52 40 52C54 52 64 58 66 74" fill="#f8fafc"/>
+              <path d="M35 53L40 66L45 53Z" fill="#0284c7"/>
+              <circle cx="20" cy="30" r="8" fill="#e2e8f0"/><circle cx="60" cy="30" r="8" fill="#e2e8f0"/>
+              <ellipse cx="40" cy="33" rx="16" ry="17" fill="#fed7aa"/>
+              <circle cx="33" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="47" cy="31" r="5.5" fill="#fff" stroke="#1e293b" stroke-width="2"/>
+              <line x1="38.5" y1="31" x2="41.5" y2="31" stroke="#1e293b" stroke-width="2"/>
+              <circle cx="33" cy="31" r="2" fill="#0f172a"/><circle cx="47" cy="31" r="2" fill="#0f172a"/>
+              <path d="M29 41Q34 37 40 40Q46 37 51 41Q45 46 40 43Q35 46 29 41Z" fill="#f1f5f9"/>
+              <path d="M36 45Q40 48 44 45" stroke="#9a3412" stroke-width="1.8" stroke-linecap="round"/>
+              <path d="M58 52L64 66H52L58 52Z" fill="#34d399" stroke="#d1fae5" stroke-width="1.4"/>
+            </svg>
+            <span class="prof-name-pill">化学博士</span>
+          </div>
+          <div class="prof-speech-col">
+            <div class="mode-tut-head">
+              <span class="tut-badge">👨‍🔬 博士のガイド</span>
+              <strong id="cls-tut-title"></strong>
+            </div>
+            <p id="cls-tut-text" class="mode-tut-text"></p>
+            <div class="mode-tut-foot">
+              <button type="button" id="btn-cls-tut-next" class="tut-next-btn">次へ →</button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -6172,11 +6373,14 @@ function applyReagentDrop(tube, reagentId) {
       ['Ag2O', 'Ag+'], ['HgO', 'Hg2+'],
       ['ZnS', 'Zn2+'], ['FeS', 'Fe2+'], ['MnS', 'Mn2+'],
       ['BaCO3', 'Ba2+'], ['CaCO3', 'Ca2+'], ['MgCO3', 'Mg2+'],
+      ['BaCrO4', 'Ba2+'], ['Ag2CrO4', 'Ag+'],
     ]) {
       if (hasPrecip(p)) {
         removePrecip(p);
         addIon(ion);
         events.push(`${PRECIPITATES[p].formula} が ${acidName} に溶解`);
+        if (p === 'BaCrO4') equations.push('2BaCrO₄ + 2H⁺ → 2Ba²⁺ + Cr₂O₇²⁻ + H₂O');
+        if (p === 'Ag2CrO4') equations.push('2Ag₂CrO₄ + 2H⁺ → 4Ag⁺ + Cr₂O₇²⁻ + H₂O');
       }
     }
   };
@@ -6450,6 +6654,9 @@ function applyReagentDrop(tube, reagentId) {
   // --- 9. H2SO4 ---
   else if (reagentId === 'H2SO4') {
     tube.acidity = 'strong_acid';
+    tube.reagentDrops.NH3 = 0;
+    tube.reagentDrops.NaOH = 0;
+    dissolveInStrongAcid('希 H₂SO₄');
     if (hasIon('Ba2+')) {
       removeIon('Ba2+'); addPrecip('BaSO4');
       events.push('BaSO₄ の真っ白な結晶性沈殿が素早く沈降！');
@@ -6669,14 +6876,22 @@ function evaluatePhPaper(tube) {
 }
 
 /**
- * Evaluate Metal Plate Immersion (Zn or Fe plate displacement reaction).
+ * Evaluate Metal Plate Immersion (Zn or Fe plate displacement & acid H2 evolution).
  */
 function evaluateMetalPlate(tube, plateMetal) {
-  // Reactivity series order (higher = more reactive)
   const rank = { Zn: 5, Fe: 4, Sn: 3, Pb: 2, Cu: 1, Ag: 0 };
   const plateRank = rank[plateMetal];
+  const plateIon = plateMetal === 'Zn' ? 'Zn2+' : 'Fe2+';
   const deposited = [];
   const equations = [];
+  let hydrogenGas = false;
+
+  // Acidic solution -> H2 gas evolution on Zn / Fe plate!
+  if (tube.acidity === 'strong_acid' || tube.acidity === 'weak_acid') {
+    hydrogenGas = true;
+    if (!tube.ions.includes(plateIon)) tube.ions.push(plateIon);
+    equations.push(`${plateMetal} + 2H⁺ → ${IONS[plateIon].formula} + H₂↑`);
+  }
 
   const ionMap = [
     ['Ag+',  'Ag', '#e2e8f0', '銀白色の Ag 樹枝状結晶'],
@@ -6689,7 +6904,6 @@ function evaluateMetalPlate(tube, plateMetal) {
     if (tube.ions.includes(ion) && plateRank > rank[sym]) {
       tube.ions = tube.ions.filter((x) => x !== ion);
       deposited.push({ sym, color: col, desc });
-      const plateIon = plateMetal === 'Zn' ? 'Zn2+' : 'Fe2+';
       if (!tube.ions.includes(plateIon)) tube.ions.push(plateIon);
       equations.push(
         ion === 'Ag+'
@@ -6699,20 +6913,74 @@ function evaluateMetalPlate(tube, plateMetal) {
     }
   }
 
-  if (deposited.length === 0) {
+  if (deposited.length === 0 && !hydrogenGas) {
     return {
       reacted: false,
+      hydrogenGas: false,
       depositColor: null,
-      text: `${plateMetal} 板を浸したが、金属の析出は起きなかった（イオン化傾向）`,
+      text: `${plateMetal} 板を浸したが、反応は起きなかった（イオン化傾向）`,
       equation: '',
     };
   }
+
+  const parts = [];
+  if (hydrogenGas) parts.push(`${plateMetal} 板の表面から水素の気泡（H₂↑）が激しく発生した！`);
+  if (deposited.length > 0) parts.push(`${deposited.map((d) => d.desc).join('・')} が析出した！`);
+
   return {
     reacted: true,
-    depositColor: deposited[0].color,
-    text: `${plateMetal} 板の表面に ${deposited.map((d) => d.desc).join('・')} が析出した！`,
+    hydrogenGas,
+    depositColor: deposited[0]?.color || null,
+    text: parts.join(' ／ '),
     equation: equations.join(' / '),
   };
+}
+
+/**
+ * Detect irreparable mixed precipitates from incompatible analytical groups
+ * (e.g., AgCl + CuS, CuS + PbS, AgCl + BaSO4, CuS + BaSO4, BaSO4 + PbSO4, etc.).
+ */
+function detectIrreparableMix(tube) {
+  if (!tube || tube.precipitates.length < 2) return false;
+  const set = new Set(tube.precipitates);
+
+  // Known separable combinations in standard qualitative analysis
+  const separablePairs = [
+    ['AgCl', 'PbCl2'],       // Hot water extraction
+    ['Fe(OH)3', 'Al(OH)3'],  // Excess NaOH
+    ['Fe(OH)3', 'Zn(OH)2'],  // Excess NaOH / NH3
+    ['Fe(OH)3', 'Cu(OH)2'],  // Excess NH3
+    ['Fe(OH)3', 'Pb(OH)2'],  // Excess NaOH
+    ['Fe(OH)3', 'Cr(OH)3'],  // Excess NaOH
+    ['Fe(OH)3', 'Mg(OH)2'],  // Acid + NH4Cl + NH3
+    ['Al(OH)3', 'Mg(OH)2'],  // Excess NaOH
+    ['Al(OH)3', 'Cu(OH)2'],  // Excess NaOH / NH3
+    ['Al(OH)3', 'Zn(OH)2'],  // Excess NH3
+    ['Cu(OH)2', 'Zn(OH)2'],  // Excess NaOH
+    ['Cu(OH)2', 'Pb(OH)2'],  // Excess NaOH
+    ['Zn(OH)2', 'Mg(OH)2'],  // Excess NaOH / NH3
+    ['BaCO3', 'CaCO3'],      // CH3COOH + K2CrO4
+    ['AgCl', 'Fe(OH)3'],     // Excess NH3 dissolves AgCl
+    ['AgCl', 'Al(OH)3'],     // Excess NH3 / NaOH
+    ['AgCl', 'Cu(OH)2'],     // Dilute acid dissolves Cu(OH)2
+  ];
+
+  // If all precipitates are hydroxides/carbonates (all soluble in acid to restart) -> not irreparable
+  const acidSoluble = new Set([
+    'Cu(OH)2', 'Fe(OH)3', 'Fe(OH)2', 'Al(OH)3', 'Zn(OH)2', 'Pb(OH)2',
+    'Mg(OH)2', 'Cr(OH)3', 'Ni(OH)2', 'Mn(OH)2', 'Sn(OH)2', 'Cd(OH)2',
+    'Ag2O', 'HgO', 'ZnS', 'FeS', 'MnS', 'BaCO3', 'CaCO3', 'MgCO3',
+  ]);
+  if (tube.precipitates.every((p) => acidSoluble.has(p))) return false;
+
+  // Check if there are >= 2 acid-insoluble precipitates (e.g. AgCl, CuS, PbS, Ag2S, HgS, CdS, BaSO4, PbSO4, AgI, PbI2, PbCrO4)
+  const insoluble = tube.precipitates.filter((p) => !acidSoluble.has(p));
+  if (insoluble.length >= 2) {
+    // Only AgCl + PbCl2 is cleanly separable among acid-insoluble pairs!
+    if (insoluble.length === 2 && set.has('AgCl') && set.has('PbCl2')) return false;
+    return true;
+  }
+  return false;
 }
 
 /**
@@ -7271,41 +7539,41 @@ function buildContextHint(stage, tube, tubes, isBlind) {
 const TUTORIAL_STEPS = [
   {
     id: 'drop_hcl',
-    title: 'STEP 1 / 6：試薬を1滴落とそう',
-    text: '試験管には Ag⁺ と Cu²⁺ の混合液が入っています。左の試薬棚から【希 HCl】をタップして1滴落とし、AgCl の白い沈殿ができる様子を観察しよう！',
+    title: 'STEP 1 / 6：ようこそ！まずは試薬を1滴落とすのじゃ',
+    text: '「はじめまして！わしが化学博士じゃ。試験管には Ag⁺ と Cu²⁺ が入っておるぞ。左の試薬棚から【希 HCl】をタップして1滴落とし、AgCl の白い沈殿を観察するのじゃ！」',
     highlightSelector: '.reagent-btn[data-reagent-id="HCl"]',
     requiredShelfTab: 'basic',
   },
   {
     id: 'shake_tube',
-    title: 'STEP 2 / 6：試験管を振って攪拌しよう',
-    text: '白い沈殿（AgCl）が底に沈みました！ステージ上部の【〰️ 振る】ボタンを押すか、試験管を左右にドラッグして沈殿を舞い上げてみよう！',
+    title: 'STEP 2 / 6：試験管を振って攪拌してみよう',
+    text: '「おお、見事に白い沈殿（AgCl）ができたのう！ステージ上部の【〰️ 振る】ボタンを押すか、試験管を左右にドラッグして沈殿を舞い上げてみるのじゃ！」',
     highlightSelector: '#btn-shake',
   },
   {
     id: 'filter_tube',
-    title: 'STEP 3 / 6：ろ過で沈殿とろ液を分けよう',
-    text: '沈殿（AgCl）と溶液（Cu²⁺）を物理的に分離します。ステージ右上の【⏳ ろ過】ボタンを押して、ろ紙と漏斗で2本に分けよう！',
+    title: 'STEP 3 / 6：ろ過で沈殿とろ液を分けるのじゃ',
+    text: '「次は沈殿（AgCl）と溶液（Cu²⁺）を分けるぞい。ステージ右上の【⏳ ろ過】ボタンを押して、ろ紙と漏斗で2本に分離するのじゃ！」',
     highlightSelector: '#btn-filter',
   },
   {
     id: 'excess_nh3',
-    title: 'STEP 4 / 6：「少量 → 過剰」の2段階変化を体験！',
-    text: 'ろ液（Cu²⁺）が選ばれました！左の試薬棚から【NH₃ 水】を長押し（または6回タップ）してみよう。青白沈殿 Cu(OH)₂ ができたあと、過剰で鮮やかな深青色 [Cu(NH₃)₄]²⁺ に溶けるよ！',
+    title: 'STEP 4 / 6：「少量 → 過剰」の2段階変化を体験じゃ！',
+    text: '「ろ液（Cu²⁺）が選ばれたぞ！左の【NH₃ 水】を長押し（または右上の【過剰⚡】タップ）してみよう。青白沈殿 Cu(OH)₂ のあと、鮮やかな深青色 [Cu(NH₃)₄]²⁺ に溶けるぞい！」',
     highlightSelector: '.reagent-btn[data-reagent-id="NH3"]',
     requiredShelfTab: 'basic',
   },
   {
     id: 'flame_test',
-    title: 'STEP 5 / 6：炎色反応を試してみよう',
-    text: '左の試薬棚の【特殊操作】タブから【炎色反応】を押してみよう！白金線とバーナーで Cu²⁺ 特有の青緑色の炎が燃え上がります！',
+    title: 'STEP 5 / 6：炎色反応を観察するのじゃ',
+    text: '「左の【特殊操作】タブから【炎色反応】を押してみよう！白金線とバーナーで Cu²⁺ 特有の青緑色の炎が燃え上がるぞ！」',
     highlightSelector: '.reagent-btn[data-apparatus="flame"]',
     requiredShelfTab: 'special',
   },
   {
     id: 'complete',
-    title: 'STEP 6 / 6：チュートリアル完了！',
-    text: '基本操作マスターおめでとう！右の「実験ノート」に系統ツリーと反応式が自動記録されます。行き詰まったら右上の【💡 ヒント】をいつでも開いてね！',
+    title: 'STEP 6 / 6：見事じゃ！チュートリアル完了！',
+    text: '「基本操作はバッチリじゃな！間違えても【↩ 1手戻す】でやり直せるし、迷ったら右上の【💡 ヒント】をいつでも開くのじゃぞ！」',
     highlightSelector: '#btn-open-hint',
     isFinal: true,
   },
@@ -7811,9 +8079,12 @@ function renderReactionTable(container, filterTag = 'all') {
   `;
 }
 
+QUIZ_QUESTIONS.forEach((item, idx) => { item.qid = `q${idx + 1}`; });
+
 class QuizController {
-  constructor(dom) {
+  constructor(dom, onProgressChange = null) {
     this.dom = dom;
+    this.onProgressChange = onProgressChange;
     this.category = 'all';
     this.pool = [];
     this.index = 0;
@@ -7821,13 +8092,47 @@ class QuizController {
     this.answered = 0;
     this.streak = 0;
     this.locked = false;
+
+    this.masteredIds = new Set();
+    this.wrongIds = new Set();
+    this._loadProgress();
+  }
+
+  _loadProgress() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ion_sep_quiz_records') || '{}');
+      (saved.mastered || []).forEach((id) => this.masteredIds.add(id));
+      (saved.wrong || []).forEach((id) => this.wrongIds.add(id));
+    } catch (_) {}
+  }
+
+  _saveProgress() {
+    try {
+      localStorage.setItem('ion_sep_quiz_records', JSON.stringify({
+        mastered: [...this.masteredIds],
+        wrong: [...this.wrongIds],
+      }));
+    } catch (_) {}
+    this.updateWrongChipLabel();
+    if (this.onProgressChange) this.onProgressChange();
+  }
+
+  getMasteredCount() { return this.masteredIds.size; }
+  getWrongCount() { return this.wrongIds.size; }
+
+  updateWrongChipLabel() {
+    const chip = document.querySelector('#quiz-cat-chips .filter-chip[data-qcat="wrong"]');
+    if (chip) chip.textContent = `📌 間違えた問題のみ (${this.wrongIds.size})`;
   }
 
   start(category = 'all') {
     this.category = category;
+    this.updateWrongChipLabel();
     const filtered = category === 'all'
       ? [...QUIZ_QUESTIONS]
-      : QUIZ_QUESTIONS.filter((q) => q.cat === category);
+      : category === 'wrong'
+        ? QUIZ_QUESTIONS.filter((q) => this.wrongIds.has(q.qid))
+        : QUIZ_QUESTIONS.filter((q) => q.cat === category);
     this.pool = filtered.sort(() => Math.random() - 0.5);
     this.index = 0;
     this.score = 0;
@@ -7837,7 +8142,14 @@ class QuizController {
   }
 
   renderQuestion() {
-    if (this.pool.length === 0) return;
+    if (this.pool.length === 0) {
+      this.dom.stats.innerHTML = `<span>制覇済み <strong>${this.masteredIds.size} / ${QUIZ_QUESTIONS.length} 問 👑</strong></span>`;
+      this.dom.question.textContent = '🎉 間違えた問題はありません！すばらしい！他の分野にも挑戦しよう。';
+      this.dom.choices.innerHTML = '';
+      this.dom.feedback.classList.add('hidden');
+      this.dom.btnNext.classList.add('hidden');
+      return;
+    }
     if (this.index >= this.pool.length) {
       this.pool = [...this.pool].sort(() => Math.random() - 0.5);
       this.index = 0;
@@ -7845,15 +8157,18 @@ class QuizController {
     this.locked = false;
     const item = this.pool[this.index];
 
-    // Shuffle choices while tracking correct answer
     const indexed = item.choices.map((text, idx) => ({ text, isCorrect: idx === item.answer }));
     indexed.sort(() => Math.random() - 0.5);
 
-    this.dom.stats.innerHTML = `
-      <span>問題 <strong>${this.answered + 1}</strong></span>
-      <span>正答 <strong>${this.score} / ${this.answered}</strong></span>
-      <span class="quiz-streak">🔥 ${this.streak} 連続正解</span>
-    `;
+    const renderStats = () => {
+      this.dom.stats.innerHTML = `
+        <span>問題 <strong>${this.answered + 1}</strong></span>
+        <span>正答 <strong>${this.score} / ${this.answered}</strong></span>
+        <span>制覇 <strong>${this.masteredIds.size}/${QUIZ_QUESTIONS.length}</strong></span>
+        <span class="quiz-streak">🔥 ${this.streak} 連続</span>
+      `;
+    };
+    renderStats();
     this.dom.question.textContent = item.q;
     this.dom.feedback.classList.add('hidden');
     this.dom.btnNext.classList.add('hidden');
@@ -7871,33 +8186,37 @@ class QuizController {
         if (ch.isCorrect) {
           this.score++;
           this.streak++;
+          this.masteredIds.add(item.qid);
+          this.wrongIds.delete(item.qid);
           btn.classList.add('correct');
           this.dom.feedback.className = 'quiz-feedback ok';
           this.dom.feedback.innerHTML = `<strong>⭕ 正解！</strong> ${item.exp}`;
         } else {
           this.streak = 0;
+          this.wrongIds.add(item.qid);
           btn.classList.add('wrong');
-          // Highlight the right one
           [...this.dom.choices.children].forEach((b, bi) => {
             if (indexed[bi].isCorrect) b.classList.add('correct');
           });
           this.dom.feedback.className = 'quiz-feedback ng';
-          this.dom.feedback.innerHTML = `<strong>❌ 惜しい！</strong> ${item.exp}`;
+          this.dom.feedback.innerHTML = `<strong>❌ 惜しい！（📌苦手リストに追加）</strong> ${item.exp}`;
         }
+        this._saveProgress();
         this.dom.feedback.classList.remove('hidden');
         this.dom.btnNext.classList.remove('hidden');
-        this.dom.stats.innerHTML = `
-          <span>問題 <strong>${this.answered}</strong></span>
-          <span>正答 <strong>${this.score} / ${this.answered}</strong></span>
-          <span class="quiz-streak">🔥 ${this.streak} 連続正解</span>
-        `;
+        renderStats();
       });
       this.dom.choices.appendChild(btn);
     });
   }
 
   next() {
-    this.index++;
+    if (this.category === 'wrong') {
+      this.pool = QUIZ_QUESTIONS.filter((q) => this.wrongIds.has(q.qid)).sort(() => Math.random() - 0.5);
+      this.index = 0;
+    } else {
+      this.index++;
+    }
     this.renderQuestion();
   }
 }
@@ -8132,16 +8451,16 @@ const BALANCE_EQUATIONS = [
 
 const BALANCER_TUT_STEPS = [
   {
-    title: 'STEP 1 / 3：左右の原子数をそろえよう',
-    text: '化学反応式では、矢印（→）の「左辺」と「右辺」で各元素の原子数が同じになるように係数を決めます。下の【原子数バランス表】を見ながら調整しよう！',
+    title: 'STEP 1 / 3：左右の原子数をそろえるのじゃ！',
+    text: '「よく来たな、わしが化学博士じゃ！化学反応式は、矢印（→）の左辺と右辺で各元素の原子数が同じになるように係数を決めるのじゃよ！」',
   },
   {
-    title: 'STEP 2 / 3：＋ / − ボタンで係数を動かそう',
-    text: '各化学式の下にある【＋】【−】をタップすると係数（1〜12）が変わり、原子数バランス表がリアルタイムで緑色（✓一致）に変わります！',
+    title: 'STEP 2 / 3：＋ / − ボタンで係数を動かしてみよう',
+    text: '「各化学式の下にある【＋】【−】を押すと係数（1〜12）が変わり、下の【原子数バランス表】がリアルタイムで緑色の ✓ に変わるぞい！」',
   },
   {
-    title: 'STEP 3 / 3：すべて ✓ になったら判定！',
-    text: 'すべての元素が緑色の ✓ になり、係数が「最小の整数比」になっていれば大正解！連続正解でコンボ＆スコアがアップします！',
+    title: 'STEP 3 / 3：すべて ✓ になったら判定じゃ！',
+    text: '「全元素が ✓ かつ『最小の整数比』なら大正解！迷ったら【💡 ヒント】も使いつつ、連続コンボを目指すのじゃ！」',
   },
 ];
 
@@ -8373,8 +8692,10 @@ class BalancerGame {
     if (this.tutStep < BALANCER_TUT_STEPS.length - 1) {
       this.tutStep++;
       this.renderTutorial();
+      return false;
     } else {
       this.dom.tutBox.classList.add('hidden');
+      return true;
     }
   }
 }
@@ -8917,16 +9238,16 @@ const CLASSIFIER_ITEMS = [
 
 const CLASSIFIER_TUT_STEPS = [
   {
-    title: 'STEP 1 / 3：① 棚から正しい試薬びんを取ろう！',
-    text: '博士の依頼（性質または名称）を見て、棚に並んだ4本のびんから正しい1本を選ぼう！保存容器（褐色びん・ポリ容器・水中・石油中・広口びん・集気びん）や中身の色が大きなヒントになるよ。',
+    title: 'STEP 1 / 3：① 棚から正しい試薬びんを取るのじゃ！',
+    text: '「ようこそわしの試薬棚へ！わし（博士）の依頼を見て、4本のびんから正しい1本を選ぶのじゃ。褐色びん・ポリ容器・水中・石油中などの保存容器や中身の色がヒントじゃぞ！」',
   },
   {
-    title: 'STEP 2 / 3：②「正しいものをすべて選べ！」ラベルを貼ろう',
-    text: 'びんを取ったら、その薬品の性質・取り扱いについて【正しい記述をすべてチェック】してラベルを貼ろう！間違えた薬品は自動で「📌 付せん」が付くので後から集中復習できるよ。',
+    title: 'STEP 2 / 3：②「正しいものをすべて選べ！」ラベル貼りじゃ',
+    text: '「びんを取ったら、その薬品の正しい性質をすべてチェックしてラベルを貼るのじゃ！間違えた薬品は自動で【📌 付せん】が付くから復習もバッチリじゃよ。」',
   },
   {
-    title: 'STEP 3 / 3：③ 反応式タイルを埋めて実験成功！',
-    text: '仕上げに、その薬品が関わる入試頻出の反応式の空欄（係数・化学式）をタイルで完成させよう！全問クリア＆連続コンボで「📓 物質図鑑」に 👑 マークが付くよ！',
+    title: 'STEP 3 / 3：③ 反応式タイルを完成させて実験成功じゃ！',
+    text: '「仕上げに、入試頻出の反応式の空欄をタイルで埋めるのじゃ！全問クリアで【📓 物質図鑑】に 👑 が付くぞい。さあ始めよう！」',
   },
 ];
 
@@ -9468,8 +9789,10 @@ class ClassifierGame {
     if (this.tutStep < CLASSIFIER_TUT_STEPS.length - 1) {
       this.tutStep++;
       this.renderTutorial();
+      return false;
     } else {
       this.dom.tutBox.classList.add('hidden');
+      return true;
     }
   }
 }
@@ -9936,10 +10259,16 @@ class LabStageRenderer {
     this.audio.playDrop(1.3);
   }
 
-  triggerMetalPlate(metal, depositColor) {
+  triggerMetalPlate(metal, depositColor, hydrogenGas = false) {
     if (this.filtration.active) return;
-    this.metalPlate = { active: true, t: 0, duration: 2.8, metal, depositColor };
+    this.metalPlate = { active: true, t: 0, duration: 2.8, metal, depositColor, hydrogenGas };
     this.audio.playDrop(0.85);
+    if (hydrogenGas) {
+      this.audio.startBubbling('gas');
+      window.setTimeout(() => {
+        if (!this.gasTube.active && !this.burner.active) this.audio.stopBubbling();
+      }, 2200);
+    }
   }
 
   /**
@@ -10268,6 +10597,17 @@ class LabStageRenderer {
     }
     if (this.metalPlate.active) {
       this.metalPlate.t += dt / this.metalPlate.duration;
+      if (this.metalPlate.hydrogenGas && this.metalPlate.t > 0.2 && this.metalPlate.t < 0.85 && Math.random() < dt * 32) {
+        this.bubbles.push({
+          x: geom.cx + (Math.random() - 0.5) * 20,
+          y: surfY + 18 + Math.random() * Math.max(12, geom.bottomY - surfY - 34),
+          vx: (Math.random() - 0.5) * 20,
+          vy: -(75 + Math.random() * 55),
+          r: 1.5 + Math.random() * 2.3,
+          alpha: 0.78,
+          kind: 'gas',
+        });
+      }
       if (this.metalPlate.t >= 1) this.metalPlate.active = false;
     }
 
@@ -11703,6 +12043,11 @@ class IonSeparatorApp {
     // Collected unique equations for Study Report
     this.collectedEquations = [];
 
+    // Undo stack & step counter for best-step crown records
+    this.undoStack = [];
+    this.stepCount = 0;
+    this.stageRecords = this.loadStageRecords();
+
     // Reagent filter from imported exam problem
     this.importedReagentIds = null;
     this.filterReagentsOnly = false;
@@ -11743,6 +12088,7 @@ class IonSeparatorApp {
       hudTubeName: document.getElementById('hud-tube-name'),
       hudTubeState: document.getElementById('hud-tube-state'),
 
+      btnUndo: document.getElementById('btn-undo'),
       btnAnswerBlind: document.getElementById('btn-answer-blind'),
       btnShake: document.getElementById('btn-shake'),
       btnHeat: document.getElementById('btn-heat'),
@@ -11863,7 +12209,7 @@ class IonSeparatorApp {
       choices: this.dom.quizChoices,
       feedback: this.dom.quizFeedback,
       btnNext: this.dom.btnQuizNext,
-    });
+    }, () => this.updateProgressDisplays());
 
     this.balancer = new BalancerGame({
       stats: document.getElementById('bal-stats'),
@@ -11915,6 +12261,7 @@ class IonSeparatorApp {
     this.initStageSelector();
     this.initReagentShelf();
     this.initEventListeners();
+    this.updateProgressDisplays();
 
     // Check URL query parameters for shared custom problem
     const shared = parseShareUrl();
@@ -11947,13 +12294,18 @@ class IonSeparatorApp {
   }
 
   initStageSelector() {
+    const prevVal = this.dom.stageSelect.value;
     this.dom.stageSelect.innerHTML = '';
     STAGES.forEach((st, idx) => {
       const opt = document.createElement('option');
       opt.value = String(idx);
-      opt.textContent = st.title;
+      const rec = this.stageRecords[st.id];
+      const crown = rec?.cleared ? '👑 ' : '';
+      const stepsStr = rec?.bestSteps ? ` [最短${rec.bestSteps}手]` : '';
+      opt.textContent = `${crown}${st.title}${stepsStr}`;
       this.dom.stageSelect.appendChild(opt);
     });
+    if (prevVal !== '') this.dom.stageSelect.value = prevVal;
   }
 
   initReagentShelf() {
@@ -11970,8 +12322,21 @@ class IonSeparatorApp {
       btn.innerHTML = `
         ${buildReagentBottleSVG(reagent)}
         <span class="reagent-formula">${reagent.formula}</span>
-        ${reagent.supportsExcess ? '<span class="excess-tag">少量/過剰</span>' : ''}
+        ${reagent.supportsExcess ? `<span class="excess-tag excess-trigger" data-excess-for="${reagent.id}" title="タップで一気に過剰量まで滴下！">過剰⚡</span>` : ''}
       `;
+
+      // Direct tap on the "過剰⚡" badge -> instant excess burst!
+      const excessBadge = btn.querySelector('.excess-trigger');
+      if (excessBadge) {
+        excessBadge.addEventListener('pointerdown', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (this.currentStage.mode === 'unlabeled') return;
+          this.audio.ensureContext();
+          this.audio.playGlassClink('bottle');
+          this.dispenseExcessBurst(reagent);
+        });
+      }
 
       const startHold = (e) => {
         e.preventDefault();
@@ -11988,12 +12353,21 @@ class IonSeparatorApp {
 
         this.stopHold();
         this.holdReagent = reagent;
-        this.holdTimer = window.setTimeout(() => {
-          this.holdInterval = window.setInterval(() => {
+        if (reagent.supportsExcess) {
+          // Hold 0.35s -> smoothly jump straight to excess!
+          this.holdTimer = window.setTimeout(() => {
             if (!this.holdReagent) return;
-            this.dispenseLiquidDrop(this.holdReagent, true);
-          }, 240);
-        }, 280);
+            this.dispenseExcessBurst(this.holdReagent, true);
+            this.stopHold();
+          }, 350);
+        } else {
+          this.holdTimer = window.setTimeout(() => {
+            this.holdInterval = window.setInterval(() => {
+              if (!this.holdReagent) return;
+              this.dispenseLiquidDrop(this.holdReagent, true);
+            }, 240);
+          }, 350);
+        }
       };
 
       btn.addEventListener('pointerdown', startHold);
@@ -12078,6 +12452,7 @@ class IonSeparatorApp {
     });
 
     // Stage quick actions
+    this.dom.btnUndo?.addEventListener('click', () => { this.audio.ensureContext(); this.performUndo(); });
     this.dom.btnShake.addEventListener('click', () => { this.audio.ensureContext(); this.renderer.triggerShakeBurst(); });
     this.dom.btnHeat.addEventListener('click', () => { this.audio.ensureContext(); this.toggleHeating(); });
     this.dom.btnFilter.addEventListener('click', () => { this.audio.ensureContext(); this.handleFilter(); });
@@ -12197,6 +12572,11 @@ class IonSeparatorApp {
       this.audio.ensureContext();
       this.audio.playGlassClink('pickup');
       this.hideTitleScreen();
+      let seenSep = false;
+      try { seenSep = Boolean(localStorage.getItem('ion_separator_tut_seen')); } catch (_) {}
+      if (!seenSep) {
+        this.tutorial.start();
+      }
     });
     this.dom.btnTitleTutorial?.addEventListener('click', () => {
       this.audio.ensureContext();
@@ -12311,11 +12691,11 @@ class IonSeparatorApp {
       });
     });
 
-    // --- 沈殿１問１答 3-Step Beginner Tutorial ---
+    // --- 沈殿１問１答 3-Step Beginner Tutorial (Professor Guided) ---
     const refTutSteps = [
-      { title: 'STEP 1 / 3：沈殿色・反応一覧表で全体像をつかもう', text: '「📊 沈殿色・反応一覧表」タブでは、Ag⁺・Cu²⁺・Fe³⁺ など入試必須イオンの反応を色スウォッチ付きで一覧確認できます。白沈・黒沈・過剰再溶解などで絞り込みもOK！' },
-      { title: 'STEP 2 / 3：4択の一問一答ドリルで実力チェック！', text: '「⚡ 一問一答ドリル」タブに切り替えて4択に挑戦！間違えてもすぐにイオン反応式付きの解説が出るので、その場で確実に記憶できます。' },
-      { title: 'STEP 3 / 3：連続正解コンボを伸ばそう！', text: '分野別（沈殿の色・少量→過剰・炎色・系統分離の急所）に絞って集中特訓もできます。さあスタート！' },
+      { title: 'STEP 1 / 3：まずは沈殿色・反応一覧表を見るのじゃ！', text: '「よく来たな、わしが化学博士じゃ！【📊 沈殿色・反応一覧表】では Ag⁺・Cu²⁺・Fe³⁺ など入試必須イオンの反応を色つきで確認できるぞ。白沈・黒沈などの絞り込みも便利じゃ！」' },
+      { title: 'STEP 2 / 3：4択の一問一答ドリルで腕試しじゃ！', text: '「【⚡ 一問一答ドリル】に切り替えて4択に挑戦するのじゃ！間違えてもすぐにイオン反応式つきの解説が出るし、【📌 間違えた問題のみ】で苦手だけ集中復習もできるぞい！」' },
+      { title: 'STEP 3 / 3：全25問の完全制覇を目指すのじゃ！', text: '「分野別の集中特訓もできるぞ。正解した問題は自動で記録され、タイトル画面に 👑 が増えていくのじゃ。さあドリル開始じゃ！」' },
     ];
     this.refTutStep = 0;
     const renderRefTut = () => {
@@ -12352,8 +12732,10 @@ class IonSeparatorApp {
     });
     document.getElementById('btn-bal-tut')?.addEventListener('click', () => this.balancer.openTutorial());
     document.getElementById('btn-bal-tut-next')?.addEventListener('click', () => {
-      this.balancer.nextTutorial();
-      try { localStorage.setItem('ion_sep_bal_tut', '1'); } catch (_) {}
+      const done = this.balancer.nextTutorial();
+      if (done) {
+        try { localStorage.setItem('ion_sep_bal_tut', '1'); } catch (_) {}
+      }
     });
     document.getElementById('btn-bal-hint')?.addEventListener('click', () => this.balancer.showHint());
     document.getElementById('btn-bal-check')?.addEventListener('click', () => this.balancer.checkAnswer());
@@ -12388,8 +12770,10 @@ class IonSeparatorApp {
     document.getElementById('btn-cls-retry')?.addEventListener('click', () => this.classifier.showSetup());
     document.getElementById('btn-cls-tut')?.addEventListener('click', () => this.classifier.openTutorial());
     document.getElementById('btn-cls-tut-next')?.addEventListener('click', () => {
-      this.classifier.nextTutorial();
-      try { localStorage.setItem('ion_sep_cls_tut', '1'); } catch (_) {}
+      const done = this.classifier.nextTutorial();
+      if (done) {
+        try { localStorage.setItem('ion_sep_cls_tut', '1'); } catch (_) {}
+      }
     });
     document.getElementById('btn-cls-bookmark')?.addEventListener('click', () => {
       this.classifier.toggleCurrentBookmark();
@@ -12494,8 +12878,70 @@ class IonSeparatorApp {
     window.addEventListener('orientationchange', () => setTimeout(applyScale, 150));
   }
 
+  loadStageRecords() {
+    try {
+      return JSON.parse(localStorage.getItem('ion_sep_stage_records') || '{}');
+    } catch (_) {
+      return {};
+    }
+  }
+
+  saveStageClear(stageId, steps) {
+    if (!stageId || stageId === 'custom') return;
+    const prev = this.stageRecords[stageId];
+    const bestSteps = prev?.bestSteps ? Math.min(prev.bestSteps, steps) : steps;
+    this.stageRecords[stageId] = { cleared: true, bestSteps };
+    try {
+      localStorage.setItem('ion_sep_stage_records', JSON.stringify(this.stageRecords));
+    } catch (_) {}
+    this.initStageSelector();
+    this.updateProgressDisplays();
+  }
+
+  updateProgressDisplays() {
+    const clearedStages = STAGES.slice(0, 10).filter((st) => this.stageRecords[st.id]?.cleared).length;
+    const sepBadge = document.getElementById('title-sep-badge');
+    if (sepBadge) {
+      sepBadge.textContent = clearedStages > 0 ? `👑 ${clearedStages}/10` : '';
+    }
+    const quizMastered = this.quiz ? this.quiz.getMasteredCount() : 0;
+    const quizBadge = document.getElementById('title-quiz-badge');
+    if (quizBadge) {
+      quizBadge.textContent = quizMastered > 0 ? `👑 ${quizMastered}/25` : '';
+    }
+  }
+
+  pushUndoSnapshot() {
+    const snap = {
+      tubes: JSON.parse(JSON.stringify(this.tubes)),
+      activeTubeId: this.activeTubeId,
+      collectedEquations: [...this.collectedEquations],
+      stepCount: this.stepCount,
+    };
+    this.undoStack.push(snap);
+    if (this.undoStack.length > 30) this.undoStack.shift();
+    if (this.dom.btnUndo) this.dom.btnUndo.disabled = false;
+  }
+
+  performUndo() {
+    if (this.undoStack.length === 0 || this.renderer.filtration.active) return;
+    this.setHeating(false);
+    const snap = this.undoStack.pop();
+    this.tubes = snap.tubes;
+    this.activeTubeId = snap.activeTubeId;
+    this.collectedEquations = snap.collectedEquations;
+    this.stepCount = snap.stepCount;
+    this.stageCleared = false;
+    if (this.dom.btnUndo) this.dom.btnUndo.disabled = this.undoStack.length === 0;
+    this.audio.playGlassClink('place');
+    if (this.activeTube) this.renderer.setTube(this.activeTube, false);
+    this.showBanner('1手戻す', '↩ 直前の試験管状態に戻しました', '', 2000);
+    this.refreshAllUI();
+  }
+
   showTitleScreen() {
     this.setHeating(false);
+    this.updateProgressDisplays();
     this.dom.titleScreen?.classList.remove('hidden');
     this.titleFx?.start();
   }
@@ -12542,6 +12988,9 @@ class IonSeparatorApp {
     this.currentStageIndex = index;
     this.stageCleared = false;
     this.collectedEquations = [];
+    this.undoStack = [];
+    this.stepCount = 0;
+    if (this.dom.btnUndo) this.dom.btnUndo.disabled = true;
     this.unlabeledMatrix = {};
     resetTubeCounter();
 
@@ -12698,9 +13147,14 @@ class IonSeparatorApp {
     }
   }
 
-  dispenseLiquidDrop(reagent, isContinuous = false) {
+  dispenseLiquidDrop(reagent, isContinuous = false, skipUndo = false) {
     const tube = this.activeTube;
     if (!tube || this.renderer.filtration.active) return;
+
+    if (!skipUndo && !isContinuous) {
+      this.pushUndoSnapshot();
+      this.stepCount++;
+    }
 
     this.renderer.triggerPipetteDrop(reagent, () => {
       const res = applyReagentDrop(tube, reagent.id);
@@ -12710,7 +13164,11 @@ class IonSeparatorApp {
       for (const pId of res.dissolvedPrecipitates) this.renderer.dissolvePrecipitateEffect(pId);
       this.renderer.syncTargetColor();
 
-      if (res.changed) {
+      const irreparable = !this.isBlind && detectIrreparableMix(tube);
+
+      if (irreparable) {
+        this.showBanner('⚠️ 分離不能（詰み警告）', '⚠️ 異なる沈殿が混ざって分離できなくなりました（1手戻すかリセットしてください）', '', 5500);
+      } else if (res.changed) {
         const doseLabel = reagent.supportsExcess
           ? (res.drops >= 6 ? `${reagent.formula}（過剰）` : `${reagent.formula}（少量・${res.drops}滴）`)
           : reagent.formula;
@@ -12742,6 +13200,27 @@ class IonSeparatorApp {
     });
   }
 
+  /**
+   * Instant excess burst for NH3 / NaOH (triggered by tapping "過剰⚡" badge or 0.35s hold).
+   */
+  dispenseExcessBurst(reagent, fromHold = false) {
+    const tube = this.activeTube;
+    if (!tube || this.renderer.filtration.active) return;
+
+    if (!fromHold) {
+      this.pushUndoSnapshot();
+      this.stepCount++;
+    }
+
+    const currentDrops = tube.reagentDrops[reagent.id] || 0;
+    const needed = Math.max(1, 6 - currentDrops);
+    for (let i = 0; i < needed; i++) {
+      window.setTimeout(() => {
+        this.dispenseLiquidDrop(reagent, i > 0, true);
+      }, i * 75);
+    }
+  }
+
   maskBlindObservation(res) {
     const parts = [];
     if (res.addedPrecipitates.length > 0) {
@@ -12765,6 +13244,9 @@ class IonSeparatorApp {
     const tube = this.activeTube;
     if (!tube || this.renderer.filtration.active) return;
 
+    this.pushUndoSnapshot();
+    this.stepCount++;
+
     this.renderer.triggerGasBubbling(2.0, () => {
       const res = applyReagentDrop(tube, gasId);
       for (const pId of res.addedPrecipitates) this.renderer.spawnPrecipitationEffect(pId);
@@ -12781,7 +13263,11 @@ class IonSeparatorApp {
       const eq = this.isBlind ? '' : res.equation;
 
       this.recordEquations(res.equations);
-      this.showBanner(label, text, eq, 4500);
+      if (!this.isBlind && detectIrreparableMix(tube)) {
+        this.showBanner('⚠️ 分離不能アラート', '⚠️ 異なる沈殿が混ざって分離できなくなりました（1手戻すかリセットしてください）', eq, 5600);
+      } else {
+        this.showBanner(label, text, eq, 4500);
+      }
       prependObservationLog(this.dom.observationLog, {
         tubeLabel: `#${tube.id}`,
         action: label,
@@ -12836,12 +13322,17 @@ class IonSeparatorApp {
   handleMetalPlate(plateMetal) {
     const tube = this.activeTube;
     if (!tube || this.renderer.filtration.active) return;
+    this.pushUndoSnapshot();
+    this.stepCount++;
+
     const res = evaluateMetalPlate(tube, plateMetal);
-    this.renderer.triggerMetalPlate(plateMetal, res.depositColor);
+    this.renderer.triggerMetalPlate(plateMetal, res.depositColor, res.hydrogenGas);
     this.renderer.syncTargetColor();
 
     const msg = this.isBlind && res.reacted
-      ? `${plateMetal} 板の表面に金属単体が析出した！`
+      ? (res.hydrogenGas && !res.depositColor
+        ? `${plateMetal} 板の表面から無色の気泡（H₂↑）が発生した！`
+        : `${plateMetal} 板の表面に金属単体が析出した！${res.hydrogenGas ? '（さらに気泡も発生！）' : ''}`)
       : res.text;
     const eq = this.isBlind ? '' : res.equation;
     if (res.equation) this.recordEquations([res.equation]);
@@ -12861,6 +13352,7 @@ class IonSeparatorApp {
   handleWashWater() {
     const tube = this.activeTube;
     if (!tube || this.renderer.filtration.active) return;
+    this.pushUndoSnapshot();
     this.audio.playPourTick();
     this.renderer.triggerPipetteDrop({ dropColor: '#e0f2fe' }, () => {
       applyReagentDrop(tube, 'H2O');
@@ -12873,6 +13365,9 @@ class IonSeparatorApp {
   toggleHeating() { this.setHeating(!this.heatingActive); }
 
   setHeating(active) {
+    if (active && !this.heatingActive && this.activeTube) {
+      this.pushUndoSnapshot();
+    }
     this.heatingActive = active;
     this.renderer.setHeating(active);
     this.dom.btnHeat.classList.toggle('active-heat', active);
@@ -12912,6 +13407,8 @@ class IonSeparatorApp {
       return;
     }
 
+    this.pushUndoSnapshot();
+    this.stepCount++;
     this.setHeating(false);
     this.renderer.startFiltrationAnimation(tube, () => {
       const split = filterTube(tube, this.isBlind);
@@ -13042,9 +13539,10 @@ class IonSeparatorApp {
       this.dom.blindModal.classList.add('hidden');
       this.isBlind = false;
       this.stageCleared = true;
+      this.saveStageClear(this.currentStage.id, this.stepCount);
       this.audio.playSuccess();
       this.refreshAllUI();
-      this.dom.clearSubtitle.textContent = `完全正解！未知試料の正体（${actual.map((i) => IONS[i].formula).join(', ')}）を見抜きました！`;
+      this.dom.clearSubtitle.textContent = `完全正解！未知試料の正体（${actual.map((i) => IONS[i].formula).join(', ')}）を見抜きました！（${this.stepCount}手）`;
       this.dom.clearSummary.innerHTML = actual
         .map((i) => `<div class="summary-row"><span>${IONS[i].formula}</span><strong>${IONS[i].name} ✓</strong></div>`)
         .join('');
@@ -13081,6 +13579,7 @@ class IonSeparatorApp {
     if (correctCount === 5) {
       this.dom.unlabeledModal.classList.add('hidden');
       this.stageCleared = true;
+      this.saveStageClear(this.currentStage.id, Math.max(1, Object.keys(this.unlabeledMatrix).length));
       this.audio.playSuccess();
       this.dom.clearSubtitle.textContent = '無標識ボトル A〜E の全5種を総当たり実験だけで完全同定しました！';
       this.dom.clearSummary.innerHTML = Object.entries(this.unlabeledMap)
@@ -13175,9 +13674,10 @@ class IonSeparatorApp {
     if (completion.complete) {
       this.stageCleared = true;
       this.setHeating(false);
+      this.saveStageClear(this.currentStage.id, this.stepCount);
       this.audio.playSuccess();
 
-      this.dom.clearSubtitle.textContent = `${this.currentStage.title} をクリアしました！`;
+      this.dom.clearSubtitle.textContent = `${this.currentStage.title} を ${this.stepCount}手 でクリアしました！👑`;
       const normalize = (ion) => (this.currentStage.mode === 'confirm_iron' ? ion : (ion === 'Fe2+' || ion === 'Fe3+' ? 'Fe' : ion));
       this.dom.clearSummary.innerHTML = this.currentStage.ions
         .map((ion) => {
