@@ -2640,6 +2640,349 @@ body {
   justify-content: flex-end;
 }
 
+/* ==========================================================================
+   4. Smartphone & Tablet Portrait Mode (body.is-portrait: vh > vw)
+   Native full-screen vertical layout — crisp, readable, thumb-friendly!
+   ========================================================================== */
+
+.portrait-only {
+  display: none;
+}
+
+body.is-portrait .portrait-only {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Header: compact 2-tier layout */
+body.is-portrait .lab-header {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 7px 10px;
+}
+
+body.is-portrait .header-left {
+  justify-content: space-between;
+  gap: 8px;
+}
+
+body.is-portrait .brand-sub {
+  display: none;
+}
+
+body.is-portrait .brand-title {
+  font-size: 13.5px;
+}
+
+body.is-portrait .stage-select {
+  flex: 1;
+  max-width: none;
+  min-width: 0;
+  font-size: 11.5px;
+  padding: 5px 8px;
+}
+
+body.is-portrait .header-center {
+  justify-content: flex-start;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+body.is-portrait .header-center::-webkit-scrollbar {
+  display: none;
+}
+
+body.is-portrait .mission-progress {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+body.is-portrait .target-pills {
+  flex-wrap: nowrap;
+}
+
+body.is-portrait .header-right {
+  gap: 5px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 1px;
+}
+
+body.is-portrait .header-right::-webkit-scrollbar {
+  display: none;
+}
+
+body.is-portrait .header-btn {
+  padding: 5px 8px;
+  font-size: 11px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Main Workspace: Stage + Rack on top, Reagent Shelf docked at bottom */
+body.is-portrait .lab-workspace {
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(0, 1fr) auto;
+}
+
+body.is-portrait .main-stage-column {
+  order: 1;
+}
+
+body.is-portrait .stage-hud-top {
+  top: 8px;
+  left: 8px;
+  right: 8px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+body.is-portrait .active-tube-badge {
+  padding: 5px 9px;
+  gap: 7px;
+}
+
+body.is-portrait .tube-name {
+  font-size: 12px;
+}
+
+body.is-portrait .tube-state-line {
+  font-size: 10px;
+}
+
+body.is-portrait .stage-action-btn {
+  padding: 6px 9px;
+  font-size: 11px;
+}
+
+body.is-portrait .stage-bottom-hint {
+  display: none;
+}
+
+body.is-portrait .unlabeled-mix-bar {
+  top: 66px;
+  padding: 5px 8px;
+  gap: 5px;
+  max-width: 94%;
+}
+
+body.is-portrait .mix-bar-title {
+  display: none;
+}
+
+body.is-portrait .rack-section {
+  padding: 5px 10px 6px;
+}
+
+body.is-portrait .rack-header {
+  margin-bottom: 2px;
+}
+
+body.is-portrait .rack-legend {
+  display: none;
+}
+
+body.is-portrait .tube-rack-frame {
+  min-height: 86px;
+  padding: 4px 8px 6px;
+}
+
+body.is-portrait .mini-tube-svg {
+  width: 30px;
+  height: 60px;
+}
+
+body.is-portrait .rack-rail-back {
+  bottom: 40px;
+  height: 8px;
+}
+
+body.is-portrait .rack-rail-front {
+  bottom: 32px;
+  height: 9px;
+}
+
+body.is-portrait .rack-tube-btn.active {
+  transform: translateY(-12px) scale(1.06);
+}
+
+/* Bottom Reagent Shelf in Portrait: Tabs + Horizontal Bottle Strip */
+body.is-portrait .reagent-shelf-panel {
+  order: 2;
+  border-right: none;
+  border-top: 1px solid var(--border-bright);
+  padding: 7px 10px 10px;
+  gap: 6px;
+  overflow: visible;
+}
+
+body.is-portrait .shelf-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+body.is-portrait .shelf-title {
+  font-size: 11.5px;
+}
+
+body.is-portrait .shelf-hint {
+  font-size: 10px;
+}
+
+body.is-portrait .shelf-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.is-portrait .reagent-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  padding-bottom: 4px;
+}
+
+body.is-portrait .reagent-btn {
+  min-width: 72px;
+  flex-shrink: 0;
+  padding: 6px 4px 5px;
+}
+
+body.is-portrait .bottle-svg {
+  width: 34px;
+  height: 44px;
+}
+
+body.is-portrait .reagent-formula {
+  font-size: 10px;
+}
+
+body.is-portrait .shelf-ledge {
+  display: none;
+}
+
+/* Lab Notebook Slide-Over Drawer in Portrait */
+body.is-portrait .notebook-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(360px, 90vw);
+  z-index: 42;
+  transform: translateX(100%);
+  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+body.is-portrait .notebook-panel.open {
+  transform: translateX(0);
+}
+
+/* Tutorial Card in Portrait */
+body.is-portrait .tutorial-card {
+  top: auto;
+  bottom: 10px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  width: min(94%, 380px);
+  padding: 10px 12px;
+}
+
+/* Title Screen in Portrait */
+body.is-portrait .title-hero-card {
+  width: 93%;
+  max-height: 92dvh;
+  overflow-y: auto;
+  padding: 22px 18px 20px;
+  border-radius: 20px;
+}
+
+body.is-portrait .title-kicker {
+  font-size: 9.5px;
+  padding: 4px 10px;
+  margin-bottom: 12px;
+}
+
+body.is-portrait .title-emblem-row {
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+body.is-portrait .title-emblem {
+  width: 62px;
+  height: 62px;
+}
+
+body.is-portrait .title-wordmark-wrap {
+  text-align: center;
+}
+
+body.is-portrait .title-logo {
+  font-size: 32px;
+}
+
+body.is-portrait .title-subtitle-jp {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+}
+
+body.is-portrait .title-tagline {
+  font-size: 12px;
+  margin-bottom: 14px;
+}
+
+body.is-portrait .title-ion-ribbon {
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+body.is-portrait .ion-chip {
+  font-size: 10.5px;
+  padding: 3px 8px;
+}
+
+body.is-portrait .title-cta-grid {
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+body.is-portrait .title-btn {
+  padding: 12px 14px;
+}
+
+body.is-portrait .title-sub-links {
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* Modals in Portrait */
+body.is-portrait .modal-card,
+body.is-portrait .modal-card.wide-card,
+body.is-portrait .modal-card.xwide-card {
+  width: 96%;
+  max-height: 90dvh;
+  padding: 16px 14px;
+}
+
+body.is-portrait .wide-card .ion-picker-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+body.is-portrait .cheat-grid,
+body.is-portrait .quiz-choices {
+  grid-template-columns: 1fr;
+}
+
+body.is-portrait .quiz-question {
+  font-size: 14px;
+}
+
 </style>
 </head>
 <body>
@@ -2787,6 +3130,9 @@ body {
         </button>
         <button id="btn-mute" class="header-btn sound-btn" title="効果音 ON/OFF" aria-pressed="false">
           <span id="mute-icon">🔊</span>
+        </button>
+        <button id="btn-toggle-notebook" class="header-btn portrait-only" title="実験ノートを開く">
+          <span>📓</span> ノート
         </button>
       </div>
     </header>
@@ -2945,7 +3291,7 @@ body {
               <p class="notebook-sub">系統分析ツリー・観察記録・反応式</p>
             </div>
           </div>
-          <button id="btn-close-notebook" class="icon-close-btn mobile-only" aria-label="ノートを閉じる">✕</button>
+          <button id="btn-close-notebook" class="icon-close-btn portrait-only" aria-label="ノートを閉じる">✕</button>
         </div>
 
         <div class="notebook-tabs">
@@ -8505,8 +8851,8 @@ class IonSeparatorApp {
 
   /**
    * Auto-Fit Viewport Scaler:
-   * Keeps the exact same 3-column lab layout on EVERY smartphone, tablet, and desktop
-   * without collapsing panels or breaking element positions.
+   * - Portrait (スマホ縦・タブレット縦: vh > vw): Native full-screen vertical layout (easy to read & tap!)
+   * - Landscape (PC・タブレット横・スマホ横: vw >= vh): Canonical 3-column lab layout auto-scaled cleanly
    */
   initViewportScaler() {
     const BASE_W = 1240;
@@ -8517,7 +8863,14 @@ class IonSeparatorApp {
     const applyScale = () => {
       const vw = window.innerWidth;
       const vh = window.innerHeight;
-      if (vw >= BASE_W && vh >= BASE_H) {
+      const isPortrait = vh > vw;
+      document.body.classList.toggle('is-portrait', isPortrait);
+
+      if (isPortrait) {
+        stage.style.width = '100%';
+        stage.style.height = '100%';
+        stage.style.transform = 'none';
+      } else if (vw >= BASE_W && vh >= BASE_H) {
         stage.style.width = `${vw}px`;
         stage.style.height = `${vh}px`;
         stage.style.transform = 'none';
@@ -8527,13 +8880,17 @@ class IonSeparatorApp {
         stage.style.height = `${BASE_H}px`;
         stage.style.transform = `scale(${scale})`;
       }
-      this.renderer?.resize();
-      this.titleFx?.resize();
+
+      // Defer canvas resize slightly so CSS grid finishes reflowing
+      requestAnimationFrame(() => {
+        this.renderer?.resize();
+        this.titleFx?.resize();
+      });
     };
 
     applyScale();
     window.addEventListener('resize', applyScale);
-    window.addEventListener('orientationchange', () => setTimeout(applyScale, 120));
+    window.addEventListener('orientationchange', () => setTimeout(applyScale, 150));
   }
 
   showTitleScreen() {
