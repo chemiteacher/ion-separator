@@ -2715,13 +2715,40 @@ body.is-portrait .header-btn {
 }
 
 /* Main Workspace: Stage + Rack on top, Reagent Shelf docked at bottom */
+body.is-portrait .lab-shell {
+  width: 100%;
+  max-width: 100vw;
+  overflow: hidden;
+}
+
+body.is-portrait .lab-header {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
 body.is-portrait .lab-workspace {
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0, 1fr);
   grid-template-rows: minmax(0, 1fr) auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
 }
 
 body.is-portrait .main-stage-column {
   order: 1;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+}
+
+body.is-portrait .bench-stage-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
 }
 
 body.is-portrait .stage-hud-top {
@@ -2798,17 +2825,25 @@ body.is-portrait .rack-rail-front {
 }
 
 body.is-portrait .rack-tube-btn.active {
-  transform: translateY(-12px) scale(1.06);
+  transform: translateY(-8px) scale(1.04);
 }
 
 /* Bottom Reagent Shelf in Portrait: Tabs + Horizontal Bottle Strip */
 body.is-portrait .reagent-shelf-panel {
   order: 2;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   border-right: none;
   border-top: 1px solid var(--border-bright);
-  padding: 7px 10px 10px;
+  padding: 6px 8px 8px;
   gap: 6px;
-  overflow: visible;
+  overflow: hidden;
+}
+
+body.is-portrait .shelf-tabs {
+  width: 100%;
+  max-width: 100%;
 }
 
 body.is-portrait .shelf-header {
@@ -2827,6 +2862,9 @@ body.is-portrait .shelf-hint {
 }
 
 body.is-portrait .shelf-scroll {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   overflow-x: auto;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
@@ -9019,6 +9057,7 @@ class IonSeparatorApp {
     this.applyReagentVisibilityFilter();
     this.dom.stageSelect.value = String(customIdx);
     this.loadStage(customIdx);
+    this.dom.reactionBanner.classList.add('hidden');
   }
 
   loadStage(index) {
