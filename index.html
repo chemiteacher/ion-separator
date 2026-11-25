@@ -1080,14 +1080,14 @@ html, body {
 
 /* ---------- Modals ---------- */
 .modal-backdrop {
-  position: fixed;
+  position: absolute;
   inset: 0;
-  background: rgba(5, 10, 20, 0.72);
+  background: rgba(5, 10, 20, 0.76);
   backdrop-filter: blur(6px);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 50;
+  z-index: 60;
   padding: 16px;
 }
 
@@ -1214,73 +1214,7 @@ html, body {
   color: #ffffff;
 }
 
-/* ---------- Responsive (Tablet / Mobile) ---------- */
-@media (max-width: 1080px) {
-  .lab-workspace {
-    grid-template-columns: 210px minmax(0, 1fr);
-  }
-
-  .mobile-only {
-    display: inline-flex;
-  }
-
-  .notebook-panel {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: min(340px, 90vw);
-    z-index: 40;
-    transform: translateX(100%);
-    transition: transform 0.25s ease;
-  }
-
-  .notebook-panel.open {
-    transform: translateX(0);
-  }
-}
-
-@media (max-width: 720px) {
-  .lab-header {
-    flex-wrap: wrap;
-    padding: 8px 10px;
-  }
-
-  .header-center {
-    order: 3;
-    width: 100%;
-    justify-content: center;
-  }
-
-  .lab-workspace {
-    grid-template-columns: 1fr;
-    grid-template-rows: minmax(0, 1fr) auto;
-  }
-
-  .reagent-shelf-panel {
-    order: 2;
-    flex-direction: row;
-    overflow-x: auto;
-    overflow-y: hidden;
-    border-right: none;
-    border-top: 1px solid var(--border-subtle);
-    padding: 8px;
-    gap: 10px;
-  }
-
-  .shelf-header, .shelf-ledge, .tier-label {
-    display: none;
-  }
-
-  .reagent-grid, .apparatus-grid {
-    display: flex;
-    gap: 6px;
-  }
-
-  .reagent-btn {
-    min-width: 68px;
-  }
-}
+/* Layout is locked to the canonical 3-column lab view and auto-scaled by viewport-stage */
 
 /* ==========================================================================
    University Entrance Exam Expansion Styles
@@ -2106,14 +2040,707 @@ mark.hl-reagent {
   }
 }
 
+/* ==========================================================================
+   1. Auto-Fit Viewport Stage (Identical 3-Column Layout on ALL Devices)
+   ========================================================================== */
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #040711;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+}
+
+.viewport-stage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-origin: center center;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: var(--bg-deep);
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.8);
+}
+
+.lab-shell {
+  width: 100%;
+  height: 100%;
+}
+
+.brand-btn {
+  background: transparent;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 8px;
+  transition: background 0.16s ease;
+}
+
+.brand-btn:hover {
+  background: rgba(56, 189, 248, 0.12);
+}
+
+.header-btn.ref-btn {
+  background: rgba(139, 92, 246, 0.22);
+  border-color: rgba(167, 139, 250, 0.55);
+  color: #ddd6fe;
+}
+
+.header-btn.ref-btn:hover {
+  background: rgba(139, 92, 246, 0.38);
+}
+
+/* ==========================================================================
+   2. Stylish Science Title Screen (Luminous Quantum Lab Aesthetic)
+   ========================================================================== */
+
+.title-screen {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 25%, #0f1d38 0%, #060b18 65%, #03060f 100%);
+  overflow: hidden;
+}
+
+.title-fx-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.title-hex-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(rgba(56, 189, 248, 0.14) 1px, transparent 1px),
+    linear-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 28px 28px, 56px 56px, 56px 56px;
+  pointer-events: none;
+}
+
+.title-glow-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.title-glow-orb.orb-1 {
+  width: 420px;
+  height: 420px;
+  top: -120px;
+  left: -80px;
+  background: rgba(56, 189, 248, 0.22);
+}
+
+.title-glow-orb.orb-2 {
+  width: 460px;
+  height: 460px;
+  bottom: -150px;
+  right: -90px;
+  background: rgba(139, 92, 246, 0.24);
+}
+
+.title-hero-card {
+  position: relative;
+  z-index: 5;
+  width: min(820px, 92%);
+  background: rgba(10, 17, 34, 0.72);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  border-radius: 24px;
+  padding: 32px 38px 28px;
+  text-align: center;
+  box-shadow:
+    0 28px 80px rgba(0, 0, 0, 0.65),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 0 40px rgba(56, 189, 248, 0.12);
+}
+
+.title-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #7dd3fc;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  padding: 5px 14px;
+  border-radius: 999px;
+  margin-bottom: 18px;
+}
+
+.kicker-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 10px #34d399;
+}
+
+.title-emblem-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-bottom: 14px;
+}
+
+.title-emblem {
+  width: 78px;
+  height: 78px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 18px rgba(56, 189, 248, 0.45));
+}
+
+.title-wordmark-wrap {
+  text-align: left;
+}
+
+.title-logo {
+  font-family: 'Inter', sans-serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.05;
+  background: linear-gradient(120deg, #f8fafc 0%, #7dd3fc 42%, #818cf8 74%, #34d399 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 24px rgba(56, 189, 248, 0.25));
+}
+
+.title-subtitle-jp {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: #cbd5e1;
+  margin-top: 4px;
+}
+
+.title-tagline {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #94a3b8;
+  margin-bottom: 18px;
+}
+
+.title-ion-ribbon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.ion-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+}
+
+.ion-chip small {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-weight: 500;
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+.ion-chip.c-silver { color: #f1f5f9; border-color: rgba(226, 232, 240, 0.4); }
+.ion-chip.c-blue   { color: #7dd3fc; border-color: rgba(56, 189, 248, 0.5); }
+.ion-chip.c-amber  { color: #fcd34d; border-color: rgba(245, 158, 11, 0.5); }
+.ion-chip.c-lime   { color: #bef264; border-color: rgba(163, 230, 53, 0.5); }
+.ion-chip.c-violet { color: #d8b4fe; border-color: rgba(192, 132, 252, 0.5); }
+.ion-chip.c-orange { color: #fdba74; border-color: rgba(251, 146, 60, 0.5); }
+
+.title-cta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.title-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.title-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.08);
+}
+
+.title-btn.primary {
+  background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+  border-color: rgba(125, 211, 252, 0.65);
+  color: #ffffff;
+  box-shadow: 0 10px 26px rgba(2, 132, 199, 0.42);
+}
+
+.title-btn.emerald {
+  background: linear-gradient(135deg, #059669 0%, #0d9488 100%);
+  border-color: rgba(110, 231, 183, 0.6);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(5, 150, 105, 0.34);
+}
+
+.title-btn.violet {
+  background: linear-gradient(135deg, #6d28d9 0%, #9333ea 100%);
+  border-color: rgba(216, 180, 254, 0.55);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(109, 40, 217, 0.34);
+}
+
+.tbtn-ico {
+  font-size: 24px;
+  line-height: 1;
+}
+
+.tbtn-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tbtn-text strong {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.tbtn-text small {
+  font-size: 10.5px;
+  opacity: 0.88;
+}
+
+.title-sub-links {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.title-ghost-btn {
+  background: rgba(30, 41, 59, 0.65);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+  padding: 7px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.title-ghost-btn:hover {
+  background: rgba(56, 189, 248, 0.16);
+  border-color: rgba(56, 189, 248, 0.55);
+  color: #f8fafc;
+}
+
+/* ==========================================================================
+   3. Precipitate Color Table & 25-Question Q&A Drill Modal
+   ========================================================================== */
+
+.modal-card.xwide-card {
+  width: min(1040px, 95%);
+  max-height: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 20px 22px;
+}
+
+.ref-ribbon {
+  color: #d8b4fe;
+  background: rgba(139, 92, 246, 0.18);
+  border-color: rgba(167, 139, 250, 0.45);
+}
+
+.ref-head-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.ref-close {
+  color: #cbd5e1;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+.ref-tab {
+  padding: 8px 10px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.ref-tab.active {
+  background: #312e81;
+  color: #ede9fe;
+}
+
+.ref-pane {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.ref-pane.active {
+  display: flex;
+}
+
+.ref-filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+  flex-shrink: 0;
+}
+
+.filter-chip {
+  background: rgba(30, 41, 59, 0.85);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+  padding: 5px 12px;
+  font-size: 11.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.filter-chip.active {
+  background: #0284c7;
+  border-color: #7dd3fc;
+  color: #ffffff;
+}
+
+.ref-table-wrap {
+  flex: 1;
+  overflow: auto;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 10px;
+  background: rgba(9, 14, 26, 0.72);
+}
+
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+
+.ref-table th {
+  position: sticky;
+  top: 0;
+  background: #1e293b;
+  color: #7dd3fc;
+  font-weight: 700;
+  padding: 8px 8px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ref-table td {
+  padding: 7px 8px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+  color: #e2e8f0;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+.ref-table tr:hover td {
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.col-ion {
+  white-space: nowrap;
+}
+
+.col-ion strong {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: #f8fafc;
+}
+
+.col-ion small {
+  font-size: 10px;
+  color: #94a3b8;
+}
+
+.tbl-dash {
+  color: #475569;
+}
+
+.col-confirm {
+  color: #bae6fd;
+  font-size: 11px;
+}
+
+/* Q&A Drill Box */
+.quiz-box {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 14px;
+  padding: 18px 20px;
+  overflow-y: auto;
+}
+
+.quiz-stats {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 12.5px;
+  color: #94a3b8;
+  margin-bottom: 12px;
+}
+
+.quiz-stats strong {
+  color: #f8fafc;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.quiz-streak {
+  margin-left: auto;
+  color: #fbbf24;
+  font-weight: 700;
+}
+
+.quiz-question {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+  line-height: 1.55;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: rgba(30, 41, 59, 0.72);
+  border-left: 4px solid #38bdf8;
+  border-radius: 8px;
+}
+
+.quiz-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.quiz-choice-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1.5px solid rgba(148, 163, 184, 0.28);
+  border-radius: 10px;
+  color: #f1f5f9;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.16s ease;
+}
+
+.quiz-choice-btn:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.quiz-choice-btn.correct {
+  background: rgba(16, 185, 129, 0.24);
+  border-color: #34d399;
+  color: #ecfdf5;
+}
+
+.quiz-choice-btn.wrong {
+  background: rgba(244, 63, 94, 0.24);
+  border-color: #fb7185;
+  color: #fff1f2;
+}
+
+.choice-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.85);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #7dd3fc;
+  flex-shrink: 0;
+}
+
+.quiz-feedback {
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin-bottom: 12px;
+}
+
+.quiz-feedback.ok {
+  background: rgba(16, 185, 129, 0.18);
+  border: 1px solid rgba(52, 211, 153, 0.55);
+  color: #a7f3d0;
+}
+
+.quiz-feedback.ng {
+  background: rgba(244, 63, 94, 0.18);
+  border: 1px solid rgba(251, 113, 133, 0.55);
+  color: #fecdd3;
+}
+
+.quiz-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
 </style>
 </head>
 <body>
-  <div id="app" class="lab-shell">
+  <!-- Full-Viewport Auto-Scaled Stage (Preserves Exact 3-Column Layout on All Phones/Tablets/PCs) -->
+  <div id="viewport-stage" class="viewport-stage">
+
+    <!-- Stylish Science Title Screen -->
+    <section id="title-screen" class="title-screen" aria-label="タイトル画面">
+      <canvas id="title-fx-canvas" class="title-fx-canvas" aria-hidden="true"></canvas>
+      <div class="title-hex-grid" aria-hidden="true"></div>
+      <div class="title-glow-orb orb-1" aria-hidden="true"></div>
+      <div class="title-glow-orb orb-2" aria-hidden="true"></div>
+
+      <div class="title-hero-card">
+        <div class="title-kicker">
+          <span class="kicker-dot"></span>
+          INORGANIC QUALITATIVE ANALYSIS SIMULATOR // VER 3.0
+        </div>
+
+        <div class="title-emblem-row">
+          <div class="title-emblem" aria-hidden="true">
+            <svg viewBox="0 0 84 84" fill="none">
+              <circle cx="42" cy="42" r="38" stroke="url(#emblemGrad)" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.65"/>
+              <ellipse cx="42" cy="42" rx="34" ry="14" transform="rotate(-28 42 42)" stroke="#38bdf8" stroke-width="1.2" opacity="0.5"/>
+              <ellipse cx="42" cy="42" rx="34" ry="14" transform="rotate(28 42 42)" stroke="#a855f7" stroke-width="1.2" opacity="0.5"/>
+              <path d="M34 16H50M36 16V33L25 58A6 6 0 0 0 30.5 66H53.5A6 6 0 0 0 59 58L48 33V16" stroke="#f8fafc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M29 52Q42 56 55 52L58 58A5 5 0 0 1 53.5 65H30.5A5 5 0 0 1 26 58Z" fill="url(#liqGrad)" opacity="0.9"/>
+              <circle cx="38" cy="59" r="2.2" fill="#e0f2fe"/>
+              <circle cx="47" cy="57" r="1.6" fill="#7dd3fc"/>
+              <defs>
+                <linearGradient id="emblemGrad" x1="4" y1="4" x2="80" y2="80" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#38bdf8"/>
+                  <stop offset="0.5" stop-color="#818cf8"/>
+                  <stop offset="1" stop-color="#34d399"/>
+                </linearGradient>
+                <linearGradient id="liqGrad" x1="26" y1="52" x2="58" y2="65" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#0284c7"/>
+                  <stop offset="0.55" stop-color="#38bdf8"/>
+                  <stop offset="1" stop-color="#6366f1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="title-wordmark-wrap">
+            <h1 class="title-logo">ION SEPARATOR</h1>
+            <p class="title-subtitle-jp">金属イオン系統分離 バーチャル化学実験室</p>
+          </div>
+        </div>
+
+        <p class="title-tagline">
+          沈殿の質感、過剰試薬での再溶解、炎色反応の輝き——<br>
+          大学受験の無機化学を、目の前のガラス試験管でリアルに体感せよ。
+        </p>
+
+        <!-- Glowing Ion Spectrum Ribbon -->
+        <div class="title-ion-ribbon" aria-hidden="true">
+          <span class="ion-chip c-silver">Ag⁺ <small>白・凝乳</small></span>
+          <span class="ion-chip c-blue">Cu²⁺ <small>深青錯イオン</small></span>
+          <span class="ion-chip c-amber">Fe³⁺ <small>赤褐・血赤</small></span>
+          <span class="ion-chip c-lime">Ba²⁺ <small>黄緑炎色</small></span>
+          <span class="ion-chip c-violet">K⁺ <small>赤紫炎色</small></span>
+          <span class="ion-chip c-orange">Ca²⁺ <small>橙赤炎色</small></span>
+        </div>
+
+        <!-- Primary Actions -->
+        <div class="title-cta-grid">
+          <button type="button" id="btn-title-start" class="title-btn primary">
+            <span class="tbtn-ico">🔬</span>
+            <span class="tbtn-text">
+              <strong>実験室へ入る</strong>
+              <small>全10課題・入試系統分析に挑戦</small>
+            </span>
+          </button>
+          <button type="button" id="btn-title-tutorial" class="title-btn emerald">
+            <span class="tbtn-ico">🎓</span>
+            <span class="tbtn-text">
+              <strong>1分チュートリアル</strong>
+              <small>初めての方はここから体験</small>
+            </span>
+          </button>
+          <button type="button" id="btn-title-reference" class="title-btn violet">
+            <span class="tbtn-ico">📚</span>
+            <span class="tbtn-text">
+              <strong>沈殿一覧＆一問一答</strong>
+              <small>全イオン反応表・25問ドリル</small>
+            </span>
+          </button>
+        </div>
+
+        <div class="title-sub-links">
+          <button type="button" id="btn-title-import" class="title-ghost-btn">📄 Web過去問コピペ実験</button>
+          <button type="button" id="btn-title-free" class="title-ghost-btn">🧪 自由実験（カスタム配合）</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="app" class="lab-shell">
     <!-- Top Header Bar -->
     <header class="lab-header">
       <div class="header-left">
-        <div class="brand-badge">
+        <button type="button" id="btn-go-title" class="brand-badge brand-btn" title="タイトル画面に戻る">
           <svg class="brand-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
             <path d="M10 3h8M11 3v6.5L6.5 21.5A3 3 0 0 0 9.3 25h9.4a3 3 0 0 0 2.8-3.5L17 9.5V3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M8.5 18h11" stroke="#38bdf8" stroke-width="2" stroke-linecap="round"/>
@@ -2122,9 +2749,9 @@ mark.hl-reagent {
           </svg>
           <div>
             <h1 class="brand-title">ION SEPARATOR</h1>
-            <p class="brand-sub">Exam-Ready Virtual Chemistry Lab</p>
+            <p class="brand-sub">Title / Virtual Lab</p>
           </div>
-        </div>
+        </button>
 
         <div class="stage-selector-wrap">
           <label for="stage-select" class="sr-only">実験課題を選択</label>
@@ -2137,6 +2764,9 @@ mark.hl-reagent {
       </div>
 
       <div class="header-right">
+        <button id="btn-open-reference" class="header-btn ref-btn" title="金属イオンの沈殿色一覧表と一問一答ドリルを開く">
+          <span>📚</span> 一覧・一問一答
+        </button>
         <button id="btn-open-tutorial" class="header-btn tut-btn" title="操作を実践しながら学べるチュートリアルを開始">
           <span>🎓</span> チュートリアル
         </button>
@@ -2144,7 +2774,7 @@ mark.hl-reagent {
           <span>💡</span> ヒント
         </button>
         <button id="btn-open-import" class="header-btn accent-btn" title="Web上の過去問テキストを貼り付けて実験室を自動構築">
-          <span>📄</span> 問題文インポート
+          <span>📄</span> 問題文
         </button>
         <button id="btn-open-builder" class="header-btn" title="任意のイオン配合・ブラインド設定・URL共有">
           <span>⚙️</span> カスタム
@@ -2157,9 +2787,6 @@ mark.hl-reagent {
         </button>
         <button id="btn-mute" class="header-btn sound-btn" title="効果音 ON/OFF" aria-pressed="false">
           <span id="mute-icon">🔊</span>
-        </button>
-        <button id="btn-toggle-notebook" class="header-btn mobile-only" title="実験ノートを開く">
-          <span>📓</span> ノート
         </button>
       </div>
     </header>
@@ -2567,6 +3194,57 @@ mark.hl-reagent {
       </div>
     </div>
   </div>
+
+  <!-- Modal 9: Precipitate Color Table & Q&A Drill (一覧表・一問一答) -->
+  <div id="reference-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="ref-title">
+    <div class="modal-card xwide-card ref-card">
+      <div class="modal-ribbon ref-ribbon">INORGANIC CHEMISTRY ENCYCLOPEDIA &amp; DRILL</div>
+      <div class="ref-head-row">
+        <h2 id="ref-title">📚 金属イオン沈殿一覧表 ＆ 一問一答ドリル</h2>
+        <button type="button" id="btn-ref-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+      </div>
+
+      <div class="hint-tabs ref-main-tabs" role="tablist">
+        <button type="button" class="ref-tab active" data-ref-tab="table">📊 沈殿色・反応 一覧表</button>
+        <button type="button" class="ref-tab" data-ref-tab="quiz">⚡ 一問一答ドリル（全25問）</button>
+      </div>
+
+      <!-- Tab 1: Filterable Reaction & Precipitate Table -->
+      <div class="ref-pane active" id="ref-pane-table">
+        <div class="ref-filter-chips" id="ref-filter-chips">
+          <button type="button" class="filter-chip active" data-filter="all">すべて</button>
+          <button type="button" class="filter-chip" data-filter="white">⚪ 白色沈殿</button>
+          <button type="button" class="filter-chip" data-filter="black">⚫ 黒色沈殿</button>
+          <button type="button" class="filter-chip" data-filter="yellow">🟡 黄・赤褐沈殿</button>
+          <button type="button" class="filter-chip" data-filter="excess">✨ 過剰で再溶解</button>
+          <button type="button" class="filter-chip" data-filter="flame">🔥 炎色反応</button>
+        </div>
+        <div id="ref-table-wrap" class="ref-table-wrap"></div>
+      </div>
+
+      <!-- Tab 2: Interactive 25-Question Q&A Drill -->
+      <div class="ref-pane" id="ref-pane-quiz">
+        <div class="ref-filter-chips" id="quiz-cat-chips">
+          <button type="button" class="filter-chip active" data-qcat="all">全分野 (25問)</button>
+          <button type="button" class="filter-chip" data-qcat="color">沈殿の色・性質</button>
+          <button type="button" class="filter-chip" data-qcat="excess">少量→過剰・錯イオン</button>
+          <button type="button" class="filter-chip" data-qcat="confirm">炎色・確認試薬</button>
+          <button type="button" class="filter-chip" data-qcat="sep">系統分離の急所</button>
+        </div>
+        <div class="quiz-box">
+          <div id="quiz-stats" class="quiz-stats"></div>
+          <div id="quiz-question" class="quiz-question"></div>
+          <div id="quiz-choices" class="quiz-choices"></div>
+          <div id="quiz-feedback" class="quiz-feedback hidden"></div>
+          <div class="quiz-foot">
+            <button type="button" id="btn-quiz-next" class="modal-btn primary hidden">次の問題へ →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /#viewport-stage -->
 
   <script>
 (function () {
@@ -4632,6 +5310,622 @@ class TutorialManager {
 }
 
 
+// ===== reference.js =====
+/**
+ * Inorganic Chemistry Reference Table & Interactive Q&A Drill (一問一答)
+ * Covers all university entrance exam metal cations, precipitate colors,
+ * small vs. excess NH3/NaOH behavior, confirmatory tests, and flame tests.
+ */
+
+const REACTION_TABLE = [
+  {
+    ion: 'Ag⁺', name: '銀イオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: 'AgCl (白・凝乳)', hex: '#f8fafc' },
+    h2s: { text: 'Ag₂S (黒・酸性可)', hex: '#111827' },
+    nh3: { text: 'Ag₂O(褐) → 過剰で無色溶解 [Ag(NH₃)₂]⁺', hex: '#734f36' },
+    naoh: { text: 'Ag₂O (褐色・不溶)', hex: '#734f36' },
+    confirm: 'K₂CrO₄→赤褐(Ag₂CrO₄) / KI→黄(AgI)',
+    tags: ['white', 'black', 'excess'],
+  },
+  {
+    ion: 'Pb²⁺', name: '鉛(II)イオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: 'PbCl₂ (白・熱水可溶)', hex: '#eef2f6' },
+    h2s: { text: 'PbS (黒・酸性可)', hex: '#111827' },
+    nh3: { text: 'Pb(OH)₂ (白・不溶)', hex: '#f1f5f9' },
+    naoh: { text: 'Pb(OH)₂(白) → 過剰で無色溶解 [Pb(OH)₄]²⁻', hex: '#f1f5f9' },
+    confirm: 'K₂CrO₄→黄(PbCrO₄) / KI→黄(PbI₂) / H₂SO₄→白(PbSO₄)',
+    tags: ['white', 'black', 'yellow', 'excess'],
+  },
+  {
+    ion: 'Cu²⁺', name: '銅(II)イオン', origColor: '淡青色', origHex: '#38bdf8',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'CuS (黒・酸性可)', hex: '#111827' },
+    nh3: { text: 'Cu(OH)₂(青白) → 過剰で深青色 [Cu(NH₃)₄]²⁺', hex: '#1d4ed8' },
+    naoh: { text: 'Cu(OH)₂ (青白・不溶)', hex: '#7dd3fc' },
+    confirm: '炎色→青緑 / K₄[Fe(CN)₆]→赤褐 / KI→白(CuI)+褐色(I₂)',
+    tags: ['black', 'excess', 'flame'],
+  },
+  {
+    ion: 'Fe²⁺', name: '鉄(II)イオン', origColor: '淡緑色', origHex: '#68d39b',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'FeS (黒・塩基性のみ)', hex: '#1e232b' },
+    nh3: { text: 'Fe(OH)₂ (緑白・不溶)', hex: '#5c7f67' },
+    naoh: { text: 'Fe(OH)₂ (緑白・不溶)', hex: '#5c7f67' },
+    confirm: 'K₃[Fe(CN)₆]→濃青沈殿 / 濃HNO₃・H₂O₂でFe³⁺に酸化',
+    tags: ['black'],
+  },
+  {
+    ion: 'Fe³⁺', name: '鉄(III)イオン', origColor: '黄褐色', origHex: '#dc9124',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'Fe²⁺へ還元 (+S白濁)', hex: '#68d39b' },
+    nh3: { text: 'Fe(OH)₃ (赤褐・ゲル)', hex: '#9e3a1a' },
+    naoh: { text: 'Fe(OH)₃ (赤褐・ゲル)', hex: '#9e3a1a' },
+    confirm: 'KSCN→血赤色 [Fe(SCN)]²⁺ / K₄[Fe(CN)₆]→濃青沈殿',
+    tags: ['yellow'],
+  },
+  {
+    ion: 'Al³⁺', name: 'アルミニウムイオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: 'Al(OH)₃ (白・ゲル不溶)', hex: '#e8f1fa' },
+    naoh: { text: 'Al(OH)₃(白) → 過剰で無色溶解 [Al(OH)₄]⁻', hex: '#e8f1fa' },
+    confirm: '[Al(OH)₄]⁻ に CO₂ 通気で Al(OH)₃(白) が再沈殿',
+    tags: ['white', 'excess'],
+  },
+  {
+    ion: 'Zn²⁺', name: '亜鉛イオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'ZnS (白・塩基性のみ)', hex: '#f1f5f9' },
+    nh3: { text: 'Zn(OH)₂(白) → 過剰で無色溶解 [Zn(NH₃)₄]²⁺', hex: '#ebf2f7' },
+    naoh: { text: 'Zn(OH)₂(白) → 過剰で無色溶解 [Zn(OH)₄]²⁻', hex: '#ebf2f7' },
+    confirm: 'NH₃・NaOH のどちらの過剰にも再溶解する両性・錯イオン',
+    tags: ['white', 'excess'],
+  },
+  {
+    ion: 'Ba²⁺', name: 'バリウムイオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: '—', hex: null },
+    naoh: { text: '—', hex: null },
+    confirm: '炎色→黄緑 / H₂SO₄→白(BaSO₄) / K₂CrO₄→黄(BaCrO₄, 酢酸不溶・希HNO₃可溶)',
+    tags: ['white', 'yellow', 'flame'],
+  },
+  {
+    ion: 'Ca²⁺', name: 'カルシウムイオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: '—', hex: null },
+    naoh: { text: '—', hex: null },
+    confirm: '炎色→橙赤 / (NH₄)₂CO₃→白(CaCO₃) / K₂CrO₄では沈殿なし',
+    tags: ['white', 'flame'],
+  },
+  {
+    ion: 'Mg²⁺', name: 'マグネシウムイオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: 'Mg(OH)₂(白) ※NH₄Cl共存で不沈', hex: '#f1f5f9' },
+    naoh: { text: 'Mg(OH)₂ (白・不溶)', hex: '#f1f5f9' },
+    confirm: 'NH₄Cl＋NH₃ 緩衝液で OH⁻ 濃度を下げると沈殿しない',
+    tags: ['white'],
+  },
+  {
+    ion: 'Na⁺ / K⁺', name: 'アルカリ金属', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: '—', hex: null },
+    naoh: { text: '—', hex: null },
+    confirm: '炎色反応で識別：Na⁺→黄 / K⁺→赤紫',
+    tags: ['flame'],
+  },
+  {
+    ion: 'Cr³⁺', name: 'クロム(III)イオン', origColor: '青紫色', origHex: '#6366f1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: '—', hex: null },
+    nh3: { text: 'Cr(OH)₃ (灰緑・不溶)', hex: '#4d7c6f' },
+    naoh: { text: 'Cr(OH)₃(灰緑) → 過剰で緑色溶解 [Cr(OH)₄]⁻', hex: '#16a34a' },
+    confirm: '塩基性 H₂O₂ で酸化 → 黄色の CrO₄²⁻ に変化',
+    tags: ['excess'],
+  },
+  {
+    ion: 'Cd²⁺', name: 'カドミウムイオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'CdS (黄・酸性可)', hex: '#facc15' },
+    nh3: { text: 'Cd(OH)₂(白) → 過剰で無色溶解 [Cd(NH₃)₄]²⁺', hex: '#f1f5f9' },
+    naoh: { text: 'Cd(OH)₂ (白・不溶)', hex: '#f1f5f9' },
+    confirm: '酸性下 H₂S で鮮やかな黄色沈殿 CdS を生じる',
+    tags: ['yellow', 'excess'],
+  },
+  {
+    ion: 'Hg²⁺', name: '水銀(II)イオン', origColor: '無色', origHex: '#cbd5e1',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'HgS (黒・酸性可)', hex: '#0f1218' },
+    nh3: { text: '白色沈殿', hex: '#f1f5f9' },
+    naoh: { text: 'HgO (黄・不溶)', hex: '#eab308' },
+    confirm: 'KI 水溶液で鮮やかな赤色沈殿 (HgI₂)',
+    tags: ['black', 'yellow'],
+  },
+  {
+    ion: 'Ni²⁺ / Mn²⁺', name: 'ニッケル / マンガン', origColor: '淡緑 / 淡桃', origHex: '#6ee7b7',
+    hcl: { text: '—', hex: null },
+    h2s: { text: 'NiS(黒) / MnS(淡桃) ※塩基性のみ', hex: '#fbcfe8' },
+    nh3: { text: 'Ni²⁺→過剰で青紫 [Ni(NH₃)₆]²⁺', hex: '#6366f1' },
+    naoh: { text: 'Ni(OH)₂(淡緑) / Mn(OH)₂(白→褐)', hex: '#6ee7b7' },
+    confirm: '塩基性 H₂S で沈殿する第4属イオン',
+    tags: ['black', 'excess'],
+  },
+];
+
+const QUIZ_QUESTIONS = [
+  {
+    cat: 'color',
+    q: 'Ag⁺ 水溶液に希 HCl を加えると、何色の沈殿が生じるか？',
+    choices: ['白色（凝乳状）AgCl', '黄色 AgCl', '黒色 AgCl', '赤褐色 AgCl'],
+    answer: 0,
+    exp: 'Ag⁺ + Cl⁻ → AgCl↓。やや重みのある白色・凝乳状（チーズ状）沈殿が生じ、過剰の NH₃ 水に溶けます。',
+  },
+  {
+    cat: 'color',
+    q: 'Pb²⁺ に希 HCl を加えてできた白色沈殿 PbCl₂ の特徴として正しいものは？',
+    choices: ['熱水に溶ける', '過剰の NH₃ 水に溶ける', '濃硝酸にしか溶けない', '光で真っ黒になる'],
+    answer: 0,
+    exp: 'PbCl₂ は冷水に難溶ですが熱水には可溶です。これを利用して AgCl と熱時ろ過で分離します！',
+  },
+  {
+    cat: 'excess',
+    q: 'Cu²⁺ 水溶液に NH₃ 水を「少量 → 過剰」と加え続けたときの変化は？',
+    choices: [
+      '青白沈殿 Cu(OH)₂ → 深青色溶液 [Cu(NH₃)₄]²⁺',
+      '黒色沈殿 CuO → 無色透明溶液',
+      '白色沈殿 Cu(OH)₂ → 淡緑色溶液',
+      '沈殿は生じず最初から深青色',
+    ],
+    answer: 0,
+    exp: '少量で青白色ゲル状の Cu(OH)₂ が沈殿し、過剰で鮮やかな深青色 [Cu(NH₃)₄]²⁺ に再溶解します。',
+  },
+  {
+    cat: 'excess',
+    q: 'Al³⁺ 水溶液に NaOH 水溶液を過剰に加えるとどうなるか？',
+    choices: [
+      'Al(OH)₃(白) が生じたあと無色透明 [Al(OH)₄]⁻ に再溶解する',
+      'Al(OH)₃(白) のまま溶けない',
+      '赤褐色の沈殿が生じる',
+      '最初から沈殿しない',
+    ],
+    answer: 0,
+    exp: 'Al は両性元素（Al, Zn, Sn, Pb）のため、過剰の NaOH 水溶液で [Al(OH)₄]⁻ として再溶解します。',
+  },
+  {
+    cat: 'excess',
+    q: 'Al(OH)₃ が溶けた [Al(OH)₄]⁻ 水溶液に CO₂ ガスを通じるとどうなるか？',
+    choices: ['白色の Al(OH)₃ が再沈殿する', '変化なし', '黄色の沈殿が生じる', '水素ガスが発生する'],
+    answer: 0,
+    exp: '[Al(OH)₄]⁻ + CO₂ → Al(OH)₃↓ + HCO₃⁻。弱酸である炭酸の中和により Al(OH)₃ が再び沈殿します。',
+  },
+  {
+    cat: 'color',
+    q: 'Fe³⁺ 水溶液に NH₃ 水または NaOH 水溶液を加えると何色の沈殿が生じるか？',
+    choices: ['赤褐色（ゼラチン状）Fe(OH)₃', '緑白色 Fe(OH)₃', '青白色 Fe(OH)₃', '白色 Fe(OH)₃'],
+    answer: 0,
+    exp: 'Fe³⁺ + 3OH⁻ → Fe(OH)₃↓。赤褐色ゼラチン状の沈殿で、過剰の NH₃ にも NaOH にも不溶です。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Fe³⁺ の確認試薬である KSCN 水溶液を加えると、溶液は何色に変化するか？',
+    choices: ['血赤色 [Fe(SCN)]²⁺', '濃青色', '深青色', '鮮やかな黄色'],
+    answer: 0,
+    exp: 'Fe³⁺ + SCN⁻ → [Fe(SCN)]²⁺（血赤色）。Fe²⁺ では呈色しないため Fe³⁺ 特有の超頻出検出反応です。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Fe²⁺ の検出に K₃[Fe(CN)₆]（ヘキサシアノ鉄(III)酸K）を加えると何が生じるか？',
+    choices: ['濃青色沈殿（ターンブルブルー）', '血赤色溶液', '赤褐色沈殿', '白色沈殿'],
+    answer: 0,
+    exp: 'Fe²⁺ + K₃[Fe(CN)₆] → 濃青色沈殿。一方 Fe³⁺ は K₄[Fe(CN)₆] で濃青色沈殿（プルシアンブルー）を作ります。',
+  },
+  {
+    cat: 'color',
+    q: '塩基性条件で Zn²⁺ 水溶液に H₂S ガスを通じると何色の沈殿が生じるか？',
+    choices: ['白色 ZnS', '黒色 ZnS', '黄色 ZnS', '淡桃色 ZnS'],
+    answer: 0,
+    exp: '硫化物沈殿の多くは黒色ですが、ZnS は「白色」、CdS は「黄色」、MnS は「淡桃色」と入試でよく狙われます！',
+  },
+  {
+    cat: 'color',
+    q: '酸性条件で H₂S ガスを通じたとき、黒色沈殿を生じるイオンの組み合わせは？',
+    choices: ['Cu²⁺ と Pb²⁺', 'Zn²⁺ と Fe²⁺', 'Al³⁺ と Ba²⁺', 'Ca²⁺ と Mg²⁺'],
+    answer: 0,
+    exp: '酸性下では S²⁻ 濃度が非常に小さいため、溶解度積の極めて小さい CuS・PbS・Ag₂S・HgS・CdS のみ沈殿します。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Ba²⁺ の炎色反応の色はどれか？',
+    choices: ['黄緑色', '橙赤色', '赤紫色', '黄色'],
+    answer: 0,
+    exp: 'リアカー無きK村、動力借りるとうするもくれない馬力（Ba＝黄緑）！Ca＝橙赤、Na＝黄、K＝赤紫、Cu＝青緑です。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Ca²⁺ の炎色反応の色はどれか？',
+    choices: ['橙赤色', '黄緑色', '青緑色', '赤紫色'],
+    answer: 0,
+    exp: 'Ca²⁺ は橙赤色（オレンジがかった赤）の炎色反応を示します。',
+  },
+  {
+    cat: 'confirm',
+    q: 'K⁺ の炎色反応の色はどれか？',
+    choices: ['赤紫色', '黄色', '青緑色', '黄緑色'],
+    answer: 0,
+    exp: 'K⁺ は赤紫色（ライラック色）の炎色反応を示します。Na⁺ の黄色に隠れやすいときはコバルトガラスで観察します。',
+  },
+  {
+    cat: 'sep',
+    q: 'Fe³⁺・Al³⁺ と Mg²⁺ の混合液に NH₃ 水を加える前、Mg(OH)₂ の沈殿を防ぐために加える試薬は？',
+    choices: ['NH₄Cl（塩化アンモニウム）', 'NaOH', 'H₂SO₄', 'KSCN'],
+    answer: 0,
+    exp: 'NH₄Cl を加えると共通イオン効果（NH₃ + H₂O ⇌ NH₄⁺ + OH⁻ が左へ移動）で [OH⁻] が下がり、Mg(OH)₂ が沈殿しなくなります！',
+  },
+  {
+    cat: 'sep',
+    q: 'Ba²⁺ と Ca²⁺ の混合液から Ba²⁺ だけを黄色沈殿として分離する組み合わせは？',
+    choices: ['酢酸酸性 ＋ K₂CrO₄ 水溶液', '希 HCl ＋ H₂S', '過剰の NH₃ 水', '希 HNO₃ ＋ K₂CrO₄ 水溶液'],
+    answer: 0,
+    exp: 'BaCrO₄（黄）は酢酸（弱酸）に不溶ですが、強酸（希 HNO₃ など）には溶けてしまいます。Ca²⁺ は K₂CrO₄ で沈殿しません。',
+  },
+  {
+    cat: 'color',
+    q: 'Ba²⁺ 水溶液に希 H₂SO₄ を加えると生じる沈殿の色と性質は？',
+    choices: ['白色（結晶性・酸にも不溶）BaSO₄', '黄色 BaSO₄', '赤褐色 BaSO₄', '白色（希塩酸に可溶）'],
+    answer: 0,
+    exp: 'BaSO₄ は極めて難溶な白色結晶性沈殿で、酸にも塩基にも溶けません（胃のレントゲン造影剤にも利用）。',
+  },
+  {
+    cat: 'excess',
+    q: '過剰の NH₃ 水にも、過剰の NaOH 水溶液にも再溶解するイオンはどれか？',
+    choices: ['Zn²⁺', 'Al³⁺', 'Cu²⁺', 'Fe³⁺'],
+    answer: 0,
+    exp: 'Zn²⁺ は過剰 NH₃ で [Zn(NH₃)₄]²⁺、過剰 NaOH で [Zn(OH)₄]²⁻ と両方に無色溶解します（Al³⁺ は NaOH のみ、Cu²⁺ は NH₃ のみ）。',
+  },
+  {
+    cat: 'color',
+    q: 'Ag⁺ 水溶液に K₂CrO₄ 水溶液を加えると何色の沈殿が生じるか？',
+    choices: ['赤褐色 Ag₂CrO₄', '黄色 Ag₂CrO₄', '白色 Ag₂CrO₄', '黒色 Ag₂CrO₄'],
+    answer: 0,
+    exp: 'PbCrO₄・BaCrO₄ は黄色ですが、Ag₂CrO₄ は「赤褐色」沈殿です！入試の定番ひっかけポイントです。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Cu²⁺ 水溶液に KI 水溶液を加えると何が起きるか？',
+    choices: ['白色沈殿 CuI と褐色の I₂ が生じる', '黄色沈殿 CuI₂ のみ生じる', '黒色沈殿が生じる', '変化なし'],
+    answer: 0,
+    exp: '2Cu²⁺ + 4I⁻ → 2CuI↓（白） + I₂（褐色溶液）。酸化還元反応を伴う入試頻出反応です！',
+  },
+  {
+    cat: 'sep',
+    q: 'H₂S 通気後のろ液に Fe²⁺ が含まれるとき、NH₃ 水を加える前に濃 HNO₃ を加えて煮沸する理由は？',
+    choices: ['Fe²⁺ を Fe³⁺ に酸化して完全に沈殿させるため', 'Fe²⁺ を還元するため', 'CuS を沈殿させるため', '溶液を塩基性にするため'],
+    answer: 0,
+    exp: 'Fe(OH)₂ は完全沈殿しにくいため、濃 HNO₃（または H₂O₂）で Fe³⁺ に酸化してから Fe(OH)₃（赤褐）として分離します。',
+  },
+  {
+    cat: 'color',
+    q: '酸性条件で Cd²⁺ 水溶液に H₂S ガスを通じると何色の沈殿が生じるか？',
+    choices: ['黄色 CdS', '黒色 CdS', '白色 CdS', '淡桃色 CdS'],
+    answer: 0,
+    exp: 'CdS は鮮やかな黄色沈殿です（カドミウムイエローの顔料としても有名）。',
+  },
+  {
+    cat: 'color',
+    q: '塩基性条件で Mn²⁺ 水溶液に H₂S ガスを通じると何色の沈殿が生じるか？',
+    choices: ['淡桃色 MnS', '黒色 MnS', '黄色 MnS', '赤褐色 MnS'],
+    answer: 0,
+    exp: 'MnS は特徴的な淡桃色（ピンク色）の沈殿です。',
+  },
+  {
+    cat: 'excess',
+    q: 'AgCl の白色沈殿に過剰の NH₃ 水を加えるとどうなるか？',
+    choices: ['無色透明に溶解する ([Ag(NH₃)₂]⁺)', '褐色に変わる', '黒色に変わる', '変化しない'],
+    answer: 0,
+    exp: 'AgCl + 2NH₃ → [Ag(NH₃)₂]⁺ + Cl⁻。錯イオン形成により白色沈殿がスッと溶けます。',
+  },
+  {
+    cat: 'confirm',
+    q: 'Cu²⁺ 水溶液に Zn 板を浸すと何が起きるか？',
+    choices: ['Zn 板の表面に赤褐色の Cu 単体が析出する', 'Zn 板の表面に白い沈殿がつく', '何も起きない', '水素ガスだけが激しく出る'],
+    answer: 0,
+    exp: 'イオン化傾向 Zn > Cu より、Zn + Cu²⁺ → Zn²⁺ + Cu↓（赤褐色の銅が析出）が起きます。',
+  },
+  {
+    cat: 'excess',
+    q: 'Cr³⁺（青紫色）に過剰の NaOH 水溶液を加えると何色の溶液になるか？',
+    choices: ['緑色 [Cr(OH)₄]⁻', '深青色', '血赤色', '無色透明'],
+    answer: 0,
+    exp: '少量で灰緑色 Cr(OH)₃ が沈殿し、過剰 NaOH で緑色の [Cr(OH)₄]⁻ に再溶解します（さらに H₂O₂ で黄色の CrO₄²⁻ に酸化！）。',
+  },
+];
+
+function renderReactionTable(container, filterTag = 'all') {
+  const rows = REACTION_TABLE.filter((r) => filterTag === 'all' || r.tags.includes(filterTag));
+  const cellBadge = (cell) => {
+    if (!cell || cell.text === '—') return '<span class="tbl-dash">—</span>';
+    const dot = cell.hex ? `<span class="swatch-dot" style="background:${cell.hex}"></span>` : '';
+    return `<span class="tbl-val">${dot}${cell.text}</span>`;
+  };
+
+  container.innerHTML = `
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>イオン</th>
+          <th>元の色</th>
+          <th>希 HCl</th>
+          <th>H₂S ガス</th>
+          <th>NH₃ 水 (少量→過剰)</th>
+          <th>NaOH (少量→過剰)</th>
+          <th>確認試薬・炎色・急所</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${rows.map((r) => `
+          <tr>
+            <td class="col-ion"><strong>${r.ion}</strong><small>${r.name}</small></td>
+            <td><span class="swatch-dot" style="background:${r.origHex}"></span>${r.origColor}</td>
+            <td>${cellBadge(r.hcl)}</td>
+            <td>${cellBadge(r.h2s)}</td>
+            <td>${cellBadge(r.nh3)}</td>
+            <td>${cellBadge(r.naoh)}</td>
+            <td class="col-confirm">${r.confirm}</td>
+          </tr>`).join('')}
+      </tbody>
+    </table>
+  `;
+}
+
+class QuizController {
+  constructor(dom) {
+    this.dom = dom;
+    this.category = 'all';
+    this.pool = [];
+    this.index = 0;
+    this.score = 0;
+    this.answered = 0;
+    this.streak = 0;
+    this.locked = false;
+  }
+
+  start(category = 'all') {
+    this.category = category;
+    const filtered = category === 'all'
+      ? [...QUIZ_QUESTIONS]
+      : QUIZ_QUESTIONS.filter((q) => q.cat === category);
+    this.pool = filtered.sort(() => Math.random() - 0.5);
+    this.index = 0;
+    this.score = 0;
+    this.answered = 0;
+    this.streak = 0;
+    this.renderQuestion();
+  }
+
+  renderQuestion() {
+    if (this.pool.length === 0) return;
+    if (this.index >= this.pool.length) {
+      this.pool = [...this.pool].sort(() => Math.random() - 0.5);
+      this.index = 0;
+    }
+    this.locked = false;
+    const item = this.pool[this.index];
+
+    // Shuffle choices while tracking correct answer
+    const indexed = item.choices.map((text, idx) => ({ text, isCorrect: idx === item.answer }));
+    indexed.sort(() => Math.random() - 0.5);
+
+    this.dom.stats.innerHTML = `
+      <span>問題 <strong>${this.answered + 1}</strong></span>
+      <span>正答 <strong>${this.score} / ${this.answered}</strong></span>
+      <span class="quiz-streak">🔥 ${this.streak} 連続正解</span>
+    `;
+    this.dom.question.textContent = item.q;
+    this.dom.feedback.classList.add('hidden');
+    this.dom.btnNext.classList.add('hidden');
+
+    this.dom.choices.innerHTML = '';
+    indexed.forEach((ch, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'quiz-choice-btn';
+      btn.innerHTML = `<span class="choice-num">${['A', 'B', 'C', 'D'][idx]}</span><span>${ch.text}</span>`;
+      btn.addEventListener('click', () => {
+        if (this.locked) return;
+        this.locked = true;
+        this.answered++;
+        if (ch.isCorrect) {
+          this.score++;
+          this.streak++;
+          btn.classList.add('correct');
+          this.dom.feedback.className = 'quiz-feedback ok';
+          this.dom.feedback.innerHTML = `<strong>⭕ 正解！</strong> ${item.exp}`;
+        } else {
+          this.streak = 0;
+          btn.classList.add('wrong');
+          // Highlight the right one
+          [...this.dom.choices.children].forEach((b, bi) => {
+            if (indexed[bi].isCorrect) b.classList.add('correct');
+          });
+          this.dom.feedback.className = 'quiz-feedback ng';
+          this.dom.feedback.innerHTML = `<strong>❌ 惜しい！</strong> ${item.exp}`;
+        }
+        this.dom.feedback.classList.remove('hidden');
+        this.dom.btnNext.classList.remove('hidden');
+        this.dom.stats.innerHTML = `
+          <span>問題 <strong>${this.answered}</strong></span>
+          <span>正答 <strong>${this.score} / ${this.answered}</strong></span>
+          <span class="quiz-streak">🔥 ${this.streak} 連続正解</span>
+        `;
+      });
+      this.dom.choices.appendChild(btn);
+    });
+  }
+
+  next() {
+    this.index++;
+    this.renderQuestion();
+  }
+}
+
+
+// ===== title_fx.js =====
+/**
+ * Luminous Quantum / Inorganic Chemistry Title Screen Canvas FX
+ * Renders floating glowing ion orbs with crystal-lattice connection lines
+ * and stops automatically when the title screen is hidden.
+ */
+
+const ORB_SPECIES = [
+  { label: 'Cu²⁺', color: '#38bdf8' },
+  { label: 'Ag⁺',  color: '#e2e8f0' },
+  { label: 'Fe³⁺', color: '#f59e0b' },
+  { label: 'K⁺',   color: '#c084fc' },
+  { label: 'Ba²⁺', color: '#a3e635' },
+  { label: 'Ca²⁺', color: '#fb923c' },
+  { label: 'Zn²⁺', color: '#7dd3fc' },
+  { label: 'Al³⁺', color: '#93c5fd' },
+  { label: 'Pb²⁺', color: '#cbd5e1' },
+  { label: 'Cr³⁺', color: '#818cf8' },
+];
+
+class TitleScreenFX {
+  constructor(canvas) {
+    this.canvas = canvas;
+    this.ctx = canvas ? canvas.getContext('2d') : null;
+    this.running = false;
+    this.raf = null;
+    this.orbs = [];
+    this.w = 1280;
+    this.h = 760;
+
+    if (this.canvas) {
+      this._initOrbs();
+      window.addEventListener('resize', () => this.resize());
+      this.resize();
+    }
+  }
+
+  _initOrbs() {
+    this.orbs = [];
+    for (let i = 0; i < 28; i++) {
+      const sp = ORB_SPECIES[i % ORB_SPECIES.length];
+      const featured = i < 10;
+      this.orbs.push({
+        x: Math.random() * 1280,
+        y: Math.random() * 760,
+        vx: (Math.random() - 0.5) * 0.48,
+        vy: (Math.random() - 0.5) * 0.42,
+        r: featured ? 18 + Math.random() * 8 : 3 + Math.random() * 4.5,
+        color: sp.color,
+        label: featured ? sp.label : '',
+        phase: Math.random() * Math.PI * 2,
+      });
+    }
+  }
+
+  resize() {
+    if (!this.canvas || !this.canvas.parentElement) return;
+    const rect = this.canvas.parentElement.getBoundingClientRect();
+    this.w = Math.max(320, Math.floor(rect.width));
+    this.h = Math.max(320, Math.floor(rect.height));
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    this.canvas.width = Math.floor(this.w * dpr);
+    this.canvas.height = Math.floor(this.h * dpr);
+    if (this.ctx) {
+      this.ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+  }
+
+  start() {
+    if (!this.canvas || !this.ctx || this.running) return;
+    this.running = true;
+    this.resize();
+    const tick = (now) => {
+      if (!this.running) return;
+      this._draw(now * 0.001);
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+
+  stop() {
+    this.running = false;
+    if (this.raf) {
+      cancelAnimationFrame(this.raf);
+      this.raf = null;
+    }
+  }
+
+  _draw(t) {
+    const ctx = this.ctx;
+    ctx.clearRect(0, 0, this.w, this.h);
+
+    // Move orbs
+    for (const o of this.orbs) {
+      o.x += o.vx;
+      o.y += o.vy;
+      if (o.x < -40) o.x = this.w + 40;
+      if (o.x > this.w + 40) o.x = -40;
+      if (o.y < -40) o.y = this.h + 40;
+      if (o.y > this.h + 40) o.y = -40;
+    }
+
+    // Molecular / crystal lattice connecting lines
+    for (let i = 0; i < this.orbs.length; i++) {
+      for (let j = i + 1; j < this.orbs.length; j++) {
+        const a = this.orbs[i];
+        const b = this.orbs[j];
+        const dx = a.x - b.x;
+        const dy = a.y - b.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < 165) {
+          const alpha = (1 - dist / 165) * 0.22;
+          ctx.strokeStyle = `rgba(56, 189, 248, ${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw glowing orbs
+    for (const o of this.orbs) {
+      const pulse = 1 + Math.sin(t * 2.1 + o.phase) * 0.08;
+      const rad = o.r * pulse;
+
+      const grad = ctx.createRadialGradient(o.x, o.y, 1, o.x, o.y, rad * 2.4);
+      grad.addColorStop(0, o.color);
+      grad.addColorStop(0.4, `${o.color}55`);
+      grad.addColorStop(1, `${o.color}00`);
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(o.x, o.y, rad * 2.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (o.label) {
+        ctx.strokeStyle = `${o.color}aa`;
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(o.x, o.y, rad, 0, Math.PI * 2);
+        ctx.stroke();
+
+        ctx.fillStyle = '#f8fafc';
+        ctx.font = '700 11px "JetBrains Mono", monospace';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(o.label, o.x, o.y);
+      }
+    }
+  }
+}
+
+
 // ===== physics.js =====
 /**
  * High-FPS Canvas Physics & Photorealistic Lab Stage Renderer for ION SEPARATOR
@@ -4738,12 +6032,15 @@ class LabStageRenderer {
     window.addEventListener('resize', () => this.resize());
 
     const getX = (e) => (e.touches ? e.touches[0].clientX : e.clientX);
+    const getCanvasX = (e) => {
+      const rect = this.canvas.getBoundingClientRect();
+      return (getX(e) - rect.left) * (this.width / Math.max(1, rect.width));
+    };
     const onDown = (e) => {
       if (this.filtration.active || !this.tube) return;
-      const rect = this.canvas.getBoundingClientRect();
-      const x = getX(e) - rect.left;
+      const x = getCanvasX(e);
       const cx = this.width * 0.5;
-      if (Math.abs(x - cx) < 110) {
+      if (Math.abs(x - cx) < 120) {
         this.dragging = true;
         this.lastPointerX = x;
         this.canvas.style.cursor = 'grabbing';
@@ -4752,8 +6049,7 @@ class LabStageRenderer {
     };
     const onMove = (e) => {
       if (!this.dragging) return;
-      const rect = this.canvas.getBoundingClientRect();
-      const x = getX(e) - rect.left;
+      const x = getCanvasX(e);
       const dx = x - this.lastPointerX;
       this.lastPointerX = x;
       this.applyShakeImpulse(dx * 0.016);
@@ -4776,9 +6072,8 @@ class LabStageRenderer {
   resize() {
     const parent = this.canvas.parentElement;
     if (!parent) return;
-    const rect = parent.getBoundingClientRect();
-    this.width = Math.max(300, Math.floor(rect.width));
-    this.height = Math.max(300, Math.floor(rect.height));
+    this.width = Math.max(300, Math.floor(parent.clientWidth || parent.getBoundingClientRect().width));
+    this.height = Math.max(300, Math.floor(parent.clientHeight || parent.getBoundingClientRect().height));
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
     this.canvas.width = Math.floor(this.width * this.dpr);
     this.canvas.height = Math.floor(this.height * this.dpr);
@@ -6825,6 +8120,28 @@ class IonSeparatorApp {
       welcomeModal: document.getElementById('welcome-modal'),
       btnWelcomeSkip: document.getElementById('btn-welcome-skip'),
       btnWelcomeStartTut: document.getElementById('btn-welcome-start-tut'),
+
+      // Viewport & Title Screen
+      viewportStage: document.getElementById('viewport-stage'),
+      titleScreen: document.getElementById('title-screen'),
+      titleFxCanvas: document.getElementById('title-fx-canvas'),
+      btnGoTitle: document.getElementById('btn-go-title'),
+      btnTitleStart: document.getElementById('btn-title-start'),
+      btnTitleTutorial: document.getElementById('btn-title-tutorial'),
+      btnTitleReference: document.getElementById('btn-title-reference'),
+      btnTitleImport: document.getElementById('btn-title-import'),
+      btnTitleFree: document.getElementById('btn-title-free'),
+
+      // Reference Table & Q&A Drill
+      btnOpenReference: document.getElementById('btn-open-reference'),
+      referenceModal: document.getElementById('reference-modal'),
+      btnRefClose: document.getElementById('btn-ref-close'),
+      refTableWrap: document.getElementById('ref-table-wrap'),
+      quizStats: document.getElementById('quiz-stats'),
+      quizQuestion: document.getElementById('quiz-question'),
+      quizChoices: document.getElementById('quiz-choices'),
+      quizFeedback: document.getElementById('quiz-feedback'),
+      btnQuizNext: document.getElementById('btn-quiz-next'),
     };
 
     this.renderer = new LabStageRenderer(this.dom.canvas, this.audio, {
@@ -6832,8 +8149,17 @@ class IonSeparatorApp {
       onShake: () => this.tutorial?.notifyAction('shake_tube'),
     });
 
+    this.titleFx = new TitleScreenFX(this.dom.titleFxCanvas);
     this.tutorial = new TutorialManager(this);
+    this.quiz = new QuizController({
+      stats: this.dom.quizStats,
+      question: this.dom.quizQuestion,
+      choices: this.dom.quizChoices,
+      feedback: this.dom.quizFeedback,
+      btnNext: this.dom.btnQuizNext,
+    });
 
+    this.initViewportScaler();
     this.initStageSelector();
     this.initReagentShelf();
     this.initEventListeners();
@@ -6853,14 +8179,10 @@ class IonSeparatorApp {
       this.dom.stageSelect.value = String(customIdx);
       this.loadStage(customIdx);
       this.applyReagentVisibilityFilter();
+      this.hideTitleScreen();
     } else {
       this.loadStage(0);
-      // Show welcome modal on first visit
-      let seen = false;
-      try { seen = Boolean(localStorage.getItem('ion_separator_tut_seen')); } catch (_) {}
-      if (!seen) {
-        this.dom.welcomeModal.classList.remove('hidden');
-      }
+      this.showTitleScreen();
     }
   }
 
@@ -7015,9 +8337,9 @@ class IonSeparatorApp {
     // Stage 8 Pairwise Mix button
     this.dom.btnDoMix.addEventListener('click', () => this.handleUnlabeledMix());
 
-    // Notebook tabs & mobile drawer
-    this.dom.btnToggleNotebook.addEventListener('click', () => this.dom.notebookPanel.classList.add('open'));
-    this.dom.btnCloseNotebook.addEventListener('click', () => this.dom.notebookPanel.classList.remove('open'));
+    // Notebook tabs
+    this.dom.btnToggleNotebook?.addEventListener('click', () => this.dom.notebookPanel.classList.add('open'));
+    this.dom.btnCloseNotebook?.addEventListener('click', () => this.dom.notebookPanel.classList.remove('open'));
     document.querySelectorAll('.nb-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
         document.querySelectorAll('.nb-tab').forEach((t) => t.classList.remove('active'));
@@ -7107,15 +8429,138 @@ class IonSeparatorApp {
       this.audio.ensureContext();
       this.tutorial.start();
     });
-    this.dom.btnWelcomeSkip.addEventListener('click', () => {
+    this.dom.btnWelcomeSkip?.addEventListener('click', () => {
       this.dom.welcomeModal.classList.add('hidden');
       try { localStorage.setItem('ion_separator_tut_seen', '1'); } catch (_) {}
     });
-    this.dom.btnWelcomeStartTut.addEventListener('click', () => {
+    this.dom.btnWelcomeStartTut?.addEventListener('click', () => {
       this.audio.ensureContext();
       this.dom.welcomeModal.classList.add('hidden');
       this.tutorial.start();
     });
+
+    // --- Title Screen Navigation ---
+    this.dom.btnGoTitle?.addEventListener('click', () => this.showTitleScreen());
+    this.dom.btnTitleStart?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.audio.playGlassClink('pickup');
+      this.hideTitleScreen();
+    });
+    this.dom.btnTitleTutorial?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.hideTitleScreen();
+      this.tutorial.start();
+    });
+    this.dom.btnTitleReference?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.hideTitleScreen();
+      this.openReferenceModal('table');
+    });
+    this.dom.btnTitleImport?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.hideTitleScreen();
+      this.dom.importModal.classList.remove('hidden');
+      this.updateImportPreview();
+    });
+    this.dom.btnTitleFree?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.hideTitleScreen();
+      const customIdx = STAGES.length - 1;
+      this.dom.stageSelect.value = String(customIdx);
+      this.loadStage(customIdx);
+      this.openBuilderModal();
+    });
+
+    // --- Modal 9: Precipitate Color Table & Q&A Drill ---
+    this.dom.btnOpenReference?.addEventListener('click', () => this.openReferenceModal('table'));
+    this.dom.btnRefClose?.addEventListener('click', () => this.dom.referenceModal.classList.add('hidden'));
+
+    document.querySelectorAll('.ref-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.ref-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.ref-pane').forEach((p) => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(`ref-pane-${tab.dataset.refTab}`)?.classList.add('active');
+      });
+    });
+
+    document.querySelectorAll('#ref-filter-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#ref-filter-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        renderReactionTable(this.dom.refTableWrap, chip.dataset.filter);
+      });
+    });
+
+    document.querySelectorAll('#quiz-cat-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#quiz-cat-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.quiz.start(chip.dataset.qcat);
+      });
+    });
+
+    this.dom.btnQuizNext?.addEventListener('click', () => this.quiz.next());
+  }
+
+  /**
+   * Auto-Fit Viewport Scaler:
+   * Keeps the exact same 3-column lab layout on EVERY smartphone, tablet, and desktop
+   * without collapsing panels or breaking element positions.
+   */
+  initViewportScaler() {
+    const BASE_W = 1240;
+    const BASE_H = 740;
+    const stage = this.dom.viewportStage;
+    if (!stage) return;
+
+    const applyScale = () => {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      if (vw >= BASE_W && vh >= BASE_H) {
+        stage.style.width = `${vw}px`;
+        stage.style.height = `${vh}px`;
+        stage.style.transform = 'none';
+      } else {
+        const scale = Math.min(vw / BASE_W, vh / BASE_H);
+        stage.style.width = `${BASE_W}px`;
+        stage.style.height = `${BASE_H}px`;
+        stage.style.transform = `scale(${scale})`;
+      }
+      this.renderer?.resize();
+      this.titleFx?.resize();
+    };
+
+    applyScale();
+    window.addEventListener('resize', applyScale);
+    window.addEventListener('orientationchange', () => setTimeout(applyScale, 120));
+  }
+
+  showTitleScreen() {
+    this.setHeating(false);
+    this.dom.titleScreen?.classList.remove('hidden');
+    this.titleFx?.start();
+  }
+
+  hideTitleScreen() {
+    this.dom.titleScreen?.classList.add('hidden');
+    this.titleFx?.stop();
+    this.renderer?.resize();
+  }
+
+  openReferenceModal(defaultTab = 'table') {
+    renderReactionTable(this.dom.refTableWrap, 'all');
+    document.querySelectorAll('#ref-filter-chips .filter-chip').forEach((c, i) => {
+      c.classList.toggle('active', i === 0);
+    });
+    this.quiz.start('all');
+    document.querySelectorAll('#quiz-cat-chips .filter-chip').forEach((c, i) => {
+      c.classList.toggle('active', i === 0);
+    });
+
+    document.querySelectorAll('.ref-tab').forEach((t) => t.classList.toggle('active', t.dataset.refTab === defaultTab));
+    document.querySelectorAll('.ref-pane').forEach((p) => p.classList.toggle('active', p.id === `ref-pane-${defaultTab}`));
+    this.dom.referenceModal.classList.remove('hidden');
   }
 
   startTutorialSandbox() {
