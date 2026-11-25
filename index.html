@@ -3093,6 +3093,1302 @@ body.is-portrait .quiz-question {
   font-size: 14px;
 }
 
+/* ==========================================================================
+   5. Portrait Visual Decluttering (Apple/Nintendo-Level Clarity on Mobile)
+   ========================================================================== */
+
+body.is-portrait .desktop-only-btn {
+  display: none !important;
+}
+
+body.is-portrait .lab-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto;
+  gap: 5px 8px;
+  padding: 7px 10px 6px;
+  align-items: center;
+}
+
+body.is-portrait .header-left {
+  grid-column: 1;
+  grid-row: 1;
+  min-width: 0;
+  gap: 6px;
+}
+
+body.is-portrait .brand-title,
+body.is-portrait .brand-sub {
+  display: none;
+}
+
+body.is-portrait .brand-btn {
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+body.is-portrait .brand-icon {
+  width: 24px;
+  height: 24px;
+}
+
+body.is-portrait .stage-selector-wrap {
+  flex: 1;
+  min-width: 0;
+}
+
+body.is-portrait .stage-select {
+  width: 100%;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 8px;
+  border-radius: 9px;
+}
+
+body.is-portrait .header-right {
+  grid-column: 2;
+  grid-row: 1;
+  gap: 5px;
+  overflow: visible;
+  padding: 0;
+}
+
+body.is-portrait .header-right .btn-txt {
+  display: none;
+}
+
+body.is-portrait .header-right .header-btn {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  justify-content: center;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+body.is-portrait .header-center {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  min-width: 0;
+}
+
+body.is-portrait .mission-label {
+  font-size: 10px;
+}
+
+body.is-portrait .target-pill {
+  font-size: 10.5px;
+  padding: 2px 7px;
+}
+
+/* Stage HUD: clean single-line pill row, zero collision with test tube */
+body.is-portrait .stage-hud-top {
+  top: 6px;
+  left: 8px;
+  right: 8px;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 6px;
+}
+
+body.is-portrait .active-tube-badge {
+  padding: 4px 8px;
+  gap: 6px;
+  border-radius: 10px;
+  min-width: 0;
+  flex: 0 1 auto;
+}
+
+body.is-portrait .tube-id-pill {
+  font-size: 11.5px;
+  padding: 2px 6px;
+}
+
+body.is-portrait .tube-name {
+  font-size: 11px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 96px;
+}
+
+body.is-portrait .tube-state-line {
+  font-size: 9.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 110px;
+}
+
+body.is-portrait .stage-quick-actions {
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+body.is-portrait .stage-action-btn {
+  padding: 6px 8px;
+  font-size: 11px;
+  border-radius: 9px;
+}
+
+/* Hide redundant rack header text in portrait — the visual rack speaks for itself! */
+body.is-portrait .rack-header {
+  display: none;
+}
+
+body.is-portrait .rack-section {
+  padding: 4px 8px 5px;
+}
+
+body.is-portrait .tube-rack-frame {
+  min-height: 76px;
+  padding: 4px 6px 5px;
+}
+
+/* Slimmer reaction toast in portrait */
+body.is-portrait .reaction-banner {
+  bottom: 6px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+body.is-portrait .reaction-badge {
+  display: none;
+}
+
+body.is-portrait .reaction-text {
+  font-size: 11.5px;
+}
+
+body.is-portrait .reaction-eq {
+  font-size: 10px;
+}
+
+/* Clean Portrait Menu Sheet */
+.menu-sheet-card {
+  width: min(360px, 92%);
+  padding: 18px;
+}
+
+.pmenu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 9px;
+  margin-top: 8px;
+}
+
+.pmenu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 10px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 12px;
+  color: #f1f5f9;
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+
+.pmenu-item:active {
+  background: rgba(56, 189, 248, 0.22);
+  border-color: var(--accent-cyan);
+}
+
+/* ==========================================================================
+   6. 4-Mode Title Hub, Equation Balancer & Substance Classifier Arcade
+   ========================================================================== */
+
+.title-cta-grid.four-modes {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 11px;
+}
+
+.title-btn.amber {
+  background: linear-gradient(135deg, #d97706 0%, #ea580c 100%);
+  border-color: rgba(253, 186, 116, 0.65);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(217, 119, 6, 0.36);
+}
+
+.modal-head-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.mini-tut-btn {
+  background: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(52, 211, 153, 0.55);
+  border-radius: 8px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.mini-tut-btn:hover {
+  background: rgba(16, 185, 129, 0.36);
+}
+
+/* Inline Beginner Tutorial Box inside each Game Mode */
+.mode-tut-box {
+  background: rgba(6, 78, 59, 0.32);
+  border: 1.5px solid rgba(52, 211, 153, 0.68);
+  border-radius: 12px;
+  padding: 11px 14px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.mode-tut-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #f8fafc;
+  margin-bottom: 5px;
+}
+
+.mode-tut-text {
+  font-size: 12.2px;
+  line-height: 1.55;
+  color: #d1fae5;
+  margin-bottom: 8px;
+}
+
+.mode-tut-foot {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* --- Equation Balancer Game --- */
+.bal-ribbon {
+  color: #6ee7b7;
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(52, 211, 153, 0.45);
+}
+
+.bal-arena {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 14px;
+  padding: 16px 18px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.bal-lvl {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 9px;
+  border-radius: 999px;
+}
+
+.bal-lvl.basic    { background: rgba(56, 189, 248, 0.22); color: #7dd3fc; }
+.bal-lvl.standard { background: rgba(245, 158, 11, 0.22); color: #fde68a; }
+.bal-lvl.hard     { background: rgba(244, 63, 94, 0.22);  color: #fda4af; }
+
+.bal-eq-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 14px;
+}
+
+.bal-equation-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 6px;
+  background: rgba(9, 14, 26, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 12px;
+  padding: 16px 12px;
+  margin-bottom: 14px;
+}
+
+.eq-op, .eq-arrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  font-weight: 700;
+  color: #94a3b8;
+  padding: 0 3px;
+}
+
+.eq-arrow {
+  color: #38bdf8;
+  font-size: 22px;
+}
+
+.eq-term {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.eq-term-top {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.coeff-num {
+  font-size: 20px;
+  font-weight: 800;
+  color: #94a3b8;
+  min-width: 20px;
+  text-align: center;
+}
+
+.coeff-num.changed {
+  color: #38bdf8;
+}
+
+.eq-formula {
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.coeff-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.coeff-btn {
+  width: 30px;
+  height: 28px;
+  border-radius: 7px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #0f172a;
+  color: #f8fafc;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coeff-btn:hover {
+  border-color: #38bdf8;
+  background: #1e3a5f;
+}
+
+.bal-atom-section {
+  margin-bottom: 12px;
+}
+
+.bal-atom-label {
+  font-size: 11.5px;
+  color: #94a3b8;
+  margin-bottom: 7px;
+}
+
+.bal-atom-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.atom-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.atom-chip.ok {
+  background: rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(52, 211, 153, 0.6);
+  color: #6ee7b7;
+}
+
+.atom-chip.diff {
+  background: rgba(244, 63, 94, 0.16);
+  border: 1px solid rgba(251, 113, 133, 0.5);
+  color: #fda4af;
+}
+
+.bal-hint-text {
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  color: #fde68a;
+  border-radius: 9px;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  margin-bottom: 10px;
+}
+
+.bal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* --- Inorganic Substance Classifier Arcade --- */
+.cls-ribbon {
+  color: #fdba74;
+  background: rgba(234, 88, 12, 0.18);
+  border-color: rgba(251, 146, 60, 0.5);
+}
+
+.cls-hud {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 12px;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  flex-shrink: 0;
+}
+
+.cls-score-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.cls-stat {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.cls-stat span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+}
+
+.cls-stat strong {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px;
+  color: #f8fafc;
+}
+
+.cls-combo-pill {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(56, 189, 248, 0.16);
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  color: #7dd3fc;
+  transition: all 0.2s ease;
+}
+
+.cls-combo-pill.fever {
+  background: linear-gradient(135deg, #f59e0b, #ef4444);
+  border-color: #fde047;
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(245, 158, 11, 0.65);
+}
+
+.cls-timer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cls-timer-track {
+  flex: 1;
+  height: 8px;
+  background: rgba(51, 65, 85, 0.85);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.cls-timer-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #34d399, #38bdf8);
+  transition: width 0.1s linear;
+}
+
+.cls-timer-bar.low {
+  background: linear-gradient(90deg, #f43f5e, #f97316);
+}
+
+.cls-timer-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  color: #f8fafc;
+  min-width: 34px;
+  text-align: right;
+}
+
+.cls-play-area {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cls-inspect-panel {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: radial-gradient(circle at 20% 50%, rgba(56, 189, 248, 0.12), rgba(9, 14, 26, 0.82));
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.cls-bottle-stage {
+  width: 112px;
+  height: 136px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cls-bottle-svg {
+  width: 108px;
+  height: 132px;
+  filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.55));
+}
+
+.cls-clue-panel {
+  flex: 1;
+  min-width: 0;
+}
+
+.cls-container-badge {
+  display: inline-block;
+  font-size: 11.5px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+
+.cls-container-badge.clear_glass  { background: rgba(56, 189, 248, 0.2);  color: #bae6fd; border: 1px solid rgba(56, 189, 248, 0.45); }
+.cls-container-badge.amber_glass  { background: rgba(217, 119, 6, 0.28);  color: #fde68a; border: 1px solid rgba(245, 158, 11, 0.55); }
+.cls-container-badge.polyethylene { background: rgba(226, 232, 240, 0.2); color: #f8fafc; border: 1px solid rgba(226, 232, 240, 0.5); }
+.cls-container-badge.in_water     { background: rgba(14, 165, 233, 0.26); color: #7dd3fc; border: 1px solid rgba(56, 189, 248, 0.55); }
+.cls-container-badge.in_oil       { background: rgba(234, 179, 8, 0.26);  color: #fef08a; border: 1px solid rgba(250, 204, 21, 0.55); }
+
+.cls-visual-desc {
+  font-size: 14px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-bottom: 5px;
+}
+
+.cls-clue-text {
+  font-size: 12.5px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+.cls-choices {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.cls-choice-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 12px 10px;
+  background: rgba(30, 41, 59, 0.88);
+  border: 1.5px solid rgba(148, 163, 184, 0.3);
+  border-radius: 12px;
+  color: #f8fafc;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.14s ease;
+}
+
+.cls-choice-btn:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.cls-choice-btn.correct {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: #34d399;
+}
+
+.cls-choice-btn.wrong {
+  background: rgba(244, 63, 94, 0.28);
+  border-color: #fb7185;
+}
+
+.cls-ch-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.cls-ch-name {
+  font-size: 11.5px;
+  color: #cbd5e1;
+}
+
+.cls-result-box {
+  text-align: center;
+  padding: 14px 6px;
+}
+
+.cls-result-box h3 {
+  font-size: 18px;
+  color: #fde68a;
+  margin-bottom: 14px;
+}
+
+/* Portrait tweaks for the 2 new games */
+body.is-portrait .title-cta-grid.four-modes {
+  grid-template-columns: 1fr;
+}
+
+body.is-portrait .cls-inspect-panel {
+  flex-direction: column;
+  text-align: center;
+  gap: 10px;
+  padding: 12px;
+}
+
+body.is-portrait .cls-bottle-stage {
+  width: 92px;
+  height: 110px;
+}
+
+body.is-portrait .cls-bottle-svg {
+  width: 90px;
+  height: 108px;
+}
+
+body.is-portrait .eq-term {
+  padding: 6px 8px;
+}
+
+body.is-portrait .eq-formula {
+  font-size: 14px;
+}
+
+@media (max-width: 620px) {
+  .title-emblem-row {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .title-wordmark-wrap {
+    text-align: center;
+  }
+  .title-logo {
+    font-size: 30px;
+  }
+  .title-cta-grid.four-modes {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+/* ==========================================================================
+   7. Classifier 4-Bottle Shelf ("博士の試薬棚" Inspired) & Substance Zukan
+   ========================================================================== */
+
+.cls-tab {
+  padding: 7px 8px;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--text-muted);
+  font-size: 12.5px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.cls-tab.active {
+  background: #7c2d12;
+  color: #ffedd5;
+}
+
+.cls-pane {
+  display: none;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.cls-pane.active {
+  display: flex;
+}
+
+.cls-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+
+.cls-filter-bar .ref-filter-chips {
+  margin-bottom: 0;
+}
+
+.cls-prompt-switch {
+  display: flex;
+  gap: 4px;
+}
+
+.cls-prof-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 12px;
+}
+
+.cls-prof-prompt {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #f8fafc;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.prof-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: #fde68a;
+  background: rgba(245, 158, 11, 0.2);
+  border: 1px solid rgba(245, 158, 11, 0.45);
+  padding: 1px 7px;
+  border-radius: 999px;
+  margin-right: 6px;
+}
+
+.cls-bm-btn {
+  background: rgba(15, 23, 42, 0.85);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.cls-bm-btn.active {
+  background: rgba(245, 158, 11, 0.25);
+  border-color: #fbbf24;
+  color: #fde68a;
+}
+
+.cls-wood-shelf {
+  background: radial-gradient(circle at 50% 40%, rgba(56, 189, 248, 0.08), rgba(9, 14, 26, 0.78));
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  padding: 12px 10px 10px;
+  margin-bottom: 10px;
+}
+
+.cls-shelf-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.cls-shelf-bottle-btn {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px 8px;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1.5px solid rgba(148, 163, 184, 0.26);
+  border-radius: 12px;
+  color: #f8fafc;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.14s ease, border-color 0.14s ease, background 0.14s ease;
+}
+
+.cls-shelf-bottle-btn:hover {
+  transform: translateY(-3px);
+  border-color: #38bdf8;
+  background: rgba(30, 41, 59, 0.92);
+}
+
+.cls-shelf-bottle-btn.correct {
+  background: rgba(16, 185, 129, 0.28);
+  border-color: #34d399;
+}
+
+.cls-shelf-bottle-btn.wrong {
+  background: rgba(244, 63, 94, 0.28);
+  border-color: #fb7185;
+}
+
+.cls-b-num {
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #94a3b8;
+  background: rgba(15, 23, 42, 0.9);
+  padding: 1px 5px;
+  border-radius: 5px;
+}
+
+.cls-shelf-svg {
+  width: 68px;
+  height: 82px;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+}
+
+.cls-b-formula {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.cls-b-container {
+  font-size: 9.5px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.cls-b-container.clear_glass  { background: rgba(56, 189, 248, 0.18); color: #bae6fd; }
+.cls-b-container.amber_glass  { background: rgba(217, 119, 6, 0.26); color: #fde68a; }
+.cls-b-container.polyethylene { background: rgba(226, 232, 240, 0.2); color: #f8fafc; }
+.cls-b-container.wide_jar     { background: rgba(148, 163, 184, 0.2); color: #e2e8f0; }
+.cls-b-container.in_water     { background: rgba(14, 165, 233, 0.26); color: #7dd3fc; }
+.cls-b-container.in_oil       { background: rgba(234, 179, 8, 0.26); color: #fef08a; }
+.cls-b-container.gas_jar      { background: rgba(167, 139, 250, 0.22); color: #ddd6fe; }
+
+/* Substance Encyclopedia (物質図鑑) */
+.cls-zukan-wrap {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.zukan-summary {
+  font-size: 12px;
+  color: #bae6fd;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: 9px;
+  padding: 8px 12px;
+  margin-bottom: 10px;
+}
+
+.zukan-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.zukan-card {
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 10px;
+  padding: 9px 10px;
+}
+
+.zukan-card.bookmarked {
+  border-color: rgba(251, 191, 36, 0.65);
+}
+
+.zukan-card-top {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.zukan-mini-svg .cls-shelf-svg {
+  width: 38px;
+  height: 46px;
+}
+
+.zukan-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f8fafc;
+}
+
+.zukan-title small {
+  font-size: 11px;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.zukan-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.zukan-cat {
+  font-size: 9.5px;
+  color: #94a3b8;
+  background: rgba(30, 41, 59, 0.9);
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+.zukan-bm {
+  font-size: 9.5px;
+  color: #fde68a;
+  font-weight: 700;
+}
+
+.zukan-desc {
+  font-size: 11px;
+  color: #cbd5e1;
+  line-height: 1.45;
+}
+
+/* Portrait layout for 4-bottle shelf (clean 2x2 grid) */
+body.is-portrait .cls-shelf-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+body.is-portrait .cls-prof-box {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+  padding: 8px 10px;
+}
+
+body.is-portrait .cls-prof-prompt {
+  font-size: 12px;
+}
+
+body.is-portrait .cls-shelf-svg {
+  width: 54px;
+  height: 66px;
+}
+
+body.is-portrait .zukan-grid {
+  grid-template-columns: 1fr;
+}
+
+/* ==========================================================================
+   8. 3-Phase Classifier ("博士の試薬棚" Style) & Home Navigation Polish
+   ========================================================================== */
+
+.mini-home-btn {
+  background: rgba(30, 41, 59, 0.88);
+  color: #e2e8f0;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  border-radius: 7px;
+  width: 30px;
+  height: 28px;
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.mini-home-btn:hover {
+  border-color: #38bdf8;
+  background: #1e3a5f;
+}
+
+/* Pre-Game Setup View (Zero Clutter during Play!) */
+.cls-setup-view {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 14px;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.cls-setup-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: #7dd3fc;
+  margin-bottom: 6px;
+}
+
+.cls-begin-btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 4px;
+}
+
+/* Active 3-Phase Play View */
+.cls-play-view {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.cls-slim-hud {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 10px;
+  padding: 6px 10px;
+  flex-wrap: wrap;
+}
+
+.cls-prog-pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #bae6fd;
+  background: rgba(2, 132, 199, 0.22);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.cls-hearts {
+  color: #fb7185;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+
+.cls-score-mini {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: #f8fafc;
+  margin-left: auto;
+}
+
+.cls-combo-mini {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  font-weight: 700;
+  color: #fbbf24;
+}
+
+/* 3-Phase Indicator Bar */
+.cls-phase-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
+
+.cls-phase-pill {
+  text-align: center;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 4px 4px;
+  border-radius: 7px;
+  background: rgba(30, 41, 59, 0.65);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  color: #64748b;
+}
+
+.cls-phase-pill.active {
+  background: rgba(2, 132, 199, 0.28);
+  border-color: #38bdf8;
+  color: #e0f2fe;
+}
+
+.cls-phase-pill.done {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(52, 211, 153, 0.5);
+  color: #6ee7b7;
+}
+
+.cls-prof-card {
+  background: rgba(30, 41, 59, 0.85);
+  border: 1.5px solid rgba(251, 191, 36, 0.45);
+  border-radius: 11px;
+  padding: 9px 12px;
+}
+
+/* Phase 2: Multi-Select "正しいものをすべて選べ！" */
+.cls-phase-box {
+  background: rgba(15, 23, 42, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.cls-label-checks {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-bottom: 12px;
+}
+
+.cls-check-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  background: rgba(30, 41, 59, 0.82);
+  border: 1.5px solid rgba(148, 163, 184, 0.25);
+  border-radius: 9px;
+  font-size: 12.5px;
+  color: #f1f5f9;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.cls-check-row:has(input:checked) {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.16);
+}
+
+.cls-check-row.chk-ok {
+  border-color: #34d399;
+  background: rgba(16, 185, 129, 0.22);
+}
+
+.cls-check-row.chk-ng {
+  border-color: #fb7185;
+  background: rgba(244, 63, 94, 0.22);
+}
+
+.chk-tag {
+  margin-left: auto;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.chk-tag.ok { background: #10b981; color: #ffffff; }
+.chk-tag.ng { background: #475569; color: #cbd5e1; }
+
+/* Phase 3: Reaction Tile Puzzle */
+.cls-react-formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 16px;
+  font-weight: 700;
+  color: #f8fafc;
+  background: rgba(9, 14, 26, 0.78);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 10px;
+  padding: 14px 10px;
+  margin-bottom: 12px;
+}
+
+.rx-slot {
+  min-width: 44px;
+  padding: 4px 10px;
+  border-radius: 8px;
+  border: 2px dashed #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  color: #7dd3fc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.rx-slot.filled {
+  border-style: solid;
+  background: rgba(16, 185, 129, 0.24);
+  border-color: #34d399;
+  color: #ecfdf5;
+}
+
+.cls-react-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.rx-tile-btn {
+  padding: 8px 14px;
+  border-radius: 9px;
+  background: rgba(30, 41, 59, 0.92);
+  border: 1.5px solid rgba(148, 163, 184, 0.35);
+  color: #f8fafc;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.rx-tile-btn:hover {
+  border-color: #38bdf8;
+  background: rgba(56, 189, 248, 0.2);
+}
+
+.cls-phase-actions,
+.cls-advance-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.zukan-eq {
+  margin-top: 5px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10.5px;
+  color: #7dd3fc;
+  background: rgba(2, 132, 199, 0.14);
+  padding: 3px 6px;
+  border-radius: 5px;
+}
+
 </style>
 </head>
 <body>
@@ -3157,34 +4453,42 @@ body.is-portrait .quiz-question {
           <span class="ion-chip c-orange">Ca²⁺ <small>橙赤炎色</small></span>
         </div>
 
-        <!-- Primary Actions -->
-        <div class="title-cta-grid">
+        <!-- 4-Mode Game Selection Grid -->
+        <div class="title-cta-grid four-modes">
           <button type="button" id="btn-title-start" class="title-btn primary">
             <span class="tbtn-ico">🔬</span>
             <span class="tbtn-text">
-              <strong>実験室へ入る</strong>
-              <small>全10課題・入試系統分析に挑戦</small>
-            </span>
-          </button>
-          <button type="button" id="btn-title-tutorial" class="title-btn emerald">
-            <span class="tbtn-ico">🎓</span>
-            <span class="tbtn-text">
-              <strong>1分チュートリアル</strong>
-              <small>初めての方はここから体験</small>
+              <strong>系統分析</strong>
+              <small>リアル試験管ラボ・全10課題</small>
             </span>
           </button>
           <button type="button" id="btn-title-reference" class="title-btn violet">
-            <span class="tbtn-ico">📚</span>
+            <span class="tbtn-ico">⚡</span>
             <span class="tbtn-text">
-              <strong>沈殿一覧＆一問一答</strong>
-              <small>全イオン反応表・25問ドリル</small>
+              <strong>沈殿１問１答</strong>
+              <small>全25問ドリル＆沈殿色一覧表</small>
+            </span>
+          </button>
+          <button type="button" id="btn-title-balancer" class="title-btn emerald">
+            <span class="tbtn-ico">⚖️</span>
+            <span class="tbtn-text">
+              <strong>無機化学反応式係数合わせ</strong>
+              <small>原子数メーター付き・入試15式</small>
+            </span>
+          </button>
+          <button type="button" id="btn-title-classifier" class="title-btn amber">
+            <span class="tbtn-ico">🧴</span>
+            <span class="tbtn-text">
+              <strong>無機物質分類ゲーム</strong>
+              <small>試薬びん仕分け・60秒コンボ制</small>
             </span>
           </button>
         </div>
 
         <div class="title-sub-links">
-          <button type="button" id="btn-title-import" class="title-ghost-btn">📄 Web過去問コピペ実験</button>
-          <button type="button" id="btn-title-free" class="title-ghost-btn">🧪 自由実験（カスタム配合）</button>
+          <button type="button" id="btn-title-tutorial" class="title-ghost-btn">🎓 系統分析チュートリアル</button>
+          <button type="button" id="btn-title-import" class="title-ghost-btn">📄 Web過去問コピペ</button>
+          <button type="button" id="btn-title-free" class="title-ghost-btn">🧪 自由実験</button>
         </div>
       </div>
     </section>
@@ -3217,32 +4521,35 @@ body.is-portrait .quiz-question {
       </div>
 
       <div class="header-right">
-        <button id="btn-open-reference" class="header-btn ref-btn" title="金属イオンの沈殿色一覧表と一問一答ドリルを開く">
+        <button id="btn-open-reference" class="header-btn ref-btn desktop-only-btn" title="金属イオンの沈殿色一覧表と一問一答ドリルを開く">
           <span>📚</span> 一覧・一問一答
         </button>
-        <button id="btn-open-tutorial" class="header-btn tut-btn" title="操作を実践しながら学べるチュートリアルを開始">
+        <button id="btn-open-tutorial" class="header-btn tut-btn desktop-only-btn" title="操作を実践しながら学べるチュートリアルを開始">
           <span>🎓</span> チュートリアル
         </button>
         <button id="btn-open-hint" class="header-btn hint-btn" title="行き詰まったときの段階的ヒント＆早見表を開く">
-          <span>💡</span> ヒント
+          <span>💡</span><span class="btn-txt"> ヒント</span>
         </button>
-        <button id="btn-open-import" class="header-btn accent-btn" title="Web上の過去問テキストを貼り付けて実験室を自動構築">
+        <button id="btn-open-import" class="header-btn accent-btn desktop-only-btn" title="Web上の過去問テキストを貼り付けて実験室を自動構築">
           <span>📄</span> 問題文
         </button>
-        <button id="btn-open-builder" class="header-btn" title="任意のイオン配合・ブラインド設定・URL共有">
+        <button id="btn-open-builder" class="header-btn desktop-only-btn" title="任意のイオン配合・ブラインド設定・URL共有">
           <span>⚙️</span> カスタム
         </button>
-        <button id="btn-open-report" class="header-btn" title="全操作フローチャートと反応式一覧を出力">
+        <button id="btn-open-report" class="header-btn desktop-only-btn" title="全操作フローチャートと反応式一覧を出力">
           <span>📋</span> レポート
         </button>
-        <button id="btn-reset" class="header-btn" title="現在の課題を最初からやり直す">
+        <button id="btn-reset" class="header-btn desktop-only-btn" title="現在の課題を最初からやり直す">
           <span>↺</span>
         </button>
-        <button id="btn-mute" class="header-btn sound-btn" title="効果音 ON/OFF" aria-pressed="false">
+        <button id="btn-mute" class="header-btn sound-btn desktop-only-btn" title="効果音 ON/OFF" aria-pressed="false">
           <span id="mute-icon">🔊</span>
         </button>
         <button id="btn-toggle-notebook" class="header-btn portrait-only" title="実験ノートを開く">
-          <span>📓</span> ノート
+          <span>📓</span>
+        </button>
+        <button id="btn-portrait-menu" class="header-btn portrait-only" title="メニューを開く" aria-label="メニューを開く">
+          <span>☰</span>
         </button>
       </div>
     </header>
@@ -3660,8 +4967,24 @@ body.is-portrait .quiz-question {
     <div class="modal-card xwide-card ref-card">
       <div class="modal-ribbon ref-ribbon">INORGANIC CHEMISTRY ENCYCLOPEDIA &amp; DRILL</div>
       <div class="ref-head-row">
-        <h2 id="ref-title">📚 金属イオン沈殿一覧表 ＆ 一問一答ドリル</h2>
-        <button type="button" id="btn-ref-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+        <h2 id="ref-title">⚡ 沈殿１問１答 ＆ 一覧表</h2>
+        <div class="modal-head-actions">
+          <button type="button" id="btn-ref-tut" class="mini-tut-btn">🎓 遊び方</button>
+          <button type="button" id="btn-ref-home" class="mini-home-btn" title="タイトル画面へ戻る">🏠</button>
+          <button type="button" id="btn-ref-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+        </div>
+      </div>
+
+      <!-- Beginner Tutorial Banner for 沈殿１問１答 -->
+      <div id="ref-tut-box" class="mode-tut-box hidden">
+        <div class="mode-tut-head">
+          <span class="tut-badge">🎓 はじめてガイド</span>
+          <strong id="ref-tut-title">STEP 1 / 3：沈殿１問１答の使い方</strong>
+        </div>
+        <p id="ref-tut-text" class="mode-tut-text"></p>
+        <div class="mode-tut-foot">
+          <button type="button" id="btn-ref-tut-next" class="tut-next-btn">次へ →</button>
+        </div>
       </div>
 
       <div class="hint-tabs ref-main-tabs" role="tablist">
@@ -3700,6 +5023,215 @@ body.is-portrait .quiz-question {
             <button type="button" id="btn-quiz-next" class="modal-btn primary hidden">次の問題へ →</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 10: Clean Portrait Action Menu Sheet -->
+  <div id="portrait-menu-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-label="メニュー">
+    <div class="modal-card menu-sheet-card">
+      <div class="ref-head-row">
+        <h2>メニュー</h2>
+        <button type="button" id="btn-pmenu-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+      </div>
+      <div class="pmenu-grid">
+        <button type="button" class="pmenu-item" data-pmenu="reference"><span>⚡</span> 沈殿１問１答</button>
+        <button type="button" class="pmenu-item" data-pmenu="balancer"><span>⚖️</span> 反応式係数合わせ</button>
+        <button type="button" class="pmenu-item" data-pmenu="classifier"><span>🧴</span> 無機物質分類ゲーム</button>
+        <button type="button" class="pmenu-item" data-pmenu="tutorial"><span>🎓</span> 系統分析チュートリアル</button>
+        <button type="button" class="pmenu-item" data-pmenu="import"><span>📄</span> Web問題文インポート</button>
+        <button type="button" class="pmenu-item" data-pmenu="builder"><span>⚙️</span> カスタム配合・共有</button>
+        <button type="button" class="pmenu-item" data-pmenu="report"><span>📋</span> 学習レポート出力</button>
+        <button type="button" class="pmenu-item" data-pmenu="reset"><span>↺</span> 課題をリセット</button>
+        <button type="button" class="pmenu-item" data-pmenu="mute"><span id="pmenu-mute-ico">🔊</span> <span id="pmenu-mute-txt">効果音 ON</span></button>
+        <button type="button" class="pmenu-item" data-pmenu="title"><span>🏠</span> タイトル画面へ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 11: Inorganic Chemical Equation Balancing Game (無機化学反応式係数合わせ) -->
+  <div id="balancer-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="bal-heading">
+    <div class="modal-card xwide-card bal-card">
+      <div class="modal-ribbon bal-ribbon">EQUATION BALANCING CHALLENGE</div>
+      <div class="ref-head-row">
+        <h2 id="bal-heading">⚖️ 反応式 係数合わせ</h2>
+        <div class="modal-head-actions">
+          <button type="button" id="btn-bal-tut" class="mini-tut-btn">🎓 遊び方</button>
+          <button type="button" id="btn-bal-home" class="mini-home-btn" title="タイトル画面へ戻る">🏠</button>
+          <button type="button" id="btn-bal-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+        </div>
+      </div>
+
+      <!-- Beginner Tutorial Box -->
+      <div id="bal-tut-box" class="mode-tut-box hidden">
+        <div class="mode-tut-head">
+          <span class="tut-badge">🎓 はじめてガイド</span>
+          <strong id="bal-tut-title"></strong>
+        </div>
+        <p id="bal-tut-text" class="mode-tut-text"></p>
+        <div class="mode-tut-foot">
+          <button type="button" id="btn-bal-tut-next" class="tut-next-btn">次へ →</button>
+        </div>
+      </div>
+
+      <div class="ref-filter-chips" id="bal-level-chips">
+        <button type="button" class="filter-chip active" data-blevel="all">全レベル (15式)</button>
+        <button type="button" class="filter-chip" data-blevel="basic">基礎</button>
+        <button type="button" class="filter-chip" data-blevel="standard">入試標準</button>
+        <button type="button" class="filter-chip" data-blevel="hard">難関・酸化還元</button>
+      </div>
+
+      <div class="bal-arena">
+        <div id="bal-stats" class="quiz-stats"></div>
+        <div id="bal-eq-title" class="bal-eq-title"></div>
+        <div id="bal-equation-wrap" class="bal-equation-wrap"></div>
+
+        <div class="bal-atom-section">
+          <div class="bal-atom-label">左右の原子数バランス（すべて緑の ✓ にそろえよう）</div>
+          <div id="bal-atom-grid" class="bal-atom-grid"></div>
+        </div>
+
+        <div id="bal-hint-text" class="bal-hint-text hidden"></div>
+        <div id="bal-feedback" class="quiz-feedback hidden"></div>
+
+        <div class="bal-actions">
+          <button type="button" id="btn-bal-hint" class="modal-btn secondary">💡 ヒント</button>
+          <button type="button" id="btn-bal-check" class="modal-btn primary">判定する！</button>
+          <button type="button" id="btn-bal-next" class="modal-btn primary hidden">次の反応式へ →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 12: Inorganic Substance Classification Game (博士の試薬棚 3フェーズ＋オリジナリティ) -->
+  <div id="classifier-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="cls-heading">
+    <div class="modal-card xwide-card cls-card">
+      <div class="modal-ribbon cls-ribbon">INORGANIC SUBSTANCE CLASSIFICATION</div>
+      <div class="ref-head-row">
+        <h2 id="cls-heading">🧴 無機物質分類ゲーム</h2>
+        <div class="modal-head-actions">
+          <button type="button" id="btn-cls-tut" class="mini-tut-btn">🎓 遊び方</button>
+          <button type="button" id="btn-cls-home" class="mini-home-btn" title="タイトル画面へ戻る">🏠</button>
+          <button type="button" id="btn-cls-close" class="icon-close-btn ref-close" aria-label="閉じる">✕</button>
+        </div>
+      </div>
+
+      <!-- Beginner Tutorial Box -->
+      <div id="cls-tut-box" class="mode-tut-box hidden">
+        <div class="mode-tut-head">
+          <span class="tut-badge">🎓 はじめてガイド</span>
+          <strong id="cls-tut-title"></strong>
+        </div>
+        <p id="cls-tut-text" class="mode-tut-text"></p>
+        <div class="mode-tut-foot">
+          <button type="button" id="btn-cls-tut-next" class="tut-next-btn">次へ →</button>
+        </div>
+      </div>
+
+      <!-- Mode Tabs: Game vs Substance Encyclopedia -->
+      <div class="hint-tabs cls-main-tabs" role="tablist">
+        <button type="button" class="cls-tab active" data-cls-tab="game">🎮 博士の依頼に挑戦</button>
+        <button type="button" class="cls-tab" data-cls-tab="zukan">📓 物質図鑑（全28種）</button>
+      </div>
+
+      <!-- Pane 1: Game -->
+      <div class="cls-pane active" id="cls-pane-game">
+        <!-- Pre-Game Clean Setup Screen (Keeps Play Screen Decluttered!) -->
+        <div id="cls-setup-view" class="cls-setup-view">
+          <div class="cls-setup-group">
+            <div class="cls-setup-label">① 出題範囲</div>
+            <div class="ref-filter-chips" id="cls-cat-chips">
+              <button type="button" class="filter-chip active" data-ccat="all">すべて (28種)</button>
+              <button type="button" class="filter-chip" data-ccat="nonmetal">非金属 (10)</button>
+              <button type="button" class="filter-chip" data-ccat="typical">典型金属 (9)</button>
+              <button type="button" class="filter-chip" data-ccat="transition">遷移元素 (9)</button>
+              <button type="button" class="filter-chip" data-ccat="bookmarked">📌 付せん (0)</button>
+            </div>
+          </div>
+          <div class="cls-setup-group">
+            <div class="cls-setup-label">② 博士のたのみ方</div>
+            <div class="ref-filter-chips" id="cls-prompt-chips">
+              <button type="button" class="filter-chip active" data-pmode="prop">性質から探す</button>
+              <button type="button" class="filter-chip" data-pmode="name">名称から探す</button>
+              <button type="button" class="filter-chip" data-pmode="random">ランダム</button>
+            </div>
+          </div>
+          <div class="cls-setup-group">
+            <div class="cls-setup-label">③ 依頼の数</div>
+            <div class="ref-filter-chips" id="cls-count-chips">
+              <button type="button" class="filter-chip active" data-rcount="5">5件</button>
+              <button type="button" class="filter-chip" data-rcount="10">10件</button>
+              <button type="button" class="filter-chip" data-rcount="15">15件</button>
+            </div>
+          </div>
+          <button type="button" id="btn-cls-begin" class="modal-btn primary cls-begin-btn">🔬 依頼をはじめる！</button>
+        </div>
+
+        <!-- Active 3-Phase Play View -->
+        <div id="cls-play-view" class="cls-play-view hidden">
+          <!-- Slim 1-Line HUD -->
+          <div class="cls-slim-hud">
+            <span id="cls-progress" class="cls-prog-pill">依頼 1 / 5</span>
+            <span id="cls-hearts" class="cls-hearts">♥♥♥♥♥</span>
+            <span id="cls-score" class="cls-score-mini">0pt</span>
+            <span id="cls-combo" class="cls-combo-mini">🔥 0</span>
+            <button type="button" id="btn-cls-bookmark" class="cls-bm-btn">📌 付せん</button>
+          </div>
+
+          <!-- 3-Phase Step Indicator -->
+          <div class="cls-phase-bar">
+            <span class="cls-phase-pill active" data-phase="1">① 試薬を取る</span>
+            <span class="cls-phase-pill" data-phase="2">② ラベル(すべて選べ)</span>
+            <span class="cls-phase-pill" data-phase="3">③ 反応式</span>
+          </div>
+
+          <!-- Professor Prompt -->
+          <div id="cls-prof-prompt" class="cls-prof-prompt cls-prof-card"></div>
+
+          <!-- Phase 1: 4-Bottle Shelf -->
+          <div id="cls-phase-pick" class="cls-wood-shelf">
+            <div id="cls-shelf-grid" class="cls-shelf-grid"></div>
+            <div class="shelf-ledge"></div>
+          </div>
+
+          <!-- Phase 2: Multi-Select "正しいものをすべて選べ！" -->
+          <div id="cls-phase-label" class="cls-phase-box hidden">
+            <div id="cls-label-checks" class="cls-label-checks"></div>
+            <div class="cls-phase-actions">
+              <button type="button" id="btn-cls-label-check" class="modal-btn primary">🏷️ ラベルを貼る！</button>
+            </div>
+          </div>
+
+          <!-- Phase 3: Reaction Equation Tile Puzzle -->
+          <div id="cls-phase-react" class="cls-phase-box hidden">
+            <div id="cls-react-formula" class="cls-react-formula"></div>
+            <div id="cls-react-tiles" class="cls-react-tiles"></div>
+            <div class="cls-phase-actions">
+              <button type="button" id="btn-cls-react-clear" class="modal-btn secondary">やり直す</button>
+              <button type="button" id="btn-cls-react-check" class="modal-btn primary">⚗️ 反応させる！</button>
+            </div>
+          </div>
+
+          <div id="cls-feedback" class="quiz-feedback hidden"></div>
+          <div class="cls-advance-row">
+            <button type="button" id="btn-cls-advance" class="modal-btn primary hidden">次へ ▶</button>
+          </div>
+        </div>
+
+        <!-- Result Box -->
+        <div id="cls-result-box" class="cls-result-box hidden">
+          <h3>🎓 依頼完了！おつかれさまじゃ！</h3>
+          <div id="cls-result-stats" class="clear-summary"></div>
+          <div class="modal-actions">
+            <button type="button" id="btn-cls-retry" class="modal-btn primary">設定へ戻って再挑戦</button>
+            <button type="button" id="btn-cls-back" class="modal-btn secondary">🏠 タイトルへ戻る</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pane 2: 物質図鑑 -->
+      <div class="cls-pane" id="cls-pane-zukan">
+        <div id="cls-zukan-wrap" class="cls-zukan-wrap"></div>
       </div>
     </div>
   </div>
@@ -6243,6 +7775,1557 @@ class QuizController {
 }
 
 
+// ===== balancer.js =====
+/**
+ * Inorganic Chemical Equation Balancing Game (無機化学反応式係数合わせ)
+ * Features 15 high-school / university entrance exam equations,
+ * real-time left vs. right atom count visualizer, combo & score tracking,
+ * and a 3-step beginner tutorial.
+ */
+
+const BALANCE_EQUATIONS = [
+  {
+    level: 'basic',
+    title: '塩化銀の沈殿生成',
+    hint: 'Ag, Cl ともに1つずつ。最も基本の1:1反応！',
+    lhs: [
+      { formula: 'AgNO₃', atoms: { Ag: 1, N: 1, O: 3 } },
+      { formula: 'NaCl',  atoms: { Na: 1, Cl: 1 } },
+    ],
+    rhs: [
+      { formula: 'AgCl',  atoms: { Ag: 1, Cl: 1 } },
+      { formula: 'NaNO₃', atoms: { Na: 1, N: 1, O: 3 } },
+    ],
+    answer: [1, 1, 1, 1],
+  },
+  {
+    level: 'basic',
+    title: 'ナトリウムと水の反応',
+    hint: '右辺の H₂ と NaOH の H の数を偶数にそろえるのがコツ！',
+    lhs: [
+      { formula: 'Na',  atoms: { Na: 1 } },
+      { formula: 'H₂O', atoms: { H: 2, O: 1 } },
+    ],
+    rhs: [
+      { formula: 'NaOH', atoms: { Na: 1, O: 1, H: 1 } },
+      { formula: 'H₂',   atoms: { H: 2 } },
+    ],
+    answer: [2, 2, 2, 1],
+  },
+  {
+    level: 'basic',
+    title: '炭酸水素ナトリウムの熱分解',
+    hint: 'Na₂CO₃ に Na が2個あるので、左辺の NaHCO₃ を 2 にしよう！',
+    lhs: [
+      { formula: 'NaHCO₃', atoms: { Na: 1, H: 1, C: 1, O: 3 } },
+    ],
+    rhs: [
+      { formula: 'Na₂CO₃', atoms: { Na: 2, C: 1, O: 3 } },
+      { formula: 'H₂O',    atoms: { H: 2, O: 1 } },
+      { formula: 'CO₂',    atoms: { C: 1, O: 2 } },
+    ],
+    answer: [2, 1, 1, 1],
+  },
+  {
+    level: 'basic',
+    title: '炭酸カルシウムと希塩酸（CO₂発生）',
+    hint: 'CaCl₂ に Cl が2個あるので、HCl の係数は 2！',
+    lhs: [
+      { formula: 'CaCO₃', atoms: { Ca: 1, C: 1, O: 3 } },
+      { formula: 'HCl',   atoms: { H: 1, Cl: 1 } },
+    ],
+    rhs: [
+      { formula: 'CaCl₂', atoms: { Ca: 1, Cl: 2 } },
+      { formula: 'H₂O',   atoms: { H: 2, O: 1 } },
+      { formula: 'CO₂',   atoms: { C: 1, O: 2 } },
+    ],
+    answer: [1, 2, 1, 1, 1],
+  },
+  {
+    level: 'basic',
+    title: '水酸化銅(II)の過剰アンモニア溶解',
+    hint: '[Cu(NH₃)₄](OH)₂ に NH₃ が4個入っているので、NH₃ の係数は 4！',
+    lhs: [
+      { formula: 'Cu(OH)₂', atoms: { Cu: 1, O: 2, H: 2 } },
+      { formula: 'NH₃',     atoms: { N: 1, H: 3 } },
+    ],
+    rhs: [
+      { formula: '[Cu(NH₃)₄](OH)₂', atoms: { Cu: 1, N: 4, H: 14, O: 2 } },
+    ],
+    answer: [1, 4, 1],
+  },
+  {
+    level: 'standard',
+    title: '塩素の実験室的製法（MnO₂＋濃HCl）',
+    hint: 'MnCl₂ と Cl₂ で右辺の Cl は合計 4個！HCl を 4 にして H₂O を合わせよう。',
+    lhs: [
+      { formula: 'MnO₂', atoms: { Mn: 1, O: 2 } },
+      { formula: 'HCl',  atoms: { H: 1, Cl: 1 } },
+    ],
+    rhs: [
+      { formula: 'MnCl₂', atoms: { Mn: 1, Cl: 2 } },
+      { formula: 'H₂O',   atoms: { H: 2, O: 1 } },
+      { formula: 'Cl₂',   atoms: { Cl: 2 } },
+    ],
+    answer: [1, 4, 1, 2, 1],
+  },
+  {
+    level: 'standard',
+    title: '銅と濃硝酸の反応（NO₂発生）',
+    hint: 'Cu は1個。NO₃⁻ を2個＋NO₂ を2個で、HNO₃ は合計 4個！',
+    lhs: [
+      { formula: 'Cu',   atoms: { Cu: 1 } },
+      { formula: 'HNO₃', atoms: { H: 1, N: 1, O: 3 } },
+    ],
+    rhs: [
+      { formula: 'Cu(NO₃)₂', atoms: { Cu: 1, N: 2, O: 6 } },
+      { formula: 'H₂O',      atoms: { H: 2, O: 1 } },
+      { formula: 'NO₂',      atoms: { N: 1, O: 2 } },
+    ],
+    answer: [1, 4, 1, 2, 2],
+  },
+  {
+    level: 'standard',
+    title: '酸化鉄(III)の一酸化炭素還元（溶鉱炉）',
+    hint: 'Fe₂O₃ の O が3個あるので、CO → CO₂ が3セット必要！',
+    lhs: [
+      { formula: 'Fe₂O₃', atoms: { Fe: 2, O: 3 } },
+      { formula: 'CO',    atoms: { C: 1, O: 1 } },
+    ],
+    rhs: [
+      { formula: 'Fe',  atoms: { Fe: 1 } },
+      { formula: 'CO₂', atoms: { C: 1, O: 2 } },
+    ],
+    answer: [1, 3, 2, 3],
+  },
+  {
+    level: 'standard',
+    title: '銅と熱濃硫酸の反応（SO₂発生）',
+    hint: 'CuSO₄ と SO₂ で S が2個 → H₂SO₄ は 2、H₂O も 2！',
+    lhs: [
+      { formula: 'Cu',    atoms: { Cu: 1 } },
+      { formula: 'H₂SO₄', atoms: { H: 2, S: 1, O: 4 } },
+    ],
+    rhs: [
+      { formula: 'CuSO₄', atoms: { Cu: 1, S: 1, O: 4 } },
+      { formula: 'H₂O',   atoms: { H: 2, O: 1 } },
+      { formula: 'SO₂',   atoms: { S: 1, O: 2 } },
+    ],
+    answer: [1, 2, 1, 2, 1],
+  },
+  {
+    level: 'standard',
+    title: 'アルミニウムと希塩酸の反応',
+    hint: 'AlCl₃ の Cl が3個、H₂ が2個 → 最小公倍数の 6 を使おう！',
+    lhs: [
+      { formula: 'Al',  atoms: { Al: 1 } },
+      { formula: 'HCl', atoms: { H: 1, Cl: 1 } },
+    ],
+    rhs: [
+      { formula: 'AlCl₃', atoms: { Al: 1, Cl: 3 } },
+      { formula: 'H₂',    atoms: { H: 2 } },
+    ],
+    answer: [2, 6, 2, 3],
+  },
+  {
+    level: 'hard',
+    title: '銅と希硝酸の反応（NO発生・入試超頻出！）',
+    hint: '語呂「酸っぱ(3,8)い希硝酸、さんしー(3,4)に(2)！」→ 3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 4H₂O + 2NO',
+    lhs: [
+      { formula: 'Cu',   atoms: { Cu: 1 } },
+      { formula: 'HNO₃', atoms: { H: 1, N: 1, O: 3 } },
+    ],
+    rhs: [
+      { formula: 'Cu(NO₃)₂', atoms: { Cu: 1, N: 2, O: 6 } },
+      { formula: 'H₂O',      atoms: { H: 2, O: 1 } },
+      { formula: 'NO',       atoms: { N: 1, O: 1 } },
+    ],
+    answer: [3, 8, 3, 4, 2],
+  },
+  {
+    level: 'hard',
+    title: 'アルミニウムと NaOH 水溶液（両性金属）',
+    hint: '2Al + 2NaOH + 6H₂O → 2Na[Al(OH)₄] + 3H₂（両辺の H は 14個！）',
+    lhs: [
+      { formula: 'Al',   atoms: { Al: 1 } },
+      { formula: 'NaOH', atoms: { Na: 1, O: 1, H: 1 } },
+      { formula: 'H₂O',  atoms: { H: 2, O: 1 } },
+    ],
+    rhs: [
+      { formula: 'Na[Al(OH)₄]', atoms: { Na: 1, Al: 1, O: 4, H: 4 } },
+      { formula: 'H₂',          atoms: { H: 2 } },
+    ],
+    answer: [2, 2, 6, 2, 3],
+  },
+  {
+    level: 'hard',
+    title: '黄鉄鉱の焙焼（接触法の第1段階）',
+    hint: 'Fe₂O₃ の O が奇数なので全体を2倍！ 4FeS₂ + 11O₂ → 2Fe₂O₃ + 8SO₂',
+    lhs: [
+      { formula: 'FeS₂', atoms: { Fe: 1, S: 2 } },
+      { formula: 'O₂',   atoms: { O: 2 } },
+    ],
+    rhs: [
+      { formula: 'Fe₂O₃', atoms: { Fe: 2, O: 3 } },
+      { formula: 'SO₂',   atoms: { S: 1, O: 2 } },
+    ],
+    answer: [4, 11, 2, 8],
+  },
+  {
+    level: 'hard',
+    title: 'オストワルト法（NH₃ の触媒酸化）',
+    hint: '4NH₃ + 5O₂ → 4NO + 6H₂O（N=4, H=12, O=10 でピタリ一致！）',
+    lhs: [
+      { formula: 'NH₃', atoms: { N: 1, H: 3 } },
+      { formula: 'O₂',  atoms: { O: 2 } },
+    ],
+    rhs: [
+      { formula: 'NO',  atoms: { N: 1, O: 1 } },
+      { formula: 'H₂O', atoms: { H: 2, O: 1 } },
+    ],
+    answer: [4, 5, 4, 6],
+  },
+  {
+    level: 'hard',
+    title: 'CuSO₄ と KI の酸化還元（CuI白沈＋I₂）',
+    hint: 'Cu²⁺ が2個で I₂ が1個生成。2CuSO₄ + 4KI → 2CuI + I₂ + 2K₂SO₄',
+    lhs: [
+      { formula: 'CuSO₄', atoms: { Cu: 1, S: 1, O: 4 } },
+      { formula: 'KI',    atoms: { K: 1, I: 1 } },
+    ],
+    rhs: [
+      { formula: 'CuI',   atoms: { Cu: 1, I: 1 } },
+      { formula: 'I₂',    atoms: { I: 2 } },
+      { formula: 'K₂SO₄', atoms: { K: 2, S: 1, O: 4 } },
+    ],
+    answer: [2, 4, 2, 1, 2],
+  },
+];
+
+const BALANCER_TUT_STEPS = [
+  {
+    title: 'STEP 1 / 3：左右の原子数をそろえよう',
+    text: '化学反応式では、矢印（→）の「左辺」と「右辺」で各元素の原子数が同じになるように係数を決めます。下の【原子数バランス表】を見ながら調整しよう！',
+  },
+  {
+    title: 'STEP 2 / 3：＋ / − ボタンで係数を動かそう',
+    text: '各化学式の下にある【＋】【−】をタップすると係数（1〜12）が変わり、原子数バランス表がリアルタイムで緑色（✓一致）に変わります！',
+  },
+  {
+    title: 'STEP 3 / 3：すべて ✓ になったら判定！',
+    text: 'すべての元素が緑色の ✓ になり、係数が「最小の整数比」になっていれば大正解！連続正解でコンボ＆スコアがアップします！',
+  },
+];
+
+function gcd(a, b) {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+class BalancerGame {
+  constructor(dom, audio) {
+    this.dom = dom;
+    this.audio = audio;
+    this.level = 'all';
+    this.pool = [];
+    this.index = 0;
+    this.coeffs = [];
+    this.score = 0;
+    this.streak = 0;
+    this.solved = false;
+    this.tutStep = 0;
+  }
+
+  start(level = 'all') {
+    this.level = level;
+    const filtered = level === 'all'
+      ? [...BALANCE_EQUATIONS]
+      : BALANCE_EQUATIONS.filter((e) => e.level === level);
+    this.pool = filtered.sort(() => Math.random() - 0.5);
+    this.index = 0;
+    this.score = 0;
+    this.streak = 0;
+    this.loadCurrent();
+  }
+
+  get current() {
+    return this.pool[this.index % this.pool.length];
+  }
+
+  loadCurrent() {
+    const eq = this.current;
+    this.solved = false;
+    this.coeffs = new Array(eq.lhs.length + eq.rhs.length).fill(1);
+    this.dom.feedback.classList.add('hidden');
+    this.dom.hintText.classList.add('hidden');
+    this.dom.btnNext.classList.add('hidden');
+    this.dom.btnCheck.classList.remove('hidden');
+    this.render();
+  }
+
+  render() {
+    const eq = this.current;
+    const lvlBadge = eq.level === 'basic' ? '基礎' : eq.level === 'standard' ? '入試標準' : '難関・酸化還元';
+    this.dom.stats.innerHTML = `
+      <span class="bal-lvl ${eq.level}">${lvlBadge}</span>
+      <span>スコア <strong>${this.score}</strong></span>
+      <span class="quiz-streak">🔥 ${this.streak} 連続</span>
+    `;
+    this.dom.title.textContent = eq.title;
+
+    // Render Equation Stepper Slots
+    let html = '';
+    eq.lhs.forEach((sp, i) => {
+      if (i > 0) html += `<span class="eq-op">＋</span>`;
+      html += this._termHtml(sp.formula, i);
+    });
+    html += `<span class="eq-arrow">→</span>`;
+    eq.rhs.forEach((sp, j) => {
+      const idx = eq.lhs.length + j;
+      if (j > 0) html += `<span class="eq-op">＋</span>`;
+      html += this._termHtml(sp.formula, idx);
+    });
+    this.dom.equationWrap.innerHTML = html;
+
+    // Bind +/- buttons
+    this.dom.equationWrap.querySelectorAll('.coeff-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (this.solved) return;
+        const idx = Number(btn.dataset.idx);
+        const delta = Number(btn.dataset.delta);
+        const nextVal = Math.max(1, Math.min(12, this.coeffs[idx] + delta));
+        if (nextVal !== this.coeffs[idx]) {
+          this.coeffs[idx] = nextVal;
+          this.audio.playGlassClink('pickup');
+          this.render();
+        }
+      });
+    });
+
+    this.renderAtomBalance();
+  }
+
+  _termHtml(formula, idx) {
+    const val = this.coeffs[idx];
+    return `
+      <div class="eq-term">
+        <div class="eq-term-top">
+          <span class="coeff-num ${val > 1 ? 'changed' : ''}">${val}</span>
+          <span class="eq-formula">${formula}</span>
+        </div>
+        <div class="coeff-controls">
+          <button type="button" class="coeff-btn" data-idx="${idx}" data-delta="-1" aria-label="係数を減らす">−</button>
+          <button type="button" class="coeff-btn" data-idx="${idx}" data-delta="1" aria-label="係数を増やす">＋</button>
+        </div>
+      </div>`;
+  }
+
+  _countSide(terms, offset) {
+    const totals = {};
+    terms.forEach((sp, i) => {
+      const c = this.coeffs[offset + i];
+      for (const [el, cnt] of Object.entries(sp.atoms)) {
+        totals[el] = (totals[el] || 0) + cnt * c;
+      }
+    });
+    return totals;
+  }
+
+  renderAtomBalance() {
+    const eq = this.current;
+    const left = this._countSide(eq.lhs, 0);
+    const right = this._countSide(eq.rhs, eq.lhs.length);
+    const elements = [...new Set([...Object.keys(left), ...Object.keys(right)])];
+
+    this.dom.atomGrid.innerHTML = elements
+      .map((el) => {
+        const l = left[el] || 0;
+        const r = right[el] || 0;
+        const ok = l === r;
+        return `
+          <div class="atom-chip ${ok ? 'ok' : 'diff'}">
+            <span class="atom-sym">${el}</span>
+            <span class="atom-counts">${l} ${ok ? '=' : '≠'} ${r}</span>
+            <span class="atom-mark">${ok ? '✓' : '!'}</span>
+          </div>`;
+      })
+      .join('');
+  }
+
+  checkAnswer() {
+    if (this.solved) return;
+    const eq = this.current;
+    const left = this._countSide(eq.lhs, 0);
+    const right = this._countSide(eq.rhs, eq.lhs.length);
+    const elements = [...new Set([...Object.keys(left), ...Object.keys(right)])];
+    const allMatch = elements.every((el) => (left[el] || 0) === (right[el] || 0));
+
+    if (!allMatch) {
+      this.streak = 0;
+      this.dom.feedback.className = 'quiz-feedback ng';
+      this.dom.feedback.innerHTML = `<strong>❌ まだ原子数が合っていない元素があります！</strong> 上のバランス表で「≠」になっている元素を調整しよう。`;
+      this.dom.feedback.classList.remove('hidden');
+      this.render();
+      return;
+    }
+
+    // Check if coefficients are reduced to simplest integer ratio
+    const divisor = this.coeffs.reduce((acc, v) => gcd(acc, v));
+    if (divisor > 1) {
+      this.dom.feedback.className = 'quiz-feedback ng';
+      this.dom.feedback.innerHTML = `<strong>⚠️ 原子数は合っていますが、すべて ${divisor} で割れます！</strong> 最も簡単な整数比にしてもう一度判定しよう。`;
+      this.dom.feedback.classList.remove('hidden');
+      return;
+    }
+
+    // Correct!
+    this.solved = true;
+    this.streak++;
+    const pts = (eq.level === 'hard' ? 200 : eq.level === 'standard' ? 150 : 100) + this.streak * 20;
+    this.score += pts;
+    this.audio.playSuccess();
+
+    const fullEq =
+      eq.lhs.map((s, i) => `${this.coeffs[i] > 1 ? this.coeffs[i] : ''}${s.formula}`).join(' + ') +
+      ' → ' +
+      eq.rhs.map((s, j) => `${this.coeffs[eq.lhs.length + j] > 1 ? this.coeffs[eq.lhs.length + j] : ''}${s.formula}`).join(' + ');
+
+    this.dom.feedback.className = 'quiz-feedback ok';
+    this.dom.feedback.innerHTML = `<strong>⭕ 完璧！ (+${pts}pt)</strong><br><code>${fullEq}</code>`;
+    this.dom.feedback.classList.remove('hidden');
+    this.dom.btnCheck.classList.add('hidden');
+    this.dom.btnNext.classList.remove('hidden');
+    this.render();
+  }
+
+  showHint() {
+    this.dom.hintText.textContent = `💡 ヒント：${this.current.hint}`;
+    this.dom.hintText.classList.remove('hidden');
+  }
+
+  next() {
+    this.index++;
+    this.loadCurrent();
+  }
+
+  openTutorial() {
+    this.tutStep = 0;
+    this.dom.tutBox.classList.remove('hidden');
+    this.renderTutorial();
+  }
+
+  renderTutorial() {
+    const s = BALANCER_TUT_STEPS[this.tutStep];
+    this.dom.tutTitle.textContent = s.title;
+    this.dom.tutText.textContent = s.text;
+    this.dom.tutNextBtn.textContent = this.tutStep === BALANCER_TUT_STEPS.length - 1 ? '挑戦スタート！' : '次へ →';
+  }
+
+  nextTutorial() {
+    if (this.tutStep < BALANCER_TUT_STEPS.length - 1) {
+      this.tutStep++;
+      this.renderTutorial();
+    } else {
+      this.dom.tutBox.classList.add('hidden');
+    }
+  }
+}
+
+
+// ===== classifier.js =====
+/**
+ * Inorganic Substance Classification Game (無機物質分類ゲーム)
+ * Faithful to "博士の試薬棚" 3-Phase Learning Loop + Originality Enhancements:
+ *   Phase 1: ① 試薬を取る (Pick 1 of 4 photorealistic SVG reagent bottles on the shelf)
+ *   Phase 2: ② ラベルを貼る ("正しいものをすべて選べ！" Multi-select property quiz with full explanations)
+ *   Phase 3: ③ 実験する (Complete the reaction equation by tapping formula/coefficient tiles)
+ * Plus:
+ *   - Clean Pre-Game Setup Screen (Category, Prompt Style, Request Count, Lives) -> Zero clutter during play!
+ *   - Combo & Score system + Auto 📌 付せん bookmarking on mistakes + 📓 物質図鑑 (Encyclopedia)
+ *   - Built-in 3-Step Beginner Tutorial
+ */
+
+const CONTAINER_LABELS = {
+  clear_glass:  'ガラスびん',
+  amber_glass:  '褐色びん',
+  polyethylene: 'ポリ容器',
+  wide_jar:     '広口びん',
+  in_water:     '水中保存',
+  in_oil:       '石油中保存',
+  gas_jar:      '集気びん',
+};
+
+const CLASSIFIER_ITEMS = [
+  // ================= 非金属元素 (10種) =================
+  {
+    id: 'HF', category: 'nonmetal', formula: 'HF', name: 'フッ化水素酸',
+    container: 'polyethylene', state: 'liquid', colorHex: '#e0f2fe',
+    promptProp: 'ガラス（SiO₂）を溶かすためポリ容器に保存する弱酸じゃ！',
+    reason: 'SiO₂ + 6HF → H₂SiF₆ + 2H₂O。ガラスを侵すためポリエチレンびん必須！',
+    labelOptions: [
+      { text: 'ガラス（SiO₂）を溶かすためポリ容器に保存する', correct: true },
+      { text: '弱酸であり、水素結合のため沸点が異常に高い', correct: true },
+      { text: '強酸であり、電離度はほぼ 1 である', correct: false },
+      { text: '光で分解しやすいため褐色びんに保存する', correct: false },
+    ],
+    reaction: {
+      desc: '蛍石（CaF₂）に濃硫酸を加えて加熱し、フッ化水素を発生させる反応',
+      template: 'CaF₂ + H₂SO₄ → CaSO₄ + [0] [1]',
+      answers: ['2', 'HF'],
+      tiles: ['1', '2', '4', 'HF', 'F₂', 'H₂O'],
+    },
+  },
+  {
+    id: 'HCl', category: 'nonmetal', formula: '濃 HCl', name: '濃塩酸',
+    container: 'clear_glass', state: 'liquid', colorHex: '#e2e8f0',
+    promptProp: '強い刺激臭があり、空気中で白煙を出す揮発性の強酸じゃ！',
+    reason: '揮発性が高く、NH₃ と出会うと NH₄Cl の白煙を生じます。',
+    labelOptions: [
+      { text: '揮発性が高く、アンモニアと出会うと白煙（NH₄Cl）を生じる', correct: true },
+      { text: '強酸であり、Ag⁺ と反応して白色沈殿 AgCl を作る', correct: true },
+      { text: '不揮発性で、強い脱水作用をもつ', correct: false },
+      { text: '弱酸であり、炭酸カルシウムとは反応しない', correct: false },
+    ],
+    reaction: {
+      desc: 'アンモニアと塩化水素が出会って白煙を生じる反応',
+      template: 'NH₃ + [0] → [1]',
+      answers: ['HCl', 'NH₄Cl'],
+      tiles: ['HCl', 'Cl₂', 'NH₄Cl', 'NH₄OH', '2'],
+    },
+  },
+  {
+    id: 'H2SO4', category: 'nonmetal', formula: '濃 H₂SO₄', name: '濃硫酸',
+    container: 'clear_glass', state: 'liquid', colorHex: '#f1f5f9',
+    promptProp: '不揮発性で粘り気があり、吸湿性・脱水作用をもつ強酸じゃ！',
+    reason: '不揮発性・吸湿性（酸性乾燥剤）・脱水作用・熱濃硫酸は酸化力。',
+    labelOptions: [
+      { text: '不揮発性で吸湿性が強く、酸性乾燥剤として使われる', correct: true },
+      { text: '希釈するときは「水に濃硫酸を少しずつ」加える', correct: true },
+      { text: 'アンモニアの乾燥剤として最適である', correct: false },
+      { text: '熱濃硫酸は銅と反応しても気体を発生しない', correct: false },
+    ],
+    reaction: {
+      desc: '銅に熱濃硫酸を加えて二酸化硫黄を発生させる反応',
+      template: 'Cu + [0] H₂SO₄ → CuSO₄ + 2H₂O + [1]',
+      answers: ['2', 'SO₂'],
+      tiles: ['1', '2', '4', 'SO₂', 'H₂', 'H₂S'],
+    },
+  },
+  {
+    id: 'HNO3', category: 'nonmetal', formula: '濃 HNO₃', name: '濃硝酸',
+    container: 'amber_glass', state: 'liquid', colorHex: '#fef08a',
+    promptProp: '光で分解して赤褐色の NO₂ を生じるため、褐色びんに保存する強酸じゃ！',
+    reason: '4HNO₃ → 4NO₂ + 2H₂O + O₂（光分解）。Cu と反応して赤褐色 NO₂ 発生。',
+    labelOptions: [
+      { text: '光分解を防ぐため褐色びんに保存する', correct: true },
+      { text: '鉄・アルミニウム・ニッケルを不動態にする', correct: true },
+      { text: '銅と反応すると無色の NO のみを発生する', correct: false },
+      { text: 'ガラスを溶かすためポリ容器に保存する', correct: false },
+    ],
+    reaction: {
+      desc: '銅と濃硝酸が反応して赤褐色の気体を発生する反応',
+      template: 'Cu + [0] HNO₃ → Cu(NO₃)₂ + 2H₂O + 2 [1]',
+      answers: ['4', 'NO₂'],
+      tiles: ['2', '4', '8', 'NO₂', 'NO', 'N₂'],
+    },
+  },
+  {
+    id: 'H2O2', category: 'nonmetal', formula: 'H₂O₂ 水', name: '過酸化水素水',
+    container: 'amber_glass', state: 'liquid', colorHex: '#e0f2fe',
+    promptProp: '光で水と酸素に分解するため褐色びん保存。酸化剤にも還元剤にもなる液体じゃ！',
+    reason: '2H₂O₂ → 2H₂O + O₂（MnO₂ が触媒）。相手により酸化剤・還元剤の両方に。',
+    labelOptions: [
+      { text: '光分解を防ぐため褐色びんに保存する', correct: true },
+      { text: 'MnO₂ を触媒として加えると激しく酸素を発生する', correct: true },
+      { text: 'KMnO₄ に対しても酸化剤として働く', correct: false },
+      { text: '強塩基性を示す液体である', correct: false },
+    ],
+    reaction: {
+      desc: '過酸化水素が触媒（MnO₂）によって分解する反応',
+      template: '[0] H₂O₂ → 2H₂O + [1]',
+      answers: ['2', 'O₂'],
+      tiles: ['1', '2', '3', 'O₂', 'H₂', 'O₃'],
+    },
+  },
+  {
+    id: 'Br2', category: 'nonmetal', formula: 'Br₂', name: '臭素（単体）',
+    container: 'amber_glass', state: 'liquid', colorHex: '#9a3412',
+    promptProp: '非金属単体で唯一、常温で赤褐色の重い液体！褐色びんに密栓保存じゃ！',
+    reason: '常温で液体の単体は Br₂（赤褐色・非金属）と Hg（銀白・金属）の2種のみ。',
+    labelOptions: [
+      { text: '非金属の単体として唯一、常温で赤褐色の液体である', correct: true },
+      { text: '遮光・揮発防止のため褐色びんに密栓して保存する', correct: true },
+      { text: '酸化力は塩素（Cl₂）よりも強い', correct: false },
+      { text: '無色無臭で安全な液体である', correct: false },
+    ],
+    reaction: {
+      desc: '臭化カリウム水溶液に塩素を通じて臭素を遊離させる反応',
+      template: '2KBr + [0] → 2KCl + [1]',
+      answers: ['Cl₂', 'Br₂'],
+      tiles: ['Cl₂', 'I₂', 'Br₂', 'HBr', '2'],
+    },
+  },
+  {
+    id: 'I2', category: 'nonmetal', formula: 'I₂', name: 'ヨウ素（単体）',
+    container: 'wide_jar', state: 'crystal', colorHex: '#312e81',
+    promptProp: '黒紫色の金属光沢をもつ結晶。加熱すると昇華し、デンプンで青紫色になるぞ！',
+    reason: '昇華性のある黒紫色結晶。KI 水溶液には I₃⁻ としてよく溶ける。',
+    labelOptions: [
+      { text: '黒紫色の結晶で、加熱すると液体を経ずに昇華する', correct: true },
+      { text: 'デンプン水溶液と反応して青紫色に呈色する', correct: true },
+      { text: '純水には非常によく溶けて無色になる', correct: false },
+      { text: '常温で黄緑色の気体である', correct: false },
+    ],
+    reaction: {
+      desc: 'ヨウ化カリウム水溶液にヨウ素が溶けて三ヨウ化物イオンを作る反応',
+      template: 'I₂ + [0] → [1]',
+      answers: ['I⁻', 'I₃⁻'],
+      tiles: ['I⁻', 'Cl⁻', 'I₃⁻', 'HI', '2'],
+    },
+  },
+  {
+    id: 'P4', category: 'nonmetal', formula: 'P₄ (黄リン)', name: '黄リン',
+    container: 'in_water', state: 'wax', colorHex: '#fde047',
+    promptProp: '淡黄色のろう状固体で猛毒！空気中で自然発火するため必ず水中に保存じゃ！',
+    reason: '発火点が約34°Cと極めて低く自然発火するため水中保存（赤リンは通常保存）。',
+    labelOptions: [
+      { text: '空気中で自然発火するため、必ず水中に保存する', correct: true },
+      { text: '淡黄色のろう状固体で、猛毒である', correct: true },
+      { text: '水と激しく反応するため石油中に保存する', correct: false },
+      { text: 'マッチ箱の側薬に使われている同素体である', correct: false },
+    ],
+    reaction: {
+      desc: '黄リンが空気中で燃焼して十酸化四リンを生じる反応',
+      template: 'P₄ + [0] O₂ → [1]',
+      answers: ['5', 'P₄O₁₀'],
+      tiles: ['3', '5', '10', 'P₄O₁₀', 'H₃PO₄', 'PO₂'],
+    },
+  },
+  {
+    id: 'P4O10', category: 'nonmetal', formula: 'P₄O₁₀', name: '十酸化四リン',
+    container: 'wide_jar', state: 'powder', colorHex: '#f8fafc',
+    promptProp: '白色粉末の強力な酸性乾燥剤！塩基性のアンモニアの乾燥には使えないぞ！',
+    reason: '酸性酸化物の乾燥剤。水と反応してリン酸 H₃PO₄ を生じる。',
+    labelOptions: [
+      { text: '強力な酸性乾燥剤であり、アンモニアの乾燥には使えない', correct: true },
+      { text: '水と反応してリン酸（H₃PO₄）を生じる', correct: true },
+      { text: '塩基性酸化物であり、二酸化炭素を吸収する', correct: false },
+      { text: '黒色の結晶性粉末である', correct: false },
+    ],
+    reaction: {
+      desc: '十酸化四リンが水と反応してリン酸を生じる反応',
+      template: 'P₄O₁₀ + [0] H₂O → [1] H₃PO₄',
+      answers: ['6', '4'],
+      tiles: ['2', '4', '6', '8', 'P₄'],
+    },
+  },
+  {
+    id: 'SO2', category: 'nonmetal', formula: 'SO₂', name: '二酸化硫黄',
+    container: 'gas_jar', state: 'gas', colorHex: '#e2e8f0',
+    promptProp: '刺激臭のある無色気体。強い還元作用と漂白作用をもち、H₂S には酸化剤として働くぞ！',
+    reason: 'SO₂ + 2H₂S → 3S↓ + 2H₂O。酸性雨の原因物質としても頻出。',
+    labelOptions: [
+      { text: '強い還元作用と漂白作用をもつ無色・刺激臭の気体である', correct: true },
+      { text: '硫化水素（H₂S）に対しては酸化剤として働き、硫黄を析出する', correct: true },
+      { text: '空気より軽く、上方置換法で捕集する', correct: false },
+      { text: '水に溶けると強い塩基性を示す', correct: false },
+    ],
+    reaction: {
+      desc: '二酸化硫黄と硫化水素が反応して硫黄の単体が析出する反応',
+      template: 'SO₂ + [0] H₂S → [1] S + 2H₂O',
+      answers: ['2', '3'],
+      tiles: ['1', '2', '3', '4', 'H₂SO₄'],
+    },
+  },
+
+  // ================= 典型金属元素 (9種) =================
+  {
+    id: 'Na', category: 'typical', formula: 'Na', name: 'ナトリウム',
+    container: 'in_oil', state: 'metal', colorHex: '#cbd5e1',
+    promptProp: 'ナイフで切れる銀白色の金属。水と激しく反応し炎色反応は黄色！石油中保存じゃ！',
+    reason: '2Na + 2H₂O → 2NaOH + H₂↑。空気・水分との反応を防ぐため石油中保存。',
+    labelOptions: [
+      { text: '水や酸素と激しく反応するため、必ず石油中に保存する', correct: true },
+      { text: '炎色反応は鮮やかな黄色を示す', correct: true },
+      { text: '密度が水より大きく、水に入れると底に沈む', correct: false },
+      { text: '自然発火を防ぐため水中に保存する', correct: false },
+    ],
+    reaction: {
+      desc: 'ナトリウムが水と激しく反応して水素を発生する反応',
+      template: '[0] Na + 2H₂O → 2NaOH + [1]',
+      answers: ['2', 'H₂'],
+      tiles: ['1', '2', '4', 'H₂', 'O₂', 'Na₂O'],
+    },
+  },
+  {
+    id: 'K', category: 'typical', formula: 'K', name: 'カリウム',
+    container: 'in_oil', state: 'metal', colorHex: '#e2e8f0',
+    promptProp: 'Na よりもさらに水と激しく反応する銀白色金属！炎色反応は赤紫色じゃ！',
+    reason: 'アルカリ金属は反応性が極めて高いため石油中に保存します。',
+    labelOptions: [
+      { text: 'ナトリウムより反応性が高く、石油中に保存する', correct: true },
+      { text: '炎色反応は赤紫色（ライラック色）を示す', correct: true },
+      { text: '炎色反応は黄緑色を示す', correct: false },
+      { text: '希塩酸とは反応しない', correct: false },
+    ],
+    reaction: {
+      desc: 'カリウムが水と反応して水酸化カリウムと水素を生じる反応',
+      template: '[0] K + 2H₂O → [1] KOH + H₂',
+      answers: ['2', '2'],
+      tiles: ['1', '2', '3', '4', 'O₂'],
+    },
+  },
+  {
+    id: 'NaOH', category: 'typical', formula: 'NaOH 水', name: '水酸化ナトリウム水溶液',
+    container: 'polyethylene', state: 'liquid', colorHex: '#f1f5f9',
+    promptProp: 'ガラス栓を固着させるため、ポリ容器（またはゴム栓）で保存する強塩基じゃ！',
+    reason: '強塩基はガラス(SiO₂)と反応してすり合わせ栓が抜けなくなるためポリ容器保存。',
+    labelOptions: [
+      { text: 'ガラス栓を固着させるため、ポリ容器またはゴム栓で保存する', correct: true },
+      { text: '固体は潮解性が強く、空気中の CO₂ も吸収する', correct: true },
+      { text: 'Al(OH)₃ の沈殿は過剰の NaOH にも溶けない', correct: false },
+      { text: '弱塩基であり、フェノールフタレインで無色のまま', correct: false },
+    ],
+    reaction: {
+      desc: '水酸化アルミニウムが過剰の NaOH 水溶液に溶ける反応',
+      template: 'Al(OH)₃ + [0] → [1]',
+      answers: ['NaOH', 'Na[Al(OH)₄]'],
+      tiles: ['NaOH', 'NH₃', 'Na[Al(OH)₄]', 'Al₂O₃', '2'],
+    },
+  },
+  {
+    id: 'NaHCO3', category: 'typical', formula: 'NaHCO₃', name: '炭酸水素ナトリウム',
+    container: 'wide_jar', state: 'powder', colorHex: '#f8fafc',
+    promptProp: '「重曹」とも呼ばれる白色粉末。加熱すると CO₂ を発生して Na₂CO₃ になるぞ！',
+    reason: '2NaHCO₃ → Na₂CO₃ + H₂O + CO₂↑。水溶液は弱塩基性。',
+    labelOptions: [
+      { text: '「重曹」とも呼ばれ、加熱すると CO₂ を発生して分解する', correct: true },
+      { text: '水溶液は加水分解により弱塩基性を示す', correct: true },
+      { text: '加熱してもまったく分解しない', correct: false },
+      { text: '水に極めてよく溶け、強酸性を示す', correct: false },
+    ],
+    reaction: {
+      desc: '炭酸水素ナトリウムの熱分解（アンモニアソーダ法の最終段階）',
+      template: '[0] NaHCO₃ → Na₂CO₃ + H₂O + [1]',
+      answers: ['2', 'CO₂'],
+      tiles: ['1', '2', '3', 'CO₂', 'O₂', 'H₂'],
+    },
+  },
+  {
+    id: 'CaO', category: 'typical', formula: 'CaO', name: '酸化カルシウム',
+    container: 'wide_jar', state: 'powder', colorHex: '#f1f5f9',
+    promptProp: '「生石灰」とも呼ばれる白色固体！水を加えると激しく発熱して消石灰になるぞ！',
+    reason: 'CaO + H₂O → Ca(OH)₂（発熱反応）。食品の乾燥剤・発熱材に利用。',
+    labelOptions: [
+      { text: '「生石灰」と呼ばれ、水を加えると激しく発熱して消石灰になる', correct: true },
+      { text: '塩基性酸化物であり、食品の乾燥剤としても使われる', correct: true },
+      { text: '水に溶かすと強い酸性を示す', correct: false },
+      { text: '炎色反応は黄緑色を示す', correct: false },
+    ],
+    reaction: {
+      desc: '生石灰に水を加えて消石灰を生じる発熱反応',
+      template: 'CaO + [0] → [1]',
+      answers: ['H₂O', 'Ca(OH)₂'],
+      tiles: ['H₂O', 'CO₂', 'Ca(OH)₂', 'CaCO₃', '2'],
+    },
+  },
+  {
+    id: 'CaOH2', category: 'typical', formula: 'Ca(OH)₂', name: '水酸化カルシウム',
+    container: 'wide_jar', state: 'powder', colorHex: '#f8fafc',
+    promptProp: '「消石灰」と呼ばれる白色粉末。水溶液（石灰水）は CO₂ で白濁するぞ！',
+    reason: 'Ca(OH)₂ + CO₂ → CaCO₃↓(白) + H₂O。さらに過剰の CO₂ で再溶解。',
+    labelOptions: [
+      { text: '「消石灰」と呼ばれ、飽和水溶液は石灰水という', correct: true },
+      { text: '石灰水に CO₂ を通じると CaCO₃ の白色沈殿で白濁する', correct: true },
+      { text: '塩素を吸収させても反応しない', correct: false },
+      { text: '水溶液は弱酸性を示す', correct: false },
+    ],
+    reaction: {
+      desc: '石灰水に二酸化炭素を通じて白濁する反応',
+      template: 'Ca(OH)₂ + [0] → [1] + H₂O',
+      answers: ['CO₂', 'CaCO₃'],
+      tiles: ['CO₂', 'SO₂', 'CaCO₃', 'CaO', '2'],
+    },
+  },
+  {
+    id: 'CaCl2', category: 'typical', formula: 'CaCl₂', name: '塩化カルシウム',
+    container: 'wide_jar', state: 'powder', colorHex: '#e2e8f0',
+    promptProp: '潮解性のある白色固体の中性乾燥剤！ただし NH₃ とは付加物を作るため乾燥不可じゃ！',
+    reason: 'CaCl₂·8NH₃ を作るためアンモニアの乾燥には使えません（入試超頻出）。',
+    labelOptions: [
+      { text: '中性の乾燥剤だが、アンモニアの乾燥には使えない', correct: true },
+      { text: '潮解性があり、凍結防止剤や除湿剤に使われる', correct: true },
+      { text: '水に溶けにくい白色沈殿である', correct: false },
+      { text: 'アンモニアの乾燥剤として最もよく使われる', correct: false },
+    ],
+    reaction: {
+      desc: '炭酸カルシウムに希塩酸を加えて塩化カルシウムと CO₂ を得る反応',
+      template: 'CaCO₃ + [0] HCl → CaCl₂ + H₂O + [1]',
+      answers: ['2', 'CO₂'],
+      tiles: ['1', '2', '4', 'CO₂', 'Cl₂', 'H₂'],
+    },
+  },
+  {
+    id: 'Al', category: 'typical', formula: 'Al', name: 'アルミニウム',
+    container: 'wide_jar', state: 'metal', colorHex: '#cbd5e1',
+    promptProp: '酸にも強塩基にも溶けて H₂ を発生する両性金属！濃硝酸では不動態になるぞ！',
+    reason: '両性金属（Al, Zn, Sn, Pb）。濃硝酸中では表面に緻密な酸化被膜（不動態）。',
+    labelOptions: [
+      { text: '酸にも強塩基にも溶けて水素（H₂）を発生する両性金属である', correct: true },
+      { text: '濃硝酸に浸すと表面に緻密な酸化被膜（不動態）を作る', correct: true },
+      { text: 'ボーキサイトではなく黄鉄鉱から精錬される', correct: false },
+      { text: '水酸化ナトリウム水溶液にはまったく溶けない', correct: false },
+    ],
+    reaction: {
+      desc: 'アルミニウムと希塩酸が反応して水素を発生する反応',
+      template: '[0] Al + 6HCl → 2AlCl₃ + [1] H₂',
+      answers: ['2', '3'],
+      tiles: ['1', '2', '3', '4', '6'],
+    },
+  },
+  {
+    id: 'BaSO4', category: 'typical', formula: 'BaSO₄', name: '硫酸バリウム',
+    container: 'wide_jar', state: 'powder', colorHex: '#ffffff',
+    promptProp: '酸にも塩基にも溶けない真っ白な結晶性沈殿！胃のX線造影剤にも使われるぞ！',
+    reason: 'Ba²⁺ + SO₄²⁻ → BaSO₄↓(白)。極めて難溶で炎色反応は黄緑色。',
+    labelOptions: [
+      { text: '水・酸・塩基のいずれにも極めて溶けにくい白色結晶である', correct: true },
+      { text: 'X線を吸収するため、胃のレントゲン造影剤に用いられる', correct: true },
+      { text: '希塩酸を加えると CO₂ を出して溶ける', correct: false },
+      { text: '鮮やかな黄色の沈殿である', correct: false },
+    ],
+    reaction: {
+      desc: '塩化バリウム水溶液に希硫酸を加えて白色沈殿を生じる反応',
+      template: 'BaCl₂ + [0] → [1] + 2HCl',
+      answers: ['H₂SO₄', 'BaSO₄'],
+      tiles: ['H₂SO₄', 'H₂S', 'BaSO₄', 'BaS', '2'],
+    },
+  },
+
+  // ================= 遷移元素 (9種) =================
+  {
+    id: 'AgNO3', category: 'transition', formula: 'AgNO₃', name: '硝酸銀',
+    container: 'amber_glass', state: 'liquid', colorHex: '#e2e8f0',
+    promptProp: '光分解を防ぐため褐色びんに保存。Cl⁻ と反応して凝乳状の白沈 AgCl を作るぞ！',
+    reason: 'Ag⁺ + Cl⁻ → AgCl↓。AgCl は過剰の NH₃ 水に [Ag(NH₃)₂]⁺ として溶解。',
+    labelOptions: [
+      { text: '光で分解して銀を析出するため褐色びんに保存する', correct: true },
+      { text: '塩化物イオン（Cl⁻）と反応して白色凝乳状沈殿 AgCl を作る', correct: true },
+      { text: 'K₂CrO₄ を加えると黄色の沈殿を生じる', correct: false },
+      { text: 'AgCl 沈殿は過剰の NH₃ 水にも溶けない', correct: false },
+    ],
+    reaction: {
+      desc: 'AgCl の白色沈殿が過剰のアンモニア水に溶解する反応',
+      template: 'AgCl + [0] NH₃ → [1] + Cl⁻',
+      answers: ['2', '[Ag(NH₃)₂]⁺'],
+      tiles: ['2', '4', '[Ag(NH₃)₂]⁺', 'Ag₂O', 'Ag'],
+    },
+  },
+  {
+    id: 'CuSO4_5H2O', category: 'transition', formula: 'CuSO₄·5H₂O', name: '硫酸銅(II)五水和物',
+    container: 'wide_jar', state: 'crystal', colorHex: '#0284c7',
+    promptProp: '鮮やかな青色の結晶！加熱して水を飛ばすと白色粉末（無水塩）になるぞ！',
+    reason: '無水 CuSO₄（白）は水に触れると青色に変わるため、水の検出に利用。',
+    labelOptions: [
+      { text: '青色の結晶で、加熱すると白色粉末の無水塩になる', correct: true },
+      { text: '無水塩は水の検出試薬として使われる', correct: true },
+      { text: '水溶液に過剰の NH₃ 水を加えると無色透明になる', correct: false },
+      { text: '炎色反応は黄色を示す', correct: false },
+    ],
+    reaction: {
+      desc: 'Cu²⁺ に過剰のアンモニア水を加えて深青色錯イオンを作る反応',
+      template: 'Cu(OH)₂ + [0] NH₃ → [1] + 2OH⁻',
+      answers: ['4', '[Cu(NH₃)₄]²⁺'],
+      tiles: ['2', '4', '6', '[Cu(NH₃)₄]²⁺', 'CuS'],
+    },
+  },
+  {
+    id: 'CuO', category: 'transition', formula: 'CuO', name: '酸化銅(II)',
+    container: 'wide_jar', state: 'powder', colorHex: '#1e293b',
+    promptProp: '銅を空気中で強熱して得られる黒色粉末！希硫酸に溶かすと青色溶液になるぞ！',
+    reason: 'CuO + H₂SO₄ → CuSO₄ + H₂O。H₂ で還元すると赤褐色の Cu に戻る。',
+    labelOptions: [
+      { text: '黒色の粉末で、希硫酸に溶けると青色水溶液（CuSO₄）になる', correct: true },
+      { text: '水素（H₂）を通じながら加熱すると還元されて銅（Cu）になる', correct: true },
+      { text: '赤色の粉末であり、フェーリング反応の沈殿と同じ物質である', correct: false },
+      { text: '水に非常によく溶けて強塩基性を示す', correct: false },
+    ],
+    reaction: {
+      desc: '酸化銅(II)を水素で還元して銅の単体を得る反応',
+      template: 'CuO + [0] → [1] + H₂O',
+      answers: ['H₂', 'Cu'],
+      tiles: ['H₂', 'O₂', 'Cu', 'Cu₂O', '2'],
+    },
+  },
+  {
+    id: 'FeSO4', category: 'transition', formula: 'FeSO₄·7H₂O', name: '硫酸鉄(II)七水和物',
+    container: 'wide_jar', state: 'crystal', colorHex: '#4ade80',
+    promptProp: 'Fe²⁺ を含む淡緑色の結晶！K₃[Fe(CN)₆] で濃青色沈殿を作るぞ！',
+    reason: 'Fe²⁺ は淡緑色。空気中で酸化されやすく、濃 HNO₃ や H₂O₂ で Fe³⁺（黄褐）に。',
+    labelOptions: [
+      { text: 'Fe²⁺ を含む淡緑色の結晶である', correct: true },
+      { text: 'K₃[Fe(CN)₆] 水溶液を加えると濃青色沈殿を生じる', correct: true },
+      { text: 'KSCN 水溶液を加えると鮮やかな血赤色になる', correct: false },
+      { text: '黄褐色の結晶である', correct: false },
+    ],
+    reaction: {
+      desc: 'Fe²⁺ が過酸化水素によって Fe³⁺ に酸化される反応',
+      template: '[0] Fe²⁺ + H₂O₂ + 2H⁺ → 2 [1] + 2H₂O',
+      answers: ['2', 'Fe³⁺'],
+      tiles: ['1', '2', '3', 'Fe³⁺', 'Fe', 'O₂'],
+    },
+  },
+  {
+    id: 'FeCl3', category: 'transition', formula: 'FeCl₃', name: '塩化鉄(III)',
+    container: 'wide_jar', state: 'crystal', colorHex: '#d97706',
+    promptProp: 'Fe³⁺ を含む黄褐色の固体！KSCN を加えると一瞬で血赤色 [Fe(SCN)]²⁺ になるぞ！',
+    reason: 'Fe³⁺ + SCN⁻ → [Fe(SCN)]²⁺（血赤色）。フェノール類の呈色反応にも使用。',
+    labelOptions: [
+      { text: 'KSCN 水溶液を加えると鮮やかな血赤色（[Fe(SCN)]²⁺）になる', correct: true },
+      { text: 'K₄[Fe(CN)₆] 水溶液を加えると濃青色沈殿を生じる', correct: true },
+      { text: 'NaOH 水溶液を加えると青白色の沈殿を生じる', correct: false },
+      { text: '淡緑色の水溶液を作る', correct: false },
+    ],
+    reaction: {
+      desc: 'Fe³⁺ とチオシアン酸イオンが血赤色錯イオンを作る反応',
+      template: 'Fe³⁺ + [0] → [1]',
+      answers: ['SCN⁻', '[Fe(SCN)]²⁺'],
+      tiles: ['SCN⁻', 'CN⁻', '[Fe(SCN)]²⁺', 'Fe(OH)₃', '3'],
+    },
+  },
+  {
+    id: 'KMnO4', category: 'transition', formula: 'KMnO₄', name: '過マンガン酸カリウム',
+    container: 'wide_jar', state: 'crystal', colorHex: '#7e22ce',
+    promptProp: '黒紫色の結晶！水溶液は鮮やかな赤紫色で、硫酸酸性下で最強クラスの酸化剤じゃ！',
+    reason: 'MnO₄⁻（赤紫）+ 8H⁺ + 5e⁻ → Mn²⁺（無色〜淡桃）+ 4H₂O。',
+    labelOptions: [
+      { text: '黒紫色の結晶で、水溶液は赤紫色を示す強力な酸化剤である', correct: true },
+      { text: '硫酸酸性下で還元されると、ほぼ無色の Mn²⁺ になる', correct: true },
+      { text: '酸性化には希塩酸を使うのが最もよい', correct: false },
+      { text: '代表的な還元剤として滴定に使われる', correct: false },
+    ],
+    reaction: {
+      desc: '過マンガン酸イオンが硫酸酸性下で酸化剤として働く半反応式',
+      template: 'MnO₄⁻ + [0] H⁺ + 5e⁻ → [1] + 4H₂O',
+      answers: ['8', 'Mn²⁺'],
+      tiles: ['4', '6', '8', 'Mn²⁺', 'MnO₂', 'O₂'],
+    },
+  },
+  {
+    id: 'K2CrO4', category: 'transition', formula: 'K₂CrO₄', name: 'クロム酸カリウム',
+    container: 'wide_jar', state: 'crystal', colorHex: '#facc15',
+    promptProp: '鮮やかな黄色の結晶！Pb²⁺・Ba²⁺ で黄色沈殿、Ag⁺ で赤褐色沈殿を作るぞ！',
+    reason: '酸性にすると橙赤色の二クロム酸イオン Cr₂O₇²⁻ に変化します。',
+    labelOptions: [
+      { text: 'Pb²⁺・Ba²⁺ と黄色沈殿、Ag⁺ と赤褐色沈殿を作る', correct: true },
+      { text: '水溶液に酸を加えると橙赤色の Cr₂O₇²⁻ に変化する', correct: true },
+      { text: 'Ca²⁺ とも黄色の沈殿を作る', correct: false },
+      { text: '黒色の粉末である', correct: false },
+    ],
+    reaction: {
+      desc: 'クロム酸イオンが酸性条件で二クロム酸イオンに変化する平衡',
+      template: '[0] CrO₄²⁻ + 2H⁺ ⇌ [1] + H₂O',
+      answers: ['2', 'Cr₂O₇²⁻'],
+      tiles: ['1', '2', '4', 'Cr₂O₇²⁻', 'Cr³⁺'],
+    },
+  },
+  {
+    id: 'K2Cr2O7', category: 'transition', formula: 'K₂Cr₂O₇', name: '二クロム酸カリウム',
+    container: 'wide_jar', state: 'crystal', colorHex: '#ea580c',
+    promptProp: '鮮やかな橙赤色の結晶！酸性下で強い酸化剤となり、反応後は緑色の Cr³⁺ になるぞ！',
+    reason: 'Cr₂O₇²⁻（橙赤）+ 14H⁺ + 6e⁻ → 2Cr³⁺（緑）+ 7H₂O。塩基性で黄色 CrO₄²⁻ に。',
+    labelOptions: [
+      { text: '橙赤色の結晶で、硫酸酸性下で強い酸化剤として働く', correct: true },
+      { text: '還元されると緑色の Cr³⁺ に変化する', correct: true },
+      { text: '塩基性にすると赤紫色に変化する', correct: false },
+      { text: '無色の結晶である', correct: false },
+    ],
+    reaction: {
+      desc: '二クロム酸イオンが塩基性でクロム酸イオン（黄）に戻る反応',
+      template: 'Cr₂O₇²⁻ + [0] OH⁻ ⇌ [1] CrO₄²⁻ + H₂O',
+      answers: ['2', '2'],
+      tiles: ['1', '2', '4', '6', 'H⁺'],
+    },
+  },
+  {
+    id: 'MnO2', category: 'transition', formula: 'MnO₂', name: '酸化マンガン(IV)',
+    container: 'wide_jar', state: 'powder', colorHex: '#18181b',
+    promptProp: '黒色粉末！H₂O₂ 分解の触媒や、濃塩酸と加熱して塩素 Cl₂ を発生させる酸化剤じゃ！',
+    reason: 'MnO₂ + 4HCl → MnCl₂ + 2H₂O + Cl₂↑。乾電池の正極活物質にも利用。',
+    labelOptions: [
+      { text: '黒色粉末で、H₂O₂ の分解反応の触媒として働く', correct: true },
+      { text: '濃塩酸と加熱すると酸化剤として働き、塩素（Cl₂）を発生する', correct: true },
+      { text: '水に非常によく溶けて赤紫色の溶液になる', correct: false },
+      { text: '白色の結晶性粉末である', correct: false },
+    ],
+    reaction: {
+      desc: '実験室での塩素の発生反応（MnO₂＋濃HCl 加熱）',
+      template: 'MnO₂ + [0] HCl → MnCl₂ + 2H₂O + [1]',
+      answers: ['4', 'Cl₂'],
+      tiles: ['2', '4', '6', 'Cl₂', 'H₂', 'O₂'],
+    },
+  },
+];
+
+const CLASSIFIER_TUT_STEPS = [
+  {
+    title: 'STEP 1 / 3：① 棚から正しい試薬びんを取ろう！',
+    text: '博士の依頼（性質または名称）を見て、棚に並んだ4本のびんから正しい1本を選ぼう！保存容器（褐色びん・ポリ容器・水中・石油中・広口びん・集気びん）や中身の色が大きなヒントになるよ。',
+  },
+  {
+    title: 'STEP 2 / 3：②「正しいものをすべて選べ！」ラベルを貼ろう',
+    text: 'びんを取ったら、その薬品の性質・取り扱いについて【正しい記述をすべてチェック】してラベルを貼ろう！間違えた薬品は自動で「📌 付せん」が付くので後から集中復習できるよ。',
+  },
+  {
+    title: 'STEP 3 / 3：③ 反応式タイルを埋めて実験成功！',
+    text: '仕上げに、その薬品が関わる入試頻出の反応式の空欄（係数・化学式）をタイルで完成させよう！全問クリア＆連続コンボで「📓 物質図鑑」に 👑 マークが付くよ！',
+  },
+];
+
+function renderClassifierBottleSVG(item) {
+  const c = item.container;
+  const col = item.colorHex;
+
+  if (c === 'polyethylene') {
+    return `
+      <svg class="cls-shelf-svg" viewBox="0 0 88 108" fill="none" aria-hidden="true">
+        <rect x="30" y="6" width="28" height="12" rx="3" fill="#0284c7" stroke="#7dd3fc" stroke-width="1.3"/>
+        <path d="M32 18H56V26L68 38V94C68 99 64 102 58 102H30C24 102 20 99 20 94V38L32 26V18Z"
+              fill="#e2e8f0" fill-opacity="0.9" stroke="#f8fafc" stroke-width="1.8"/>
+        <path d="M23 62H65V93C65 97 62 99 58 99H30C26 99 23 97 23 93V62Z" fill="${col}" opacity="0.45"/>
+        <rect x="26" y="46" width="36" height="24" rx="3" fill="#ffffff" stroke="#94a3b8" stroke-width="1.1"/>
+        <text x="44" y="62" text-anchor="middle" font-size="9" font-weight="800" fill="#0369a1" font-family="JetBrains Mono, monospace">PE</text>
+      </svg>`;
+  }
+
+  if (c === 'in_water' || c === 'in_oil') {
+    const isOil = c === 'in_oil';
+    const fluidCol = isOil ? 'rgba(234,179,8,0.36)' : 'rgba(56,189,248,0.30)';
+    return `
+      <svg class="cls-shelf-svg" viewBox="0 0 88 108" fill="none" aria-hidden="true">
+        <rect x="24" y="8" width="40" height="11" rx="3" fill="#475569" stroke="#cbd5e1" stroke-width="1.2"/>
+        <rect x="16" y="20" width="56" height="82" rx="10" fill="rgba(226,242,255,0.12)" stroke="rgba(226,242,255,0.82)" stroke-width="1.8"/>
+        <path d="M18 42Q44 46 70 42V92C70 97 66 100 61 100H27C22 100 18 97 18 92V42Z" fill="${fluidCol}"/>
+        <path d="M18 42Q44 46 70 42" stroke="rgba(255,255,255,0.6)" stroke-width="1.4" fill="none"/>
+        ${isOil
+          ? `<polygon points="28,92 38,78 48,84 42,96" fill="${col}" stroke="#fff" stroke-width="1.1"/><polygon points="46,94 56,80 64,86 58,96" fill="${col}" stroke="#fff" stroke-width="1.1"/>`
+          : `<rect x="28" y="76" width="12" height="19" rx="3" transform="rotate(-12 34 85)" fill="${col}" stroke="#ca8a04"/><rect x="44" y="78" width="12" height="18" rx="3" transform="rotate(14 50 86)" fill="${col}" stroke="#ca8a04"/>`}
+        <rect x="21" y="28" width="4" height="60" rx="2" fill="rgba(255,255,255,0.35)"/>
+      </svg>`;
+  }
+
+  if (c === 'gas_jar') {
+    return `
+      <svg class="cls-shelf-svg" viewBox="0 0 88 108" fill="none" aria-hidden="true">
+        <rect x="18" y="14" width="52" height="6" rx="2" fill="rgba(226,242,255,0.75)"/>
+        <rect x="22" y="20" width="44" height="82" rx="8" fill="rgba(226,242,255,0.10)" stroke="rgba(226,242,255,0.8)" stroke-width="1.8"/>
+        <rect x="25" y="24" width="38" height="74" rx="6" fill="${col}" opacity="0.22"/>
+        <circle cx="38" cy="52" r="6" fill="${col}" opacity="0.32"/>
+        <circle cx="52" cy="68" r="8" fill="${col}" opacity="0.26"/>
+        <rect x="26" y="28" width="4" height="62" rx="2" fill="rgba(255,255,255,0.4)"/>
+      </svg>`;
+  }
+
+  if (c === 'wide_jar') {
+    return `
+      <svg class="cls-shelf-svg" viewBox="0 0 88 108" fill="none" aria-hidden="true">
+        <rect x="25" y="10" width="38" height="12" rx="3" fill="#334155" stroke="#94a3b8" stroke-width="1.3"/>
+        <rect x="18" y="24" width="52" height="78" rx="10" fill="rgba(226,242,255,0.10)" stroke="rgba(226,242,255,0.8)" stroke-width="1.8"/>
+        <path d="M20 74Q34 62 44 68Q54 60 68 74V92C68 97 64 100 59 100H29C24 100 20 97 20 92V74Z" fill="${col}" opacity="0.94"/>
+        <rect x="23" y="32" width="4.5" height="58" rx="2" fill="rgba(255,255,255,0.38)"/>
+      </svg>`;
+  }
+
+  const isAmber = c === 'amber_glass';
+  const strokeCol = isAmber ? 'rgba(245,158,11,0.92)' : 'rgba(226,242,255,0.85)';
+  const bodyFill = isAmber ? 'rgba(146,64,14,0.92)' : 'rgba(220,238,255,0.12)';
+
+  return `
+    <svg class="cls-shelf-svg" viewBox="0 0 88 108" fill="none" aria-hidden="true">
+      <path d="M32 10C32 8 36 6 44 6C52 6 56 8 56 10L53 20H35L32 10Z"
+            fill="${isAmber ? '#78350f' : 'rgba(226,242,255,0.5)'}" stroke="${strokeCol}" stroke-width="1.4"/>
+      <path d="M34 20H54V28L67 40V93C67 98 63 102 57 102H31C25 102 21 98 21 93V40L34 28V20Z"
+            fill="${bodyFill}" stroke="${strokeCol}" stroke-width="1.8"/>
+      <path d="M23 56Q44 60 65 56V93C65 97 62 100 57 100H31C26 100 23 97 23 93V56Z" fill="${col}" opacity="${isAmber ? '0.45' : '0.78'}"/>
+      <rect x="26" y="42" width="4.5" height="50" rx="2" fill="rgba(255,255,255,${isAmber ? '0.28' : '0.44'})"/>
+    </svg>`;
+}
+
+class ClassifierGame {
+  constructor(dom, audio) {
+    this.dom = dom;
+    this.audio = audio;
+
+    // Pre-game settings
+    this.category = 'all';
+    this.promptMode = 'prop';
+    this.requestTotal = 5;
+    this.maxLives = 5;
+
+    // Session state
+    this.queue = [];
+    this.reqIndex = 0;
+    this.phase = 'setup'; // 'setup' | 'pick' | 'label' | 'react' | 'result'
+    this.lives = 5;
+    this.score = 0;
+    this.combo = 0;
+    this.maxCombo = 0;
+    this.perfectCount = 0;
+    this.currentItem = null;
+    this.itemHadMistake = false;
+    this.phaseLocked = false;
+    this.reactionSlots = [];
+    this.tutStep = 0;
+
+    // Persisted progress
+    this.highScore = 0;
+    this.bookmarks = new Set();
+    this.discovered = new Set();
+    this.mastered = new Set();
+    this._loadProgress();
+  }
+
+  _loadProgress() {
+    try {
+      this.highScore = Number(localStorage.getItem('ion_sep_cls_hi') || 0);
+      JSON.parse(localStorage.getItem('ion_sep_cls_bm') || '[]').forEach((id) => this.bookmarks.add(id));
+      JSON.parse(localStorage.getItem('ion_sep_cls_disc') || '[]').forEach((id) => this.discovered.add(id));
+      JSON.parse(localStorage.getItem('ion_sep_cls_mast') || '[]').forEach((id) => this.mastered.add(id));
+    } catch (_) {}
+  }
+
+  _saveProgress() {
+    try {
+      localStorage.setItem('ion_sep_cls_hi', String(this.highScore));
+      localStorage.setItem('ion_sep_cls_bm', JSON.stringify([...this.bookmarks]));
+      localStorage.setItem('ion_sep_cls_disc', JSON.stringify([...this.discovered]));
+      localStorage.setItem('ion_sep_cls_mast', JSON.stringify([...this.mastered]));
+    } catch (_) {}
+  }
+
+  showSetup() {
+    this.phase = 'setup';
+    this.dom.setupView.classList.remove('hidden');
+    this.dom.playView.classList.add('hidden');
+    this.dom.resultBox.classList.add('hidden');
+    const bmChip = document.querySelector('#cls-cat-chips .filter-chip[data-ccat="bookmarked"]');
+    if (bmChip) bmChip.textContent = `📌 付せん (${this.bookmarks.size})`;
+  }
+
+  stop() {
+    // Clean hook when closing modal
+  }
+
+  setCategory(cat) { this.category = cat; }
+  setPromptMode(mode) { this.promptMode = mode; }
+  setRequestTotal(n) { this.requestTotal = n; }
+
+  getActivePool() {
+    if (this.category === 'bookmarked') {
+      const bm = CLASSIFIER_ITEMS.filter((it) => this.bookmarks.has(it.id));
+      return bm.length > 0 ? bm : CLASSIFIER_ITEMS;
+    }
+    if (this.category === 'all') return CLASSIFIER_ITEMS;
+    return CLASSIFIER_ITEMS.filter((it) => it.category === this.category);
+  }
+
+  start() {
+    const pool = [...this.getActivePool()].sort(() => Math.random() - 0.5);
+    this.queue = pool.slice(0, Math.min(this.requestTotal, pool.length));
+    this.reqIndex = 0;
+    this.lives = this.maxLives;
+    this.score = 0;
+    this.combo = 0;
+    this.maxCombo = 0;
+    this.perfectCount = 0;
+
+    this.dom.setupView.classList.add('hidden');
+    this.dom.resultBox.classList.add('hidden');
+    this.dom.playView.classList.remove('hidden');
+
+    this.loadRequest();
+  }
+
+  toggleCurrentBookmark() {
+    if (!this.currentItem) return;
+    if (this.bookmarks.has(this.currentItem.id)) this.bookmarks.delete(this.currentItem.id);
+    else this.bookmarks.add(this.currentItem.id);
+    this._saveProgress();
+    this.updateBookmarkBtn();
+  }
+
+  updateBookmarkBtn() {
+    if (!this.dom.btnBookmark || !this.currentItem) return;
+    const on = this.bookmarks.has(this.currentItem.id);
+    this.dom.btnBookmark.textContent = on ? '📌 付せん済' : '📌 付せん';
+    this.dom.btnBookmark.classList.toggle('active', on);
+  }
+
+  updateHud() {
+    const hearts = '♥'.repeat(Math.max(0, this.lives)) + '♡'.repeat(Math.max(0, this.maxLives - this.lives));
+    this.dom.progressText.textContent = `依頼 ${Math.min(this.reqIndex + 1, this.queue.length)} / ${this.queue.length}`;
+    this.dom.heartsText.textContent = hearts;
+    this.dom.score.textContent = `${this.score}pt`;
+    this.dom.combo.textContent = `🔥 ${this.combo}`;
+  }
+
+  loadRequest() {
+    if (this.lives <= 0 || this.reqIndex >= this.queue.length) {
+      this.finish();
+      return;
+    }
+    this.currentItem = this.queue[this.reqIndex];
+    this.itemHadMistake = false;
+    this.discovered.add(this.currentItem.id);
+    this._saveProgress();
+    this.updateBookmarkBtn();
+    this.enterPhasePick();
+  }
+
+  // ==================== PHASE 1: ① 試薬を取る ====================
+  enterPhasePick() {
+    this.phase = 'pick';
+    this.phaseLocked = false;
+    this.updateHud();
+    this._setPhaseIndicator(1);
+
+    this.dom.phasePick.classList.remove('hidden');
+    this.dom.phaseLabel.classList.add('hidden');
+    this.dom.phaseReact.classList.add('hidden');
+    this.dom.feedback.classList.add('hidden');
+    this.dom.btnAdvance.classList.add('hidden');
+
+    const askByName = this.promptMode === 'name' || (this.promptMode === 'random' && Math.random() < 0.45);
+    this.dom.profPrompt.innerHTML = askByName
+      ? `<span class="prof-tag">👨‍🔬 依頼（名称）</span>「<strong>${this.currentItem.name}</strong>」のびんを取ってくれ！`
+      : `<span class="prof-tag">👨‍🔬 依頼（性質）</span>「${this.currentItem.promptProp}」`;
+
+    const sameCat = CLASSIFIER_ITEMS.filter((it) => it.id !== this.currentItem.id && it.category === this.currentItem.category);
+    const others = CLASSIFIER_ITEMS.filter((it) => it.id !== this.currentItem.id && it.category !== this.currentItem.category);
+    const distractors = [...sameCat.sort(() => Math.random() - 0.5), ...others.sort(() => Math.random() - 0.5)].slice(0, 3);
+    const shelf4 = [this.currentItem, ...distractors].sort(() => Math.random() - 0.5);
+
+    this.dom.shelfGrid.innerHTML = '';
+    shelf4.forEach((item, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'cls-shelf-bottle-btn';
+      btn.innerHTML = `
+        <span class="cls-b-num">${idx + 1}</span>
+        ${renderClassifierBottleSVG(item)}
+        <span class="cls-b-formula">${item.formula}</span>
+        <span class="cls-b-container ${item.container}">${CONTAINER_LABELS[item.container]}</span>
+      `;
+      btn.addEventListener('click', () => {
+        if (this.phaseLocked) return;
+        this.phaseLocked = true;
+        if (item.id === this.currentItem.id) {
+          btn.classList.add('correct');
+          this.combo++;
+          if (this.combo > this.maxCombo) this.maxCombo = this.combo;
+          const pts = 100 + this.combo * 15;
+          this.score += pts;
+          this.audio.playGlassClink('pickup');
+          this.dom.feedback.className = 'quiz-feedback ok';
+          this.dom.feedback.innerHTML = `<strong>⭕ それじゃ！ (+${pts}pt)</strong> ${item.formula}（${item.name}）— ${item.reason}`;
+          this.dom.btnAdvance.textContent = '② ラベルを貼る（すべて選べ） ▶';
+          this.dom.btnAdvance.onclick = () => this.enterPhaseLabel();
+        } else {
+          btn.classList.add('wrong');
+          [...this.dom.shelfGrid.children].forEach((el, i) => {
+            if (shelf4[i].id === this.currentItem.id) el.classList.add('correct');
+          });
+          this.itemHadMistake = true;
+          this.combo = 0;
+          this.lives = Math.max(0, this.lives - 1);
+          this.bookmarks.add(this.currentItem.id);
+          this._saveProgress();
+          this.updateBookmarkBtn();
+          this.audio.playDrop(0.6);
+          this.dom.feedback.className = 'quiz-feedback ng';
+          this.dom.feedback.innerHTML = `<strong>❌ ちがうぞい…（ライフ −1・📌自動付せん）</strong> 正解は <strong>${this.currentItem.formula}（${this.currentItem.name}）</strong>：${this.currentItem.reason}`;
+          this.dom.btnAdvance.textContent = this.lives <= 0 ? '結果を見る ▶' : 'つぎの依頼へ ▶';
+          this.dom.btnAdvance.onclick = () => { this.reqIndex++; this.loadRequest(); };
+        }
+        this.updateHud();
+        this.dom.feedback.classList.remove('hidden');
+        this.dom.btnAdvance.classList.remove('hidden');
+      });
+      this.dom.shelfGrid.appendChild(btn);
+    });
+  }
+
+  // ==================== PHASE 2: ② ラベルを貼る（正しいものをすべて選べ！） ====================
+  enterPhaseLabel() {
+    this.phase = 'label';
+    this.phaseLocked = false;
+    this._setPhaseIndicator(2);
+
+    this.dom.phasePick.classList.add('hidden');
+    this.dom.phaseLabel.classList.remove('hidden');
+    this.dom.phaseReact.classList.add('hidden');
+    this.dom.feedback.classList.add('hidden');
+    this.dom.btnAdvance.classList.add('hidden');
+    this.dom.btnLabelCheck.classList.remove('hidden');
+
+    this.dom.profPrompt.innerHTML = `<span class="prof-tag">🏷️ ② ラベル貼り</span><strong>${this.currentItem.formula}（${this.currentItem.name}）</strong>について、<u>正しいものをすべて選べ！</u>`;
+
+    const shuffledOpts = this.currentItem.labelOptions
+      .map((o, idx) => ({ ...o, idx }))
+      .sort(() => Math.random() - 0.5);
+    this._currentLabelOpts = shuffledOpts;
+
+    this.dom.labelChecks.innerHTML = shuffledOpts
+      .map((opt, i) => `
+        <label class="cls-check-row" data-opt-idx="${i}">
+          <input type="checkbox" value="${i}">
+          <span>${opt.text}</span>
+        </label>`)
+      .join('');
+
+    this.dom.btnLabelCheck.onclick = () => this.checkLabelAnswer();
+  }
+
+  checkLabelAnswer() {
+    if (this.phaseLocked) return;
+    this.phaseLocked = true;
+    const rows = [...this.dom.labelChecks.querySelectorAll('.cls-check-row')];
+    let allCorrect = true;
+
+    rows.forEach((row, i) => {
+      const checked = row.querySelector('input').checked;
+      const shouldBe = this._currentLabelOpts[i].correct;
+      if (checked === shouldBe) {
+        row.classList.add(shouldBe ? 'chk-ok' : 'chk-neutral');
+      } else {
+        allCorrect = false;
+        row.classList.add('chk-ng');
+      }
+      if (shouldBe) {
+        row.insertAdjacentHTML('beforeend', '<span class="chk-tag ok">正</span>');
+      } else {
+        row.insertAdjacentHTML('beforeend', '<span class="chk-tag ng">誤</span>');
+      }
+    });
+
+    this.dom.btnLabelCheck.classList.add('hidden');
+
+    if (allCorrect) {
+      this.combo++;
+      if (this.combo > this.maxCombo) this.maxCombo = this.combo;
+      const pts = 150 + this.combo * 20;
+      this.score += pts;
+      this.audio.playSuccess();
+      this.dom.feedback.className = 'quiz-feedback ok';
+      this.dom.feedback.innerHTML = `<strong>⭕ かんぺきなラベルじゃ！ (+${pts}pt)</strong> 性質と保存法を完全に理解しているな！`;
+    } else {
+      this.itemHadMistake = true;
+      this.combo = 0;
+      this.bookmarks.add(this.currentItem.id);
+      this._saveProgress();
+      this.updateBookmarkBtn();
+      this.audio.playDrop(0.6);
+      this.dom.feedback.className = 'quiz-feedback ng';
+      this.dom.feedback.innerHTML = `<strong>⚠️ 惜しい！（📌自動付せん）</strong> 上の「正／誤」マークを見直してから反応式へ進もう！`;
+    }
+
+    this.updateHud();
+    this.dom.feedback.classList.remove('hidden');
+    this.dom.btnAdvance.textContent = '③ 反応式をつくる ▶';
+    this.dom.btnAdvance.onclick = () => this.enterPhaseReact();
+    this.dom.btnAdvance.classList.remove('hidden');
+  }
+
+  // ==================== PHASE 3: ③ 実験する（反応式タイルパズル） ====================
+  enterPhaseReact() {
+    this.phase = 'react';
+    this.phaseLocked = false;
+    this._setPhaseIndicator(3);
+
+    this.dom.phasePick.classList.add('hidden');
+    this.dom.phaseLabel.classList.add('hidden');
+    this.dom.phaseReact.classList.remove('hidden');
+    this.dom.feedback.classList.add('hidden');
+    this.dom.btnAdvance.classList.add('hidden');
+    this.dom.btnReactCheck.classList.remove('hidden');
+
+    const rx = this.currentItem.reaction;
+    this.reactionSlots = new Array(rx.answers.length).fill('');
+    this.dom.profPrompt.innerHTML = `<span class="prof-tag">⚗️ ③ 反応式実験</span>${rx.desc}の空欄をタイルで埋めよう！`;
+
+    this._renderReactionSlots();
+
+    this.dom.reactTiles.innerHTML = rx.tiles
+      .map((t) => `<button type="button" class="rx-tile-btn" data-val="${t}">${t}</button>`)
+      .join('');
+
+    this.dom.reactTiles.querySelectorAll('.rx-tile-btn').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        if (this.phaseLocked) return;
+        const emptyIdx = this.reactionSlots.indexOf('');
+        if (emptyIdx === -1) return;
+        this.reactionSlots[emptyIdx] = btn.dataset.val;
+        this.audio.playGlassClink('pickup');
+        this._renderReactionSlots();
+      });
+    });
+
+    this.dom.btnReactClear.onclick = () => {
+      if (this.phaseLocked) return;
+      this.reactionSlots.fill('');
+      this._renderReactionSlots();
+    };
+    this.dom.btnReactCheck.onclick = () => this.checkReactAnswer();
+  }
+
+  _renderReactionSlots() {
+    const rx = this.currentItem.reaction;
+    let html = rx.template;
+    rx.answers.forEach((_, idx) => {
+      const val = this.reactionSlots[idx] || '？';
+      const filled = Boolean(this.reactionSlots[idx]);
+      html = html.replace(`[${idx}]`, `<button type="button" class="rx-slot ${filled ? 'filled' : ''}" data-slot="${idx}">${val}</button>`);
+    });
+    this.dom.reactFormula.innerHTML = html;
+    this.dom.reactFormula.querySelectorAll('.rx-slot').forEach((slot) => {
+      slot.addEventListener('click', () => {
+        if (this.phaseLocked) return;
+        const idx = Number(slot.dataset.slot);
+        this.reactionSlots[idx] = '';
+        this._renderReactionSlots();
+      });
+    });
+  }
+
+  checkReactAnswer() {
+    if (this.phaseLocked) return;
+    const rx = this.currentItem.reaction;
+    if (this.reactionSlots.includes('')) {
+      this.dom.feedback.className = 'quiz-feedback ng';
+      this.dom.feedback.innerHTML = '空欄（？）をすべて下のタイルから選んで埋めてください！';
+      this.dom.feedback.classList.remove('hidden');
+      return;
+    }
+
+    this.phaseLocked = true;
+    this.dom.btnReactCheck.classList.add('hidden');
+    const isOk = rx.answers.every((ans, i) => this.reactionSlots[i] === ans);
+
+    let fullEq = rx.template;
+    rx.answers.forEach((ans, i) => { fullEq = fullEq.replace(`[${i}]`, ans); });
+
+    if (isOk) {
+      this.combo++;
+      if (this.combo > this.maxCombo) this.maxCombo = this.combo;
+      const pts = 180 + this.combo * 20;
+      this.score += pts;
+      if (!this.itemHadMistake) {
+        this.perfectCount++;
+        this.mastered.add(this.currentItem.id);
+        this._saveProgress();
+      }
+      this.audio.playSuccess();
+      this.dom.feedback.className = 'quiz-feedback ok';
+      this.dom.feedback.innerHTML = `<strong>✨ 反応成功じゃ！ (+${pts}pt${!this.itemHadMistake ? '・👑完全制覇！' : ''})</strong><br><code>${fullEq}</code>`;
+    } else {
+      this.combo = 0;
+      this.bookmarks.add(this.currentItem.id);
+      this._saveProgress();
+      this.updateBookmarkBtn();
+      this.audio.playDrop(0.6);
+      this.dom.feedback.className = 'quiz-feedback ng';
+      this.dom.feedback.innerHTML = `<strong>❌ 反応式がちがうぞい…（📌自動付せん）</strong><br>正解：<code>${fullEq}</code>`;
+    }
+
+    this.updateHud();
+    this.dom.feedback.classList.remove('hidden');
+    this.dom.btnAdvance.textContent = this.reqIndex + 1 >= this.queue.length ? '結果を見る ▶' : 'つぎの依頼へ ▶';
+    this.dom.btnAdvance.onclick = () => { this.reqIndex++; this.loadRequest(); };
+    this.dom.btnAdvance.classList.remove('hidden');
+  }
+
+  _setPhaseIndicator(stepNum) {
+    document.querySelectorAll('.cls-phase-pill').forEach((el) => {
+      const n = Number(el.dataset.phase);
+      el.classList.toggle('active', n === stepNum);
+      el.classList.toggle('done', n < stepNum);
+    });
+  }
+
+  finish() {
+    this.phase = 'result';
+    if (this.score > this.highScore) {
+      this.highScore = this.score;
+      this._saveProgress();
+    }
+    this.audio.playSuccess();
+    const rank = this.lives <= 0 ? 'B（ライフ切れ・付せんで復習！）' : this.perfectCount === this.queue.length ? 'S（博士の右腕！完全制覇👑）' : 'A（見事な助手じゃ！）';
+
+    this.dom.playView.classList.add('hidden');
+    this.dom.resultBox.classList.remove('hidden');
+    this.dom.resultStats.innerHTML = `
+      <div class="summary-row"><span>最終スコア</span><strong>${this.score} pt（BEST: ${this.highScore} pt）</strong></div>
+      <div class="summary-row"><span>完全制覇（👑）</span><strong>${this.perfectCount} / ${this.queue.length} 依頼</strong></div>
+      <div class="summary-row"><span>最大コンボ</span><strong>🔥 ${this.maxCombo} 連続</strong></div>
+      <div class="summary-row"><span>残りライフ</span><strong>${'♥'.repeat(this.lives) || '0'}</strong></div>
+      <div class="summary-row"><span>評価ランク</span><strong>${rank}</strong></div>
+    `;
+  }
+
+  renderZukan(container) {
+    const catNames = { nonmetal: '非金属元素', typical: '典型金属元素', transition: '遷移元素' };
+    container.innerHTML = `
+      <div class="zukan-summary">記録した物質：<strong>${this.discovered.size} / ${CLASSIFIER_ITEMS.length} 種</strong>（👑 完全制覇 ${this.mastered.size} 種 ・ 📌 付せん ${this.bookmarks.size} 種）</div>
+      <div class="zukan-grid">
+        ${CLASSIFIER_ITEMS.map((it) => {
+          const isMastered = this.mastered.has(it.id);
+          const isBm = this.bookmarks.has(it.id);
+          let eq = it.reaction.template;
+          it.reaction.answers.forEach((a, i) => { eq = eq.replace(`[${i}]`, a); });
+          return `
+            <div class="zukan-card ${isBm ? 'bookmarked' : ''}">
+              <div class="zukan-card-top">
+                <div class="zukan-mini-svg">${renderClassifierBottleSVG(it)}</div>
+                <div class="zukan-meta">
+                  <div class="zukan-title">${isMastered ? '👑 ' : ''}${it.formula} <small>${it.name}</small></div>
+                  <div class="zukan-tags">
+                    <span class="cls-b-container ${it.container}">${CONTAINER_LABELS[it.container]}</span>
+                    <span class="zukan-cat">${catNames[it.category]}</span>
+                    ${isBm ? '<span class="zukan-bm">📌 付せん</span>' : ''}
+                  </div>
+                </div>
+              </div>
+              <p class="zukan-desc">${it.reason}</p>
+              <div class="zukan-eq"><code>${eq}</code></div>
+            </div>`;
+        }).join('')}
+      </div>
+    `;
+  }
+
+  openTutorial() {
+    this.tutStep = 0;
+    this.dom.tutBox.classList.remove('hidden');
+    this.renderTutorial();
+  }
+
+  renderTutorial() {
+    const s = CLASSIFIER_TUT_STEPS[this.tutStep];
+    this.dom.tutTitle.textContent = s.title;
+    this.dom.tutText.textContent = s.text;
+    this.dom.tutNextBtn.textContent = this.tutStep === CLASSIFIER_TUT_STEPS.length - 1 ? 'はじめる！' : '次へ →';
+  }
+
+  nextTutorial() {
+    if (this.tutStep < CLASSIFIER_TUT_STEPS.length - 1) {
+      this.tutStep++;
+      this.renderTutorial();
+    } else {
+      this.dom.tutBox.classList.add('hidden');
+    }
+  }
+}
+
+
 // ===== title_fx.js =====
 /**
  * Luminous Quantum / Inorganic Chemistry Title Screen Canvas FX
@@ -8633,6 +11716,52 @@ class IonSeparatorApp {
       btnNext: this.dom.btnQuizNext,
     });
 
+    this.balancer = new BalancerGame({
+      stats: document.getElementById('bal-stats'),
+      title: document.getElementById('bal-eq-title'),
+      equationWrap: document.getElementById('bal-equation-wrap'),
+      atomGrid: document.getElementById('bal-atom-grid'),
+      hintText: document.getElementById('bal-hint-text'),
+      feedback: document.getElementById('bal-feedback'),
+      btnCheck: document.getElementById('btn-bal-check'),
+      btnNext: document.getElementById('btn-bal-next'),
+      tutBox: document.getElementById('bal-tut-box'),
+      tutTitle: document.getElementById('bal-tut-title'),
+      tutText: document.getElementById('bal-tut-text'),
+      tutNextBtn: document.getElementById('btn-bal-tut-next'),
+    }, this.audio);
+
+    this.openedFromTitle = false;
+
+    this.classifier = new ClassifierGame({
+      setupView: document.getElementById('cls-setup-view'),
+      playView: document.getElementById('cls-play-view'),
+      progressText: document.getElementById('cls-progress'),
+      heartsText: document.getElementById('cls-hearts'),
+      score: document.getElementById('cls-score'),
+      combo: document.getElementById('cls-combo'),
+      btnBookmark: document.getElementById('btn-cls-bookmark'),
+      profPrompt: document.getElementById('cls-prof-prompt'),
+      phasePick: document.getElementById('cls-phase-pick'),
+      shelfGrid: document.getElementById('cls-shelf-grid'),
+      phaseLabel: document.getElementById('cls-phase-label'),
+      labelChecks: document.getElementById('cls-label-checks'),
+      btnLabelCheck: document.getElementById('btn-cls-label-check'),
+      phaseReact: document.getElementById('cls-phase-react'),
+      reactFormula: document.getElementById('cls-react-formula'),
+      reactTiles: document.getElementById('cls-react-tiles'),
+      btnReactClear: document.getElementById('btn-cls-react-clear'),
+      btnReactCheck: document.getElementById('btn-cls-react-check'),
+      feedback: document.getElementById('cls-feedback'),
+      btnAdvance: document.getElementById('btn-cls-advance'),
+      resultBox: document.getElementById('cls-result-box'),
+      resultStats: document.getElementById('cls-result-stats'),
+      tutBox: document.getElementById('cls-tut-box'),
+      tutTitle: document.getElementById('cls-tut-title'),
+      tutText: document.getElementById('cls-tut-text'),
+      tutNextBtn: document.getElementById('btn-cls-tut-next'),
+    }, this.audio);
+
     this.initViewportScaler();
     this.initStageSelector();
     this.initReagentShelf();
@@ -8927,17 +12056,32 @@ class IonSeparatorApp {
     });
     this.dom.btnTitleReference?.addEventListener('click', () => {
       this.audio.ensureContext();
+      this.openedFromTitle = true;
       this.hideTitleScreen();
-      this.openReferenceModal('table');
+      this.openReferenceModal('quiz');
+    });
+    document.getElementById('btn-title-balancer')?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.openedFromTitle = true;
+      this.hideTitleScreen();
+      this.openBalancerModal();
+    });
+    document.getElementById('btn-title-classifier')?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.openedFromTitle = true;
+      this.hideTitleScreen();
+      this.openClassifierModal();
     });
     this.dom.btnTitleImport?.addEventListener('click', () => {
       this.audio.ensureContext();
+      this.openedFromTitle = false;
       this.hideTitleScreen();
       this.dom.importModal.classList.remove('hidden');
       this.updateImportPreview();
     });
     this.dom.btnTitleFree?.addEventListener('click', () => {
       this.audio.ensureContext();
+      this.openedFromTitle = false;
       this.hideTitleScreen();
       const customIdx = STAGES.length - 1;
       this.dom.stageSelect.value = String(customIdx);
@@ -8946,8 +12090,18 @@ class IonSeparatorApp {
     });
 
     // --- Modal 9: Precipitate Color Table & Q&A Drill ---
-    this.dom.btnOpenReference?.addEventListener('click', () => this.openReferenceModal('table'));
-    this.dom.btnRefClose?.addEventListener('click', () => this.dom.referenceModal.classList.add('hidden'));
+    this.dom.btnOpenReference?.addEventListener('click', () => {
+      this.openedFromTitle = false;
+      this.openReferenceModal('table');
+    });
+    this.dom.btnRefClose?.addEventListener('click', () => {
+      this.dom.referenceModal.classList.add('hidden');
+      if (this.openedFromTitle) this.showTitleScreen();
+    });
+    document.getElementById('btn-ref-home')?.addEventListener('click', () => {
+      this.dom.referenceModal.classList.add('hidden');
+      this.showTitleScreen();
+    });
 
     document.querySelectorAll('.ref-tab').forEach((tab) => {
       tab.addEventListener('click', () => {
@@ -8975,6 +12129,175 @@ class IonSeparatorApp {
     });
 
     this.dom.btnQuizNext?.addEventListener('click', () => this.quiz.next());
+
+    // --- Modal 10: Portrait Compact Menu Sheet ---
+    const pMenuModal = document.getElementById('portrait-menu-modal');
+    const closePMenu = () => pMenuModal?.classList.add('hidden');
+    document.getElementById('btn-portrait-menu')?.addEventListener('click', () => {
+      pMenuModal?.classList.remove('hidden');
+    });
+    document.getElementById('btn-pmenu-close')?.addEventListener('click', closePMenu);
+    pMenuModal?.addEventListener('click', (e) => { if (e.target === pMenuModal) closePMenu(); });
+    document.querySelectorAll('.pmenu-item').forEach((item) => {
+      item.addEventListener('click', () => {
+        const act = item.dataset.pmenu;
+        closePMenu();
+        if (act === 'reference') { this.openedFromTitle = false; this.openReferenceModal('quiz'); }
+        else if (act === 'balancer') { this.openedFromTitle = false; this.openBalancerModal(); }
+        else if (act === 'classifier') { this.openedFromTitle = false; this.openClassifierModal(); }
+        else if (act === 'tutorial') { this.audio.ensureContext(); this.hideTitleScreen(); this.tutorial.start(); }
+        else if (act === 'import') { this.dom.importModal.classList.remove('hidden'); this.updateImportPreview(); }
+        else if (act === 'builder') this.openBuilderModal();
+        else if (act === 'report') this.openReportModal();
+        else if (act === 'reset') { this.audio.playGlassClink('place'); this.loadStage(this.currentStageIndex); }
+        else if (act === 'mute') {
+          const muted = this.audio.toggleMute();
+          this.dom.btnMute.setAttribute('aria-pressed', String(muted));
+          this.dom.muteIcon.textContent = muted ? '🔇' : '🔊';
+          const ico = document.getElementById('pmenu-mute-ico');
+          const txt = document.getElementById('pmenu-mute-txt');
+          if (ico) ico.textContent = muted ? '🔇' : '🔊';
+          if (txt) txt.textContent = muted ? '効果音 OFF' : '効果音 ON';
+        } else if (act === 'title') this.showTitleScreen();
+      });
+    });
+
+    // --- 沈殿１問１答 3-Step Beginner Tutorial ---
+    const refTutSteps = [
+      { title: 'STEP 1 / 3：沈殿色・反応一覧表で全体像をつかもう', text: '「📊 沈殿色・反応一覧表」タブでは、Ag⁺・Cu²⁺・Fe³⁺ など入試必須イオンの反応を色スウォッチ付きで一覧確認できます。白沈・黒沈・過剰再溶解などで絞り込みもOK！' },
+      { title: 'STEP 2 / 3：4択の一問一答ドリルで実力チェック！', text: '「⚡ 一問一答ドリル」タブに切り替えて4択に挑戦！間違えてもすぐにイオン反応式付きの解説が出るので、その場で確実に記憶できます。' },
+      { title: 'STEP 3 / 3：連続正解コンボを伸ばそう！', text: '分野別（沈殿の色・少量→過剰・炎色・系統分離の急所）に絞って集中特訓もできます。さあスタート！' },
+    ];
+    this.refTutStep = 0;
+    const renderRefTut = () => {
+      const s = refTutSteps[this.refTutStep];
+      document.getElementById('ref-tut-title').textContent = s.title;
+      document.getElementById('ref-tut-text').textContent = s.text;
+      document.getElementById('btn-ref-tut-next').textContent = this.refTutStep === refTutSteps.length - 1 ? 'ドリルを始める！' : '次へ →';
+    };
+    this.openRefTutorial = () => {
+      this.refTutStep = 0;
+      document.getElementById('ref-tut-box')?.classList.remove('hidden');
+      renderRefTut();
+    };
+    document.getElementById('btn-ref-tut')?.addEventListener('click', () => this.openRefTutorial());
+    document.getElementById('btn-ref-tut-next')?.addEventListener('click', () => {
+      if (this.refTutStep < refTutSteps.length - 1) {
+        this.refTutStep++;
+        renderRefTut();
+      } else {
+        document.getElementById('ref-tut-box')?.classList.add('hidden');
+        try { localStorage.setItem('ion_sep_ref_tut', '1'); } catch (_) {}
+      }
+    });
+
+    // --- Modal 11: Equation Balancer Game ---
+    const balModal = document.getElementById('balancer-modal');
+    document.getElementById('btn-bal-close')?.addEventListener('click', () => {
+      balModal?.classList.add('hidden');
+      if (this.openedFromTitle) this.showTitleScreen();
+    });
+    document.getElementById('btn-bal-home')?.addEventListener('click', () => {
+      balModal?.classList.add('hidden');
+      this.showTitleScreen();
+    });
+    document.getElementById('btn-bal-tut')?.addEventListener('click', () => this.balancer.openTutorial());
+    document.getElementById('btn-bal-tut-next')?.addEventListener('click', () => {
+      this.balancer.nextTutorial();
+      try { localStorage.setItem('ion_sep_bal_tut', '1'); } catch (_) {}
+    });
+    document.getElementById('btn-bal-hint')?.addEventListener('click', () => this.balancer.showHint());
+    document.getElementById('btn-bal-check')?.addEventListener('click', () => this.balancer.checkAnswer());
+    document.getElementById('btn-bal-next')?.addEventListener('click', () => this.balancer.next());
+    document.querySelectorAll('#bal-level-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#bal-level-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.balancer.start(chip.dataset.blevel);
+      });
+    });
+
+    // --- Modal 12: Substance Classifier Game (3-Phase 博士の試薬棚 Style) ---
+    const clsModal = document.getElementById('classifier-modal');
+    const closeClsToOrigin = () => {
+      this.classifier.stop();
+      clsModal?.classList.add('hidden');
+      if (this.openedFromTitle) this.showTitleScreen();
+    };
+    const closeClsToTitle = () => {
+      this.classifier.stop();
+      clsModal?.classList.add('hidden');
+      this.showTitleScreen();
+    };
+    document.getElementById('btn-cls-close')?.addEventListener('click', closeClsToOrigin);
+    document.getElementById('btn-cls-home')?.addEventListener('click', closeClsToTitle);
+    document.getElementById('btn-cls-back')?.addEventListener('click', closeClsToTitle);
+    document.getElementById('btn-cls-begin')?.addEventListener('click', () => {
+      this.audio.ensureContext();
+      this.classifier.start();
+    });
+    document.getElementById('btn-cls-retry')?.addEventListener('click', () => this.classifier.showSetup());
+    document.getElementById('btn-cls-tut')?.addEventListener('click', () => this.classifier.openTutorial());
+    document.getElementById('btn-cls-tut-next')?.addEventListener('click', () => {
+      this.classifier.nextTutorial();
+      try { localStorage.setItem('ion_sep_cls_tut', '1'); } catch (_) {}
+    });
+    document.getElementById('btn-cls-bookmark')?.addEventListener('click', () => {
+      this.classifier.toggleCurrentBookmark();
+    });
+    document.querySelectorAll('#cls-cat-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#cls-cat-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.classifier.setCategory(chip.dataset.ccat);
+      });
+    });
+    document.querySelectorAll('#cls-prompt-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#cls-prompt-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.classifier.setPromptMode(chip.dataset.pmode);
+      });
+    });
+    document.querySelectorAll('#cls-count-chips .filter-chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        document.querySelectorAll('#cls-count-chips .filter-chip').forEach((c) => c.classList.remove('active'));
+        chip.classList.add('active');
+        this.classifier.setRequestTotal(Number(chip.dataset.rcount));
+      });
+    });
+    document.querySelectorAll('.cls-tab').forEach((tab) => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.cls-tab').forEach((t) => t.classList.remove('active'));
+        document.querySelectorAll('.cls-pane').forEach((p) => p.classList.remove('active'));
+        tab.classList.add('active');
+        const target = tab.dataset.clsTab;
+        document.getElementById(`cls-pane-${target}`)?.classList.add('active');
+        if (target === 'zukan') {
+          this.classifier.renderZukan(document.getElementById('cls-zukan-wrap'));
+        }
+      });
+    });
+  }
+
+  openBalancerModal() {
+    document.querySelectorAll('#bal-level-chips .filter-chip').forEach((c, i) => c.classList.toggle('active', i === 0));
+    this.balancer.start('all');
+    document.getElementById('balancer-modal')?.classList.remove('hidden');
+    let seen = false;
+    try { seen = Boolean(localStorage.getItem('ion_sep_bal_tut')); } catch (_) {}
+    if (!seen) this.balancer.openTutorial();
+  }
+
+  openClassifierModal() {
+    document.querySelectorAll('.cls-tab').forEach((t) => t.classList.toggle('active', t.dataset.clsTab === 'game'));
+    document.querySelectorAll('.cls-pane').forEach((p) => p.classList.toggle('active', p.id === 'cls-pane-game'));
+    this.classifier.showSetup();
+    document.getElementById('classifier-modal')?.classList.remove('hidden');
+    let seen = false;
+    try { seen = Boolean(localStorage.getItem('ion_sep_cls_tut')); } catch (_) {}
+    if (!seen) this.classifier.openTutorial();
+    else document.getElementById('cls-tut-box')?.classList.add('hidden');
   }
 
   /**
@@ -9046,6 +12369,9 @@ class IonSeparatorApp {
     document.querySelectorAll('.ref-tab').forEach((t) => t.classList.toggle('active', t.dataset.refTab === defaultTab));
     document.querySelectorAll('.ref-pane').forEach((p) => p.classList.toggle('active', p.id === `ref-pane-${defaultTab}`));
     this.dom.referenceModal.classList.remove('hidden');
+    let seenRef = false;
+    try { seenRef = Boolean(localStorage.getItem('ion_sep_ref_tut')); } catch (_) {}
+    if (!seenRef && this.openRefTutorial) this.openRefTutorial();
   }
 
   startTutorialSandbox() {
