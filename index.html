@@ -4088,9 +4088,27 @@ body.is-portrait .eq-formula {
   line-height: 1.45;
 }
 
-/* Portrait layout for 4-bottle shelf (clean 2x2 grid) */
+/* Portrait layout for 4-bottle shelf: all 4 bottles side-by-side in 1 single row! */
+body.is-portrait .cls-wood-shelf {
+  padding: 8px 6px 8px;
+}
+
 body.is-portrait .cls-shelf-grid {
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 5px;
+}
+
+body.is-portrait .cls-shelf-bottle-btn {
+  padding: 8px 2px 6px;
+  min-width: 0;
+  border-radius: 10px;
+}
+
+body.is-portrait .cls-b-num {
+  top: 3px;
+  left: 4px;
+  font-size: 9px;
+  padding: 0 4px;
 }
 
 body.is-portrait .cls-prof-box {
@@ -4105,8 +4123,22 @@ body.is-portrait .cls-prof-prompt {
 }
 
 body.is-portrait .cls-shelf-svg {
-  width: 54px;
-  height: 66px;
+  width: 44px;
+  height: 54px;
+}
+
+body.is-portrait .cls-b-formula {
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+body.is-portrait .cls-b-container {
+  font-size: 8.5px;
+  padding: 1px 4px;
+  white-space: nowrap;
 }
 
 body.is-portrait .zukan-grid {
