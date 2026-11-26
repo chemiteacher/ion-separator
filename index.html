@@ -4634,6 +4634,67 @@ body.is-portrait .prof-name-pill {
   padding: 1px 5px;
 }
 
+/* ==========================================================================
+   13. Active Test Tube Dissolved Ions Strip & H2S Volatilization Chip
+   ========================================================================== */
+
+.tube-ions-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 3px;
+}
+
+.hud-ion-lbl {
+  font-size: 9.5px;
+  color: #94a3b8;
+  font-weight: 700;
+}
+
+.hud-ion-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 6px;
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #e0f2fe;
+  background: rgba(14, 165, 233, 0.24);
+  border: 1px solid rgba(56, 189, 248, 0.55);
+  white-space: nowrap;
+}
+
+.hud-ion-chip.h2s-chip {
+  color: #ecfccb;
+  background: rgba(101, 163, 13, 0.34);
+  border-color: rgba(163, 230, 53, 0.72);
+}
+
+.hud-ion-chip.empty-chip,
+.hud-ion-chip.blind-chip {
+  color: #cbd5e1;
+  background: rgba(71, 85, 105, 0.38);
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+body.is-portrait .tube-ions-row {
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  max-width: 155px;
+  scrollbar-width: none;
+}
+
+body.is-portrait .tube-ions-row::-webkit-scrollbar {
+  display: none;
+}
+
+body.is-portrait .hud-ion-chip {
+  font-size: 9px;
+  padding: 0 5px;
+}
+
 </style>
 </head>
 <body>
@@ -4885,6 +4946,7 @@ body.is-portrait .prof-name-pill {
               <div class="tube-meta">
                 <div class="tube-name" id="hud-tube-name">原液 (Sample A)</div>
                 <div class="tube-state-line" id="hud-tube-state">液性: 中性 ・ 25°C</div>
+                <div class="tube-ions-row" id="hud-tube-ions" aria-label="試験管内の残存イオン"></div>
               </div>
             </div>
 
@@ -6244,6 +6306,7 @@ function createTube({
   precipitates = [],
   acidity = 'neutral', // 'strong_acid' | 'weak_acid' | 'neutral' | 'basic'
   bufferedNH4 = false,
+  dissolvedH2S = false,
   parentId = null,
   branchLabel = '',
   liquidLevel = 0.56,
@@ -6256,6 +6319,7 @@ function createTube({
     precipitates: [...new Set(precipitates)],
     acidity,
     bufferedNH4,
+    dissolvedH2S,
     temperature: 25,
     liquidLevel,
     reagentDrops: {},
@@ -6582,6 +6646,7 @@ function applyReagentDrop(tube, reagentId) {
 
   // --- 7. H2S Gas ---
   else if (reagentId === 'H2S') {
+    tube.dissolvedH2S = true;
     const basic = tube.acidity === 'basic';
     const acidSulfides = [
       [['Cu2+', '[Cu(NH3)4]2+'], 'CuS',  '真っ黒な CuS 微粒子が墨汁のように沈殿！', 'Cu²⁺ + H₂S → CuS↓ (黒) + 2H⁺'],
@@ -6987,6 +7052,14 @@ function detectIrreparableMix(tube) {
  * Thermal reaction check during Bunsen burner heating.
  */
 function checkThermalReaction(tube) {
+  if (tube.temperature >= 75 && tube.dissolvedH2S) {
+    tube.dissolvedH2S = false;
+    return {
+      text: '煮沸により溶存していた硫化水素（H₂S）が気体となって完全に揮発・除去された！',
+      equation: 'H₂S(aq) → H₂S↑(g) [煮沸による揮発除去]',
+      volatilizedGas: 'H2S',
+    };
+  }
   if (tube.temperature >= 82 && tube.precipitates.includes('PbCl2')) {
     tube.precipitates = tube.precipitates.filter((p) => p !== 'PbCl2');
     if (!tube.ions.includes('Pb2+')) tube.ions.push('Pb2+');
@@ -7025,6 +7098,7 @@ function filterTube(tube, isBlind = false) {
     precipitates: [],
     acidity: tube.acidity,
     bufferedNH4: tube.bufferedNH4,
+    dissolvedH2S: Boolean(tube.dissolvedH2S),
     parentId: tube.id,
     branchLabel: 'ろ過 → ろ液',
     liquidLevel: Math.max(0.42, tube.liquidLevel - 0.08),
@@ -9975,6 +10049,7 @@ class LabStageRenderer {
     this.dpr = Math.min(window.devicePixelRatio || 1, 2);
 
     this.tube = null;
+    this.isBlind = false;
 
     // Smooth visual state
     this.currentColor = { r: 215, g: 236, b: 252, a: 0.22 };
@@ -10006,6 +10081,7 @@ class LabStageRenderer {
     this.ripples = [];         // Meniscus surface ripples
     this.bubbles = [];         // Gas / boiling bubbles
     this.steam = [];           // Rising steam wisps
+    this.h2sVapor = [];        // Rising H2S volatilization wisps & labels
     this.fallingDrops = [];    // Pipette drops falling into tube
 
     // Apparatus states
@@ -10575,6 +10651,32 @@ class LabStageRenderer {
             alpha: 0.28,
           });
         }
+
+        // Dissolved H2S degassing while heating (visible yellow-green bubbles & escaping H2S↑ wisps)
+        if (this.tube.dissolvedH2S && this.tube.temperature > 42) {
+          if (Math.random() < dt * 22) {
+            this.bubbles.push({
+              x: geom.cx + (Math.random() - 0.5) * (geom.w * 0.6),
+              y: surfY + 14 + Math.random() * Math.max(14, geom.bottomY - surfY - 28),
+              vx: (Math.random() - 0.5) * 18,
+              vy: -(90 + Math.random() * 65),
+              r: 2.0 + Math.random() * 2.5,
+              alpha: 0.85,
+              kind: 'h2s',
+            });
+          }
+          if (Math.random() < dt * 6.5) {
+            this.h2sVapor.push({
+              x: geom.cx + (Math.random() - 0.5) * (geom.w * 0.55),
+              y: geom.topY - 4,
+              vx: (Math.random() - 0.5) * 26,
+              vy: -(40 + Math.random() * 28),
+              r: 10 + Math.random() * 9,
+              alpha: 0.88,
+              label: Math.random() < 0.55 ? 'H₂S↑' : '',
+            });
+          }
+        }
       }
     } else {
       this.burner.intensity = Math.max(0, this.burner.intensity - dt * 5.0);
@@ -10652,6 +10754,18 @@ class LabStageRenderer {
       s.alpha -= dt * 0.16;
       if (s.alpha <= 0) {
         this.steam.splice(i, 1);
+      }
+    }
+
+    // Update H2S volatilization vapor wisps & labels
+    for (let i = this.h2sVapor.length - 1; i >= 0; i--) {
+      const v = this.h2sVapor[i];
+      v.x += (v.vx + Math.sin(this.waveTime * 4.5 + i) * 14) * dt;
+      v.y += v.vy * dt;
+      v.r += dt * 12;
+      v.alpha -= dt * (v.isBurst ? 0.34 : 0.42);
+      if (v.alpha <= 0) {
+        this.h2sVapor.splice(i, 1);
       }
     }
 
@@ -10770,8 +10884,9 @@ class LabStageRenderer {
       this._drawBunsenBurner(ctx, geom);
     }
 
-    // 2. Steam wisps behind/above tube mouth
+    // 2. Steam wisps & H2S volatilization vapor behind/above tube mouth
     this._drawSteam(ctx);
+    this._drawH2SVapor(ctx);
 
     // 3. Transform for test tube tilt
     ctx.save();
@@ -10783,13 +10898,14 @@ class LabStageRenderer {
     // Glass back wall & subtle refraction shadow
     this._drawTestTubeBack(ctx, geom);
 
-    // Clipped interior (liquid, clouds, particles, bubbles, meniscus)
+    // Clipped interior (liquid, clouds, dissolved ions, particles, bubbles, meniscus)
     ctx.save();
     this._traceTubeInteriorPath(ctx, geom);
     ctx.clip();
 
     this._drawLiquidBody(ctx, geom);
     this._drawDiffusionClouds(ctx);
+    this._drawDissolvedIons(ctx, geom);
     this._drawPrecipitateParticles(ctx);
     this._drawBubbles(ctx);
 
@@ -11068,16 +11184,165 @@ class LabStageRenderer {
     }
   }
 
+  setBlind(flag) {
+    this.isBlind = Boolean(flag);
+  }
+
+  triggerH2SVolatilizeBurst() {
+    const geom = this._getTubeGeometry();
+    for (let i = 0; i < 10; i++) {
+      this.h2sVapor.push({
+        x: geom.cx + (Math.random() - 0.5) * (geom.w * 0.72),
+        y: geom.topY - 4 - Math.random() * 14,
+        vx: (Math.random() - 0.5) * 44,
+        vy: -(52 + Math.random() * 36),
+        r: 12 + Math.random() * 10,
+        alpha: 0.96,
+        label: i === 0 ? 'H₂S↑ 揮発完了!' : (i % 2 === 0 ? 'H₂S↑' : ''),
+        isBurst: true,
+      });
+    }
+  }
+
+  _drawDissolvedIons(ctx, geom) {
+    if (!this.tube) return;
+    const ions = this.tube.ions || [];
+    const hasH2S = Boolean(this.tube.dissolvedH2S);
+    if (ions.length === 0 && !hasH2S) return;
+
+    const surfY = this._getLiquidSurfaceY(geom);
+    const topLim = surfY + 18;
+    const botLim = geom.bottomY - 26;
+    if (botLim - topLim < 18) return;
+
+    const items = [];
+    if (this.isBlind) {
+      const count = Math.min(4, Math.max(1, ions.length));
+      for (let i = 0; i < count; i++) {
+        items.push({ label: '?', bg: 'rgba(148, 163, 184, 0.34)', border: 'rgba(226, 232, 240, 0.65)', text: '#f8fafc' });
+      }
+    } else {
+      for (const ionId of ions) {
+        const def = IONS[ionId];
+        const formula = def?.formula || ionId;
+        const c = def?.color;
+        const hasTint = c && c[3] > 0.25;
+        items.push({
+          label: formula,
+          bg: hasTint
+            ? `rgba(${Math.round(c[0])}, ${Math.round(c[1])}, ${Math.round(c[2])}, 0.78)`
+            : 'rgba(15, 23, 42, 0.52)',
+          border: hasTint
+            ? `rgba(${Math.min(255, Math.round(c[0] + 60))}, ${Math.min(255, Math.round(c[1] + 60))}, ${Math.min(255, Math.round(c[2] + 60))}, 0.95)`
+            : 'rgba(125, 211, 252, 0.75)',
+          text: '#ffffff',
+        });
+      }
+    }
+    if (hasH2S) {
+      items.push({
+        label: 'H₂S',
+        bg: 'rgba(132, 204, 22, 0.68)',
+        border: 'rgba(217, 249, 157, 0.95)',
+        text: '#fefce8',
+        isGas: true,
+      });
+    }
+
+    const total = items.length;
+    const cols = total <= 2 ? 1 : 2;
+    const rows = Math.ceil(total / cols);
+    const usableH = botLim - topLim;
+    const usableW = Math.max(24, geom.w - 28);
+    const speed = this.tube.temperature > 55 ? 2.4 : 1.0;
+    const fontSize = total >= 6 ? 9.5 : 10.5;
+
+    ctx.save();
+    ctx.font = `700 ${fontSize}px "JetBrains Mono", "Noto Sans JP", sans-serif`;
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    items.forEach((it, idx) => {
+      const col = idx % cols;
+      const row = Math.floor(idx / cols);
+      const baseX = cols === 1
+        ? geom.cx
+        : geom.cx + (col === 0 ? -usableW * 0.25 : usableW * 0.25);
+      const baseY = topLim + ((row + 0.5) / rows) * usableH;
+
+      const phase = idx * 1.9 + 0.7;
+      const dx = Math.sin(this.waveTime * (1.15 * speed) + phase) * Math.min(7, usableW * 0.12) + this.sloshTilt * 14;
+      const dy = Math.cos(this.waveTime * (0.95 * speed) + phase * 1.3) * Math.min(6, usableH / (rows * 3.5))
+        + (it.isGas && this.burner.active ? -Math.abs(Math.sin(this.waveTime * 5)) * 7 : 0);
+
+      const x = Math.max(geom.cx - geom.radius + 18, Math.min(geom.cx + geom.radius - 18, baseX + dx));
+      const y = Math.max(topLim, Math.min(botLim, baseY + dy));
+
+      const tw = ctx.measureText(it.label).width;
+      const pw = Math.max(24, tw + 10);
+      const ph = fontSize + 7;
+
+      ctx.beginPath();
+      ctx.roundRect(x - pw * 0.5, y - ph * 0.5, pw, ph, ph * 0.5);
+      ctx.fillStyle = it.bg;
+      ctx.fill();
+      ctx.strokeStyle = it.border;
+      ctx.lineWidth = 1.25;
+      ctx.stroke();
+
+      ctx.fillStyle = it.text;
+      ctx.fillText(it.label, x, y + 0.5);
+    });
+
+    ctx.restore();
+  }
+
+  _drawH2SVapor(ctx) {
+    if (this.h2sVapor.length === 0) return;
+    ctx.save();
+    ctx.font = '800 11.5px "JetBrains Mono", "Noto Sans JP", sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+
+    for (const v of this.h2sVapor) {
+      const grad = ctx.createRadialGradient(v.x, v.y, 1, v.x, v.y, v.r);
+      grad.addColorStop(0, `rgba(190, 242, 100, ${v.alpha * 0.52})`);
+      grad.addColorStop(0.65, `rgba(163, 230, 53, ${v.alpha * 0.24})`);
+      grad.addColorStop(1, 'rgba(163, 230, 53, 0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(v.x, v.y, v.r, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (v.label) {
+        ctx.fillStyle = `rgba(217, 249, 157, ${Math.min(1, v.alpha * 1.15)})`;
+        ctx.strokeStyle = `rgba(15, 23, 42, ${v.alpha * 0.85})`;
+        ctx.lineWidth = 2.6;
+        ctx.strokeText(v.label, v.x, v.y);
+        ctx.fillText(v.label, v.x, v.y);
+      }
+    }
+    ctx.restore();
+  }
+
   _drawBubbles(ctx) {
     for (const b of this.bubbles) {
       ctx.save();
       ctx.beginPath();
       ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(255, 255, 255, ${b.alpha})`;
-      ctx.lineWidth = 1.1;
-      ctx.stroke();
-      ctx.fillStyle = `rgba(224, 242, 254, ${b.alpha * 0.32})`;
-      ctx.fill();
+      if (b.kind === 'h2s') {
+        ctx.strokeStyle = `rgba(217, 249, 157, ${b.alpha})`;
+        ctx.lineWidth = 1.2;
+        ctx.stroke();
+        ctx.fillStyle = `rgba(163, 230, 53, ${b.alpha * 0.45})`;
+        ctx.fill();
+      } else {
+        ctx.strokeStyle = `rgba(255, 255, 255, ${b.alpha})`;
+        ctx.lineWidth = 1.1;
+        ctx.stroke();
+        ctx.fillStyle = `rgba(224, 242, 254, ${b.alpha * 0.32})`;
+        ctx.fill();
+      }
       ctx.restore();
     }
   }
@@ -12087,6 +12352,7 @@ class IonSeparatorApp {
       hudTubeId: document.getElementById('hud-tube-id'),
       hudTubeName: document.getElementById('hud-tube-name'),
       hudTubeState: document.getElementById('hud-tube-state'),
+      hudTubeIons: document.getElementById('hud-tube-ions'),
 
       btnUndo: document.getElementById('btn-undo'),
       btnAnswerBlind: document.getElementById('btn-answer-blind'),
@@ -13001,6 +13267,7 @@ class IonSeparatorApp {
 
     this.isBlind = Boolean(stage.blind);
     const isUnlabeled = stage.mode === 'unlabeled';
+    this.renderer?.setBlind(this.isBlind || isUnlabeled);
 
     this.dom.observationLog.innerHTML = '';
     this.dom.btnAnswerBlind.classList.toggle('hidden', !this.isBlind && !isUnlabeled);
@@ -13380,7 +13647,26 @@ class IonSeparatorApp {
     this.updateStageHUD();
     const thermal = checkThermalReaction(tube);
     if (thermal) {
-      this.renderer.dissolvePrecipitateEffect(thermal.dissolvedPrecipitate);
+      if (thermal.volatilizedGas === 'H2S') {
+        this.renderer.triggerH2SVolatilizeBurst();
+        if (!tube.history.includes('煮沸（H₂S 揮発除去）')) tube.history.push('煮沸（H₂S 揮発除去）');
+        const txt = thermal.text;
+        const eq = this.isBlind ? '' : thermal.equation;
+        this.recordEquations([thermal.equation]);
+        this.showBanner('H₂S 揮発除去', txt, eq, 4800);
+        prependObservationLog(this.dom.observationLog, {
+          tubeLabel: `#${tube.id}`,
+          action: '加熱・H₂S揮発',
+          text: txt,
+          equation: eq,
+        });
+        this.refreshAllUI();
+        return;
+      }
+
+      if (thermal.dissolvedPrecipitate) {
+        this.renderer.dissolvePrecipitateEffect(thermal.dissolvedPrecipitate);
+      }
       this.renderer.syncTargetColor();
       if (!tube.history.includes('加熱（熱水抽出）')) tube.history.push('加熱（熱水抽出）');
 
@@ -13538,6 +13824,7 @@ class IonSeparatorApp {
     if (correct) {
       this.dom.blindModal.classList.add('hidden');
       this.isBlind = false;
+      this.renderer?.setBlind(false);
       this.stageCleared = true;
       this.saveStageClear(this.currentStage.id, this.stepCount);
       this.audio.playSuccess();
@@ -13650,7 +13937,25 @@ class IonSeparatorApp {
       ? (this.isBlind ? '・沈殿あり' : `・沈殿: ${tube.precipitates.map((p) => PRECIPITATES[p]?.formula || p).join(', ')}`)
       : '';
     const bufStr = tube.bufferedNH4 ? '・NH₄Cl緩衝' : '';
-    this.dom.hudTubeState.textContent = `液性: ${phMap[tube.acidity] || '中性'}${bufStr} ・ ${Math.round(tube.temperature)}°C ${precipStr}`;
+    const h2sStr = tube.dissolvedH2S ? '・H₂S溶存' : '';
+    this.dom.hudTubeState.textContent = `液性: ${phMap[tube.acidity] || '中性'}${bufStr}${h2sStr} ・ ${Math.round(tube.temperature)}°C ${precipStr}`;
+    if (this.dom.hudTubeIons) {
+      const hideNames = this.isBlind || this.currentStage.mode === 'unlabeled';
+      if (hideNames) {
+        this.dom.hudTubeIons.innerHTML = `<span class="hud-ion-chip blind-chip">未知イオン (?)</span>${tube.dissolvedH2S ? '<span class="hud-ion-chip h2s-chip">💨 H₂S溶存</span>' : ''}`;
+      } else {
+        const ionChips = (tube.ions || []).map((id) => {
+          const formula = IONS[id]?.formula || id;
+          return `<span class="hud-ion-chip">${formula}</span>`;
+        });
+        if (tube.dissolvedH2S) {
+          ionChips.push('<span class="hud-ion-chip h2s-chip" title="バーナーで加熱（75°C以上）すると揮発除去できます">💨 H₂S溶存</span>');
+        }
+        this.dom.hudTubeIons.innerHTML = ionChips.length > 0
+          ? `<span class="hud-ion-lbl">残存:</span>${ionChips.join('')}`
+          : '<span class="hud-ion-chip empty-chip">残存イオンなし</span>';
+      }
+    }
     this.dom.btnFilter.disabled = tube.precipitates.length === 0;
   }
 
