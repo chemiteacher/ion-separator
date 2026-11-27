@@ -3181,52 +3181,67 @@ body.is-portrait .target-pill {
   padding: 2px 7px;
 }
 
-/* Stage HUD: clean single-line pill row, zero collision with test tube */
+/* Stage HUD: clean 2-row stack on portrait mobile, zero overlap */
 body.is-portrait .stage-hud-top {
   top: 6px;
   left: 8px;
   right: 8px;
+  flex-direction: column;
   flex-wrap: nowrap;
-  align-items: center;
-  gap: 6px;
+  align-items: stretch;
+  gap: 5px;
 }
 
 body.is-portrait .active-tube-badge {
-  padding: 4px 8px;
-  gap: 6px;
+  width: 100%;
+  max-width: 100%;
+  padding: 5px 8px;
+  gap: 7px;
   border-radius: 10px;
   min-width: 0;
-  flex: 0 1 auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+body.is-portrait .tube-meta {
+  min-width: 0;
+  flex: 1;
 }
 
 body.is-portrait .tube-id-pill {
   font-size: 11.5px;
   padding: 2px 6px;
+  flex-shrink: 0;
 }
 
 body.is-portrait .tube-name {
-  font-size: 11px;
+  font-size: 11.5px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 96px;
+  max-width: 100%;
 }
 
 body.is-portrait .tube-state-line {
-  font-size: 9.5px;
+  font-size: 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 110px;
+  max-width: 100%;
 }
 
 body.is-portrait .stage-quick-actions {
-  gap: 4px;
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  gap: 5px;
   flex-shrink: 0;
 }
 
 body.is-portrait .stage-action-btn {
-  padding: 6px 8px;
+  flex: 1 1 0;
+  justify-content: center;
+  padding: 5px 6px;
   font-size: 11px;
   border-radius: 9px;
 }
@@ -4650,6 +4665,8 @@ body.is-portrait .prof-name-pill {
   font-size: 9.5px;
   color: #94a3b8;
   font-weight: 700;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hud-ion-chip {
@@ -4664,6 +4681,7 @@ body.is-portrait .prof-name-pill {
   background: rgba(14, 165, 233, 0.24);
   border: 1px solid rgba(56, 189, 248, 0.55);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .hud-ion-chip.h2s-chip {
@@ -4682,7 +4700,8 @@ body.is-portrait .prof-name-pill {
 body.is-portrait .tube-ions-row {
   flex-wrap: nowrap;
   overflow-x: auto;
-  max-width: 155px;
+  max-width: 100%;
+  width: 100%;
   scrollbar-width: none;
 }
 
@@ -4691,8 +4710,8 @@ body.is-portrait .tube-ions-row::-webkit-scrollbar {
 }
 
 body.is-portrait .hud-ion-chip {
-  font-size: 9px;
-  padding: 0 5px;
+  font-size: 9.5px;
+  padding: 1px 6px;
 }
 
 </style>
@@ -10472,10 +10491,13 @@ class LabStageRenderer {
   }
 
   _getTubeGeometry() {
-    const h = Math.min(278, Math.max(96, this.height * 0.56));
+    const isTall = this.height > this.width;
+    const h = isTall
+      ? Math.min(256, Math.max(96, this.height * 0.50))
+      : Math.min(278, Math.max(96, this.height * 0.56));
     const w = Math.min(96, Math.max(44, Math.min(this.width * 0.22, h * 0.35)));
     const cx = this.width * 0.5 + this.tubeOffsetX;
-    const bottomY = this.height * 0.82 + this.tubeLiftY;
+    const bottomY = this.height * (isTall ? 0.85 : 0.82) + this.tubeLiftY;
     const topY = bottomY - h;
     const radius = w * 0.5;
     return { cx, topY, bottomY, w, h, radius };
